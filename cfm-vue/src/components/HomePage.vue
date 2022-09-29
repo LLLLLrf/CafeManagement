@@ -1,25 +1,5 @@
-<!-- <template>
-    <div>
-        <div>
-            <nav>
-                <el-menu
-                    :default-active="activeIndex"
-                    class="el-menu-demo"
-                    mode="horizontal"
-                >
-                    <el-menu-item index="1" @click="setComp('home')">首页</el-menu-item>
-                    <el-menu-item index="2" @click="setComp('rankinglist')">院校排行</el-menu-item>
-                    <el-menu-item index="3" @click="setComp('chooseschool')">智能择校</el-menu-item>
-                    <el-menu-item index="4" @click="setComp('user')">我的</el-menu-item>
-                </el-menu>
-            </nav>
-        </div>
-        <router-view></router-view>
-    </div>
-</template> -->
-
 <template>
-    <div class="common-layout">
+  <div class="common-layout">
     <el-row class="tac">
       <el-col :span="3">
         <el-icon><Coffee /></el-icon>
@@ -32,22 +12,22 @@
             <template #title>
               <!-- <el-icon><location /></el-icon> -->
               <el-icon><CoffeeCup /></el-icon>
-              <span>咖啡系列</span>
+              <span class="title">咖啡系列</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="2" @click="setPath('')">
             <el-icon><IceTea /></el-icon>
-            <span>果茶系列</span>
+            <span class="title">果茶系列</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="3" @click="setPath('')">
             <el-icon><IceDrink /></el-icon>
-            <span>奶茶系列</span>
+            <span class="title">奶茶系列</span>
           </el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
-    </div>
-  </template>
+  </div>
+</template>
 
 
 <script>
@@ -57,13 +37,13 @@ export default {
         }
     },
     methods: {
-        setComp(comppath){
+        setPath(comppath){
             this.$router.push('/'+comppath)
         },
         
     },
     mounted() {
-        this.setComp('home')
+        this.setPath('home')
     },
 }
 </script>
@@ -79,5 +59,7 @@ export default {
     }
     .common-layout{
         margin-top: -40px;
+    }
+    .title{
     }
 </style>
