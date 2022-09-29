@@ -19,48 +19,34 @@
 </template> -->
 
 <template>
+    <div class="common-layout">
     <el-row class="tac">
       <el-col :span="3">
-        <h5 class="mb-2">Default colors</h5>
+        <el-icon><Coffee /></el-icon>
+        <h5 class="head-title">ABD cafe</h5>
         <el-menu
-          default-active="2"
+          default-active="1"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
         >
-          <el-sub-menu index="1">
+          <el-menu-item index="1" @click="setPath('cafe')">
             <template #title>
               <!-- <el-icon><location /></el-icon> -->
-              <el-icon><Coffee /></el-icon>
-              <span>Navigator One</span>
+              <el-icon><CoffeeCup /></el-icon>
+              <span>咖啡系列</span>
             </template>
-            <el-menu-item-group title="Group One">
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-              <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>item four</template>
-              <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
+          </el-menu-item>
           <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <span>Navigator Two</span>
+            <el-icon><IceTea /></el-icon>
+            <span>果茶系列</span>
           </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <el-icon><document /></el-icon>
-            <span>Navigator Three</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon><setting /></el-icon>
-            <span>Navigator Four</span>
+          <el-menu-item index="3">
+            <el-icon><IceDrink /></el-icon>
+            <span>奶茶系列</span>
           </el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
+    </div>
   </template>
 
 
@@ -81,3 +67,17 @@ export default {
     },
 }
 </script>
+
+
+<style>
+    .head-title{
+        margin-left: 6px;
+        display: inline;
+        height: 28px;
+        line-height: 20px;
+        vertical-align: middle;
+    }
+    .common-layout{
+        margin-top: -40px;
+    }
+</style>
