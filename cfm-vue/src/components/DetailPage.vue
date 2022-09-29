@@ -6,7 +6,7 @@
                 <div class="goback">
                     <div class="block">
                         <span class="img">default</span>
-                        <el-image :bc="backgraph" @click="pageback" v-loading.fullscreen.lock="loading"/>
+                        <!-- <el-image :bc="backgraph" @click="pageback" v-loading.fullscreen.lock="loading"/> -->
                     </div>
                 </div>
                 <!--图片插入-->
@@ -74,9 +74,6 @@
 
 <script>
 export default{
-    components:{
-        ShoppingCartDemo//购物车子组件
-    },
     data(){
         return{
             backgraph:"",
@@ -89,15 +86,18 @@ export default{
             atr3:"",
             price:"",
             cartgraph:"",
+            show:false
         }
     },
     methods:{
         pageback(){
-            loading.value = true
-            this.$router.go(-1)
-            loading.value = false
+
         },
         add(){
+        },
+        changeStatus(){
+            if(this.show){this.show=false}
+            else{this.show=true}
         }
     },
 }
