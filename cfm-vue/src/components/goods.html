@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shopping trolley</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+.title{
+    margin:5px auto;
+    height:90px;
+    width:344px;
+    border: 1.5px solid black;
+    padding-left:10px;
+    font-size: 70px;
+    color: blue;
+    top:5px;
+}
+.sticker{
+    height:90px;
+    line-height: 90px;
+    width:90px;
+    border-radius: 50%;
+    background-image:url(../返回6.png);
+    background-size: cover;
+    float:left;
+}
+.menu {
+    width: 339px;
+    height: 248px;
+    background-color: white;
+    margin:3px auto;
+    border-radius: 30px;
+    border: 1.5px solid black; 
+    box-shadow: 0px 10px 5px 0px #bababa;
+}
+.picture{
+    width: 183px;
+    height: 215px;
+    border-radius: 30px;
+    background-image:url(../橙心美式.jpg);
+    background-size: cover;
+    float: left;
+}
+
+.name{
+    float:right;
+    width:147px;
+    height:47px;    
+}
+body{
+    background-color: #f5f5f5;
+    }
+.num{
+    float:right;
+    width:147px;
+    height:23px;
+    color: blue;
+}
+.detail{
+    float:right;
+    width:147px;
+    height:75px;
+}
+.price{
+    float:right;
+    width:147px;
+    height:40px;
+    font-size: 40px;
+    font-weight: bolder;
+    text-align: right;
+}
+.confirm {
+    float:right;
+    width:146px;
+    height:60px;
+}
+.add{
+    float: left;
+    width:36px;
+    height:36px;
+    border-radius: 50%;
+    background-image:url(../增加.png);
+    background-size: cover;
+    margin-left: 25px;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+.minus{
+    float: right;
+    width:34px;
+    height:34px;
+    border-radius: 50%;
+    background-image:url(../减.png);
+    background-size: cover;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+.pay{
+    margin-top: 0px;
+    width:308px;
+    height: 900px;
+    box-shadow: 0px 0px 5px 10px #bababa;
+    border: 1.5px solid black;
+    position: absolute;
+    right:0px;
+    top:0px;
+}
+.pay-detail1{
+    margin-left: 40px;
+    margin-top: 48px;
+    width:237px;
+    height:95px;
+    border: 1.5px solid black;
+}
+.pay-detail2{
+    margin-left: 40px;
+    margin-top: 2px;
+    width:237px;
+    height:95px;
+    border: 1.5px solid black;
+}
+.payment{
+    margin-left: 40px;
+    margin-top: 90px;
+    width:130px;
+    height:40px;
+    border: 1.5px solid black;
+}
+.payway{
+    width:264px;
+    height:150px;
+    border: 1.5px solid black;
+    box-shadow: 0px 0px 5px 5px #bababa;
+    margin-top: 7px;
+}
+.pay1{
+    width:264px;
+    height:50px;
+    border-bottom: 1.5px solid black;
+}
+.pay2{
+    width:264px;
+    height:50px;
+    border-bottom: 1.5px solid black;
+}
+.pay3{
+    width:264px;
+    height:50px;
+    border-bottom: 1.5px solid black;
+}
+.total{
+    width:264px;
+    height:150px;
+    margin-top: 80px;
+    border: 1.5px solid black;
+}
+</style>
+<body>
+    <div class="title">ORDER
+        <div class="sticker"></div>
+    </div>
+    <div class = "menu">
+        <h1 class="name">橙心美式</h1>
+        <div class ="picture"></div>
+        <div class="num">&nbsp;&nbsp;&nbsp;x2</div>
+        <div class="detail">-中杯<br>-常温<br>-常规糖<br>-备注</div>
+        <div class="price">￥40</div>
+        <div class="confirm">
+            <div class="add"></div>
+            <div class="minus"></div>
+        </div>
+    </div>
+    <div class="pay">
+        <div class="pay-detail1"></div>
+        <div class="pay-detail2"></div>
+        <div class="payment"></div>
+        <div class="payway">
+            <div class="pay1"></div>
+            <div class="pay2"></div>
+            <div class="pay3"></div>
+            <div class="total"></div>
+        </div>
+
+    </div>
+</body>
+</html>
