@@ -57,13 +57,13 @@ export default {
         }
     },
     methods: {
-        setComp(comppath){
+        setPath(comppath){
             this.$router.push('/'+comppath)
         },
         
     },
     mounted() {
-        this.setComp('home')
+        this.setPath('home')
     },
 }
 </script>
