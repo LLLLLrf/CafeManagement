@@ -32,16 +32,16 @@
             <template #title>
               <!-- <el-icon><location /></el-icon> -->
               <el-icon><CoffeeCup /></el-icon>
-              <span>咖啡系列</span>
+              <span class="title">咖啡系列</span>
             </template>
           </el-menu-item>
           <el-menu-item index="2">
             <el-icon><IceTea /></el-icon>
-            <span>果茶系列</span>
+            <span class="title">果茶系列</span>
           </el-menu-item>
           <el-menu-item index="3">
             <el-icon><IceDrink /></el-icon>
-            <span>奶茶系列</span>
+            <span class="title">奶茶系列</span>
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -79,5 +79,7 @@ export default {
     }
     .common-layout{
         margin-top: -40px;
+    }
+    .title{
     }
 </style>
