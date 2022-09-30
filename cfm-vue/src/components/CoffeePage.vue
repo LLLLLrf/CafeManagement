@@ -1,8 +1,10 @@
 <template>
   <div>
+    <div class="menu-name">咖啡系列</div>
+    <hr/>
     <DrinkCard ref="DrinkCard"></DrinkCard>
     <!-- <div class="slide-in-right"><DetailPage></DetailPage></div> -->
-    <div>
+    <div class="slide-in-right">
       <DetailPage v-if="show" style="float:left;width:800px"></DetailPage>
     </div>
   </div>
@@ -43,7 +45,14 @@ export default{
   .slide-in-right {
 	animation: slide-in-right 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 150ms backwards;
 }
-/* .v-enter, .v-leave-to {
+.v-enter, .v-leave-to {
    transform: translateX(100%);
-} */
+}
+
+.menu-name{
+  text-align: left;
+  width: 100%;
+  margin-left: 200px;
+  font-weight: bolder;
+}
 </style>
