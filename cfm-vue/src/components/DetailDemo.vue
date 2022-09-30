@@ -1,5 +1,5 @@
 <template>
-    <el-container class="common-layout" height="955px">
+    <el-container class="common-layout-demo" height="955px">
         <el-main>
             <el-scrollbar>
                 <!--返回主页-->
@@ -98,11 +98,61 @@ export default{
 }
 </script>
 
-<style>
-    .common-layout{
-        background-color: rgb(0,47,167);
-        color: white;
-        height: 100vh;
-        border-radius: 8px;
+
+<style scoped>
+    .goback.img{
+        width:90px;
+        height:90px;
+        margin-left:300px;
+        margin-top:23px;
+
+    }
+    .image-demo.img{
+        width:380px;
+        height:450px;
+        margin-left:381px;
+        margin-top:448px;
+    }
+    .des{
+        border:3px,solid,white;
+        padding:10px;
+        margin-left:399px;
+        margin-top:665px;
+    }
+    .ino{
+        width:480px;
+        height:32px;
+        margin-left:788px;
+        margin-top:134px;
+    }
+    .name{
+        width:295px;
+        height:97px;
+        margin-left:788px;
+        margin-top:134px;
+    }
+    .t{
+        width:58px;
+        height:37px;
+        margin-left:802px;
+        margin-top:275px;
+    }
+    .t.RadioSelection{
+        width:96px;
+        height:38px;
+        margin-left:799px;
+        margin-top:324px;
+    }
+    .p{
+        width:251px;
+        height:76px;
+        margin-left:788px;
+        margin-top:775px;
+    }
+    .add_to_cart.img{
+        width:120px;
+        height:120px;
+        margin-left:1108px;
+        margin-top:731px;
     }
 </style>

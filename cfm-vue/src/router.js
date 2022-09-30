@@ -16,6 +16,11 @@ const routes =  [
     name: "milkpage",
     component:() => import("./components/MilkPage")
   },
+  {
+    path: "/detaildemo",
+    name: "detaildemo",
+    component:() => import("./components/DetailDemo")
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),

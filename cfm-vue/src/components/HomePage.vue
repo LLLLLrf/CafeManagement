@@ -23,6 +23,10 @@
               <el-icon><IceDrink /></el-icon> 
               <span class="title">奶茶系列</span>
             </el-menu-item>
+            <el-menu-item index="4" @click="setPath('DetailDemo')" class="menu-item">
+              <el-icon><Memo /></el-icon> 
+              <span class="title">详情</span>
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -59,7 +63,7 @@ export default {
         display: inline;
     }
     .nav{
-        margin-top: -30px;
+        /* margin-top: -30px; */
         width: 160px;
         float: left;
         height: 120vh;
@@ -74,5 +78,6 @@ export default {
 
     .content{
       width: 100%;
+      margin-top: -40px;
     }
 </style>

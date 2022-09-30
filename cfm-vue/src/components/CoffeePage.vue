@@ -2,10 +2,9 @@
   <div>
     <DrinkCard ref="DrinkCard"></DrinkCard>
     <!-- <div class="slide-in-right"><DetailPage></DetailPage></div> -->
-    <transition>
-      <DetailPage v-if="show"></DetailPage>
-    </transition>
-
+    <div>
+      <DetailPage v-if="show" style="float:left;width:800px"></DetailPage>
+    </div>
   </div>
 </template>
 
@@ -22,6 +21,8 @@ export default{
       show: false
     }
   },
+  methods:{
+  },
   mounted(){
     this.show=this.$refs.DrinkCard.show
   }
@@ -29,7 +30,7 @@ export default{
 </script>
 
 <style>
-  /* @keyframes slide-in-right {
+  @keyframes slide-in-right {
   0% {
     transform: translateX(1000px);
     opacity: 0;
@@ -41,8 +42,8 @@ export default{
 }
   .slide-in-right {
 	animation: slide-in-right 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 150ms backwards;
-} */
-.v-enter, .v-leave-to {
-   transform: translateX(100%);
 }
+/* .v-enter, .v-leave-to {
+   transform: translateX(100%);
+} */
 </style>
