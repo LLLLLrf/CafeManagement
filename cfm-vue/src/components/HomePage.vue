@@ -62,7 +62,7 @@ export default {
         margin-top: -30px;
         width: 160px;
         float: left;
-        height: 100vh;
+        height: 120vh;
     }
     .title{
       font-size: larger;

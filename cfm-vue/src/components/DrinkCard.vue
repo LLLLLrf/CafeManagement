@@ -63,7 +63,6 @@
     }
     .img-title{
         font-family:'华文行楷';
-        font-size: 1.1em;
-        font-weight:500;
+        font-size: 1.2em;
     }
 </style>
