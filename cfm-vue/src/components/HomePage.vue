@@ -73,6 +73,6 @@ export default {
     }
 
     .content{
-      width: 80%;
+      width: 100%;
     }
 </style>

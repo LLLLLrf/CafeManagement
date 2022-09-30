@@ -98,6 +98,8 @@ export default{
         changeStatus(){
             if(this.show){this.show=false}
             else{this.show=true}
+            this.$emit('reload')
+            alert(this.show)
         }
     },
 }

@@ -3,7 +3,7 @@
     <DrinkCard></DrinkCard>
     <!-- <div class="slide-in-right"><DetailPage></DetailPage></div> -->
     <transition>
-      <DetailPage v-if='show'></DetailPage>
+      <DetailPage v-if='show' @reload="reload"></DetailPage>
     </transition>
 
   </div>
@@ -12,13 +12,18 @@
 <script>
 import DrinkCard from "./DrinkCard.vue"
 import DetailPage from './DetailPage.vue';
-
 export default{
     props:{show:Boolean},
     components:{
     DrinkCard,
-    DetailPage,
-}
+    DetailPage
+  },
+    methods: {
+      reload(){
+        alert('load')
+        window.reload()
+      }
+    },
 }
 </script>
 
