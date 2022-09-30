@@ -3,20 +3,20 @@
         <div v-for="(img,index) in coffeeimgs" :key="img" class="card">
             <span class="img-title">{{coffeenames[index]}}</span>
         <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
-        <el-image class="img" :src="img" :fit="fit" @click="CheckDetail"/>
+        <el-image class="img" :src="img" :fit="fit" @click="changeStatus()"/>
         </div>
-        <DetailPage ref='DetailPage' v-show="show"></DetailPage>
+        <DetailPage v-show="show"></DetailPage>
     </div>
 </template>
 
 <script>
     import DetailPage from './DetailPage.vue';
     export default{
-        props:{show:Boolean},
         components:{DetailPage},
         data(){
             return{
                 // tempshow:this.show,
+                show:false,
                 fit : 'fill',
                 coffeenames : ['焦糖玛奇朵', '美式咖啡', '拿铁', '摩卡', '卡布奇诺','浓缩咖啡','红茶拿铁','枫味玛奇朵','粉檬泡泡饮','橙花白巧风味玛奇朵','经典天乐雪'],
                 coffeeimgs : ['https://www.starbucks.com.cn/images/products/caramel-macchiato.jpg',
@@ -34,10 +34,10 @@
             }
         },
         methods:{
-            CheckDetail(){
-                this.$refs.DetailPage.changeStatus()
-                // this.tempshow=true
-            },
+            changeStatus() {
+                if (this.show) { this.show = false }
+                else { this.show = true }
+            }
             
         },
     }

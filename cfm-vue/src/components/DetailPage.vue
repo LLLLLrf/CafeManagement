@@ -85,8 +85,7 @@ export default{
             atr2:"",
             atr3:"",
             price:"",
-            cartgraph:"",
-            show:false
+            cartgraph:""
         }
     },
     methods:{
@@ -94,12 +93,6 @@ export default{
 
         },
         add(){
-        },
-        changeStatus(){
-            if(this.show){this.show=false}
-            else{this.show=true}
-            this.$emit('reload')
-            alert(this.show)
         }
     },
 }
