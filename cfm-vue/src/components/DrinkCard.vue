@@ -1,9 +1,10 @@
 <template>
     <div>
         <div v-for="(img,index) in coffeeimgs" :key="img" class="card">
-            <span class="img-title">{{coffeenames[index]}}</span>
+            
         <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
         <el-image class="img" :src="img" :fit="fit" @click="changeStatus()"/>
+        <span class="img-title">{{coffeenames[index]}}</span>
         </div>
         <DetailPage v-show="show"></DetailPage>
     </div>
@@ -45,7 +46,7 @@
 
 <style scoped>
     .img {
-        margin-top: 20px;
+        margin-bottom: 20px;
         display: block;
         width: 100%;
         height: 200px;
