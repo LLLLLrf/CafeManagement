@@ -1,11 +1,12 @@
 <template>
-    hello HelloWorld3
+  HelloWorld3
 </template>
   
 <script>
+
   export default{
       components:{
-  }
+}
   }
   
 </script>

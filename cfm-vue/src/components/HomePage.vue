@@ -3,8 +3,10 @@
     <div class="nav">
       <el-row class="tac">
         <el-col>
-          <el-icon><Coffee /></el-icon>
-          <h5 class="head-title">ABD cafe</h5>
+          <div>
+            <el-icon><Coffee /></el-icon>
+            <h5 class="head-title">ABD cafe</h5>
+          </div>
           <el-menu
             :default-active="activeIndex"
             class="el-menu-vertical-demo"
@@ -31,6 +33,11 @@
         </el-col>
       </el-row>
     </div>
+    <div class="cart" @click="addCart()">
+      <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
+      <div class="cart-num">{{num}}</div>
+      <div class="cart-name">购物车</div>
+    </div>
     <router-view class="content"></router-view>
   </div>
 </template>
@@ -38,8 +45,10 @@
 
 <script>
 export default {
+    // props:['num'],
     data(){
         return{
+          num:0
         }
     },
     methods: {
@@ -47,11 +56,15 @@ export default {
             this.$router.push('/'+comppath)
             console.log(this.$router)
         },
+        addCart(){
+          this.num+=1
+        }
         
     },
     mounted() {
         this.setPath('CoffeePage')
     },
+
 }
 </script>
 
@@ -65,8 +78,8 @@ export default {
     .nav{
         /* margin-top: -30px; */
         width: 160px;
-        float: left;
-        height: 120vh;
+        position: fixed;
+        height: 100vh;
     }
     .title{
       font-size: larger;
@@ -77,7 +90,34 @@ export default {
     }
 
     .content{
-      width: 100%;
+      /* width: 100%; */
       margin-top: -40px;
+    }
+    .cart{
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+      line-height: 60px;
+      width: 160px;
+      border-radius: 30px;
+      color: #fff;
+      background: #2F3CF4;
+      z-index: 10;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    .cart-num{
+      display: inline;
+      border-radius: 26px;
+      color: #2F3CF4;
+      font-size: larger;
+      padding: 14px 18px;
+      background: #fff;
+    }
+    .cart-name{
+      display: inline;
+      margin-left: 30px;
+      margin-right: 20px;
+      
+
     }
 </style>
