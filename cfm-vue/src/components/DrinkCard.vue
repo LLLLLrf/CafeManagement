@@ -1,10 +1,10 @@
 <template>
     <div>
         <div v-for="(img,index) in coffeeimgs" :key="img" class="card" @click="add_cart()">
-            
+
         <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
         <el-image class="img" :src="img" :fit="fit" @click.stop="visible=true"/>
-        <span class="img-title">{{price}}{{coffeenames[index]}}</span>
+        <span class="img-title">{{price}}￥ {{coffeenames[index]}}</span>
         </div>
 
         <el-drawer
@@ -35,11 +35,11 @@
         data(){
             return{
                 visible:ref(false),
-
+                price:0,
                 num:0,
                 show:false,
                 fit : 'fill',
-                coffeenames : ['焦糖玛奇朵', '美式咖啡', '拿铁', '摩卡', '卡布奇诺','浓缩咖啡','红茶拿铁','枫味玛奇朵','粉檬泡泡饮','橙花白巧风味玛奇朵','经典天乐雪','冰冷萃咖啡','棉云冷萃','气炫冰山美式', '拿铁', '摩卡'],
+                coffeenames : ['焦糖玛奇朵', '美式咖啡', '拿铁', '摩卡', '卡布奇诺','浓缩咖啡','红茶拿铁','枫味玛奇朵','粉檬泡泡饮','橙花白巧玛奇朵','经典天乐雪','冰冷萃咖啡','棉云冷萃','气炫冰山美式', '拿铁', '摩卡'],
                 coffeeimgs : ['https://www.starbucks.com.cn/images/products/caramel-macchiato.jpg',
                         'https://www.starbucks.com.cn/images/products/caffe-americano.jpg',
                         'https://www.starbucks.com.cn/images/products/caffe-latte.jpg',
