@@ -80,6 +80,7 @@ export default {
         width: 160px;
         position: fixed;
         height: 100vh;
+        z-index: 1000;
     }
     .title{
       font-size: larger;
@@ -90,7 +91,7 @@ export default {
     }
 
     .content{
-      /* width: 100%; */
+      width: 100vh;
       margin-top: -40px;
     }
     .cart{
