@@ -2,6 +2,7 @@
     <div style="">
         <div class="menu-name">果茶系列</div>
         <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
+        懒得找图片了
     </div>
 </template>
 

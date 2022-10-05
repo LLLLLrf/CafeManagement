@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        hi
+        详情
     </div>
 </template>
 
@@ -15,11 +15,7 @@ export default{
     },
     methods: {
     },
-    mounted() {
 
-    },
-
-    watch: {},
 }
 </script>
 
