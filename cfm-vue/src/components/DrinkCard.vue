@@ -3,24 +3,39 @@
         <div v-for="(img,index) in coffeeimgs" :key="img" class="card" @click="add_cart()">
             
         <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
-        <el-image class="img" :src="img" :fit="fit" @click.stop="changeStatus()"/>
+        <el-image class="img" :src="img" :fit="fit" @click.stop="visible=true"/>
         <span class="img-title">{{price}}{{coffeenames[index]}}</span>
         </div>
-        <DetailPage v-show="show"></DetailPage>
 
-        <!-- <HomePage v-if="false" :school="school"></HomePage> -->
+        <el-drawer
+            v-model="visible" :show-close="false"
+            direction="rtl"
+            size="89%"
+            :custom-class="detaildrawer"
+            >
+            <template #header="{ close,titleId }">
+            <button @click="close">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                <span>Back</span>
+            </button>
+            <div :id="titleId" style="width:90%;color: #fff;">购物车详情</div>
+            </template>
+            <DetailPage></DetailPage>
+        </el-drawer>
     </div>
 </template>
 
 <script>
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
-    // import HomePage from './HomePage.vue';
-
+    import { ref } from 'vue'
+    
     export default{
         components:{DetailPage},
         data(){
             return{
+                visible:ref(false),
+
                 num:0,
                 show:false,
                 fit : 'fill',
@@ -118,4 +133,44 @@
         font-weight: 500;
         line-height: 50px;
     }
+
+
+button {
+ display: flex;
+ height: 2.5em;
+ align-items: center;
+ justify-content: center;
+ background-color: #eeeeee4b;
+ border-radius: 8px;
+ letter-spacing: 1px;
+ transition: all 0.1s linear;
+ cursor: pointer;
+ border: none;
+ background: #fff;
+ margin-left: 20px;
+ margin-top: 20px;
+}
+
+button > svg {
+ margin-right: 5px;
+ margin-left: 5px;
+ font-size: 20px;
+ transition: all 0.2s ease-in;
+}
+
+button:hover > svg {
+ font-size: 1.2em;
+ transform: translateX(-8px);
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transform: translateY(-2px);
+}
+
+
+/deep/.el-drawer.rtl {
+    background: #2F3CF4;
+  }
+
 </style>
