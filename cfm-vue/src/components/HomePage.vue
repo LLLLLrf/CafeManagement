@@ -91,7 +91,7 @@ export default {
     }
 
     .content{
-      width: 100vh;
+      /* width: 100vh; */
       margin-top: -40px;
     }
     .cart{
