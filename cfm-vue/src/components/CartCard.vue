@@ -7,7 +7,7 @@
 </template>
 
 
-<style>
+<style scoped>
     /* From uiverse.io by @mrhyddenn */
 .card {
   width: 190px;
