@@ -1,74 +1,61 @@
 <template>
-    <el-container class="common-layout-demo" height="955px">
-        <el-main>
-            <el-scrollbar>
+    <div class="layout">
+        <el-row justify="center" style="margin-left:200px">
+            <el-col span="12">
                 <!--返回主页-->
-                <div class="goback">
-                    <div class="block">
-                        <span class="img">default</span>
-                        <!-- <el-image :bc="backgraph" @click="pageback" v-loading.fullscreen.lock="loading"/> -->
-                    </div>
+                <div>
+                    <button class="backbutton" @click="pageback">
+                        <svg width="48" height="48" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-029747aa=""><path fill="currentColor" d="M609.408 149.376 277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0 30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688 29.12 29.12 0 0 0-41.728 0z"></path></svg>
+                    </button>
                 </div>
                 <!--图片插入-->
-                <div class="image-demo">
-                    <div class="block">
-                        <span class="img">default</span>
-                        <el-image :src="src" />
-                    </div>
+                <div>
+                    <el-image
+                    style="width:350px;height:350px;margin-left:-400px;margin-top:100px;"
+                    :src="src" />
                 </div>
                 <!--商品描述-->
-                <p class="des"><em>GoodsDescription-demo</em></p>
-                <span class="ino">Customize your drink!</span>
-                <span style="border:1px solid grey;width:440px;margin-left:788px; margin-top:134px;"></span>
+                <div class="des"><em>{{description}}</em></div>
+            </el-col>
+
+            <el-col span="12" offset="6" style="margin-top:120px;text-align:left;">
+                <span style="font-family:Arial;color:#D7D7D7;font-size:large;font-style:oblique">Customize your drink!</span>
                 <!--商品名称-->
-                <h1 :Name="name">GoodsName-demo</h1>
-                <!--单选框-->
-                <el-descriptions title="atr1" class="t">
-                    <span style="border:1px solid grey;width:200px;margin-left:799px;margin-top:309px"></span>
-                    <div class="RadioSelection">
-                        <el-radio-group v-model="radio1" class="r-1">
-                            <el-radio-button label="1" size="large">Option 1</el-radio-button>
-                            <el-radio-button label="2" size="large">Option 2</el-radio-button>
-                            <el-radio-button label="3" size="large">Option 3</el-radio-button>
-                        </el-radio-group>
-                    </div>
-                </el-descriptions>
-                <el-descriptions title="atr2" class="t">
-                    <span style="border:1px solid grey;width:200px;margin-left:799px;margin-top:309px"></span>
-                    <div class="RadioSelection">
-                        <el-radio-group v-model="radio2" class="r-2">
-                            <el-radio-button label="1" size="large">Option 1</el-radio-button>
-                            <el-radio-button label="2" size="large">Option 2</el-radio-button>
-                            <el-radio-button label="3" size="large">Option 3</el-radio-button>
-                            <el-radio-button label="4" size="large">Option 4</el-radio-button>
-                        </el-radio-group>
-                    </div>
-                </el-descriptions>
-                <el-descriptions title="atr3" class="t">
-                    <span style="border:1px solid grey;width:200px;margin-left:799px;margin-top:309px"></span>
-                    <div class="RadioSelection">
-                        <el-radio-group v-model="radio3" class="r-3">
-                            <el-radio-button label="1" size="large">Option 1</el-radio-button>
-                            <el-radio-button label="2" size="large">Option 2</el-radio-button>
-                            <el-radio-button label="3" size="large">Option 3</el-radio-button>
-                            <el-radio-button label="4" size="large">Option 4</el-radio-button>
-                        </el-radio-group>
-                    </div> 
-                </el-descriptions>
+                <h1 class="name">{{name}}</h1>
+                <!--商品要求-->
+                <div class="RadioSelection">
+                    <div class="t">规格</div>
+                    <el-radio-group v-model="radio1" class="k">
+                        <el-radio-button label="1" size="large">中杯</el-radio-button>
+                        <el-radio-button label="2" size="large">大杯</el-radio-button>
+                        <el-radio-button label="3" size="large">小杯</el-radio-button>
+                    </el-radio-group>
+                </div>
+                <div class="RadioSelection">
+                    <div class="t">温度</div>
+                    <el-radio-group v-model="radio2" class="k">
+                        <el-radio-button label="1" size="large">常规冰</el-radio-button>
+                        <el-radio-button label="2" size="large">去冰</el-radio-button>
+                        <el-radio-button label="3" size="large">少冰</el-radio-button>
+                        <el-radio-button label="4" size="large">多冰</el-radio-button>
+                    </el-radio-group>
+                </div>
+                <div class="RadioSelection">
+                    <div class="t">糖度</div>
+                    <el-radio-group v-model="radio3" class="k">
+                        <el-radio-button label="1" size="large">常规糖(7分)</el-radio-button>
+                        <el-radio-button label="2" size="large">5分糖</el-radio-button>
+                        <el-radio-button label="3" size="large">多糖</el-radio-button>
+                        <el-radio-button label="4" size="large">不加糖</el-radio-button>
+                    </el-radio-group>
+                </div> 
                 <!--商品价格-->
                 <h2 class="p">价格：￥{{price}}</h2>
                 <!--加入购物车-->
-                <div class="add_to_cart">
-                    <div class="block">
-                        <span class="img">default</span>
-                        <el-image :cart="cartgraph" @click="add"/>
-                    </div>
-                </div>
-                <!--定义传递给购物车子组件的数据-->
-                <ShoppingCartDemo :msg="{src,name,atr1,atr2,atr3,price}" />
-            </el-scrollbar>
-        </el-main>
-    </el-container>
+
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 
@@ -76,83 +63,53 @@
 export default{
     data(){
         return{
-            backgraph:"",
-            loading:false,
-            src:"",
-            des:"",
-            name:"",
-            atr1:"",
-            atr2:"",
-            atr3:"",
-            price:"",
-            cartgraph:""
+            src:"https://www.starbucks.com.cn/images/products/cappuccino.jpg",
+            description:"描述",
+            name:"卡布奇诺",
+            price:"20",
         }
     },
     methods:{
         pageback(){
-
+            this.$router.go(-1)
         },
-        add(){
-        }
     },
 }
 </script>
 
 
 <style scoped>
-    .goback.img{
-        width:90px;
-        height:90px;
-        margin-left:300px;
-        margin-top:23px;
-
+    .layout{
     }
-    .image-demo.img{
-        width:380px;
-        height:450px;
-        margin-left:381px;
-        margin-top:448px;
+    .backbutton{
+        color:white;
+        margin-left:-800px;
+        border-radius:30px;
+        background-color:blue;
+        border:white;
     }
     .des{
-        border:3px,solid,white;
-        padding:10px;
-        margin-left:399px;
-        margin-top:665px;
-    }
-    .ino{
-        width:480px;
-        height:32px;
-        margin-left:788px;
-        margin-top:134px;
+        display:inline;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-left:-400px;
+        font-size:small;
+        text-indent:50px;
     }
     .name{
-        width:295px;
-        height:97px;
-        margin-left:788px;
-        margin-top:134px;
+        font-family:Arial, Helvetica, sans-serif;
     }
-    .t{
-        width:58px;
-        height:37px;
-        margin-left:802px;
-        margin-top:275px;
+    .RadioSelection{
+        margin-top:20px;
     }
-    .t.RadioSelection{
-        width:96px;
-        height:38px;
-        margin-left:799px;
-        margin-top:324px;
+    .RadioSelection .k{
+        margin-top:8px;
     }
     .p{
-        width:251px;
-        height:76px;
-        margin-left:788px;
-        margin-top:775px;
+        font-family:Arial, Helvetica, sans-serif;
+        margin-top:120px;
+        font-size:32px;
     }
-    .add_to_cart.img{
-        width:120px;
-        height:120px;
-        margin-left:1108px;
-        margin-top:731px;
+    .el-button:focus{
+        color:blue;
     }
 </style>
