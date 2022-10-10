@@ -14,6 +14,7 @@
             <el-menu-item index="1" @click="setPath('CoffeePage')" class="menu-item"  style="margin-top:10px">
               <template #title>
                 <el-icon><CoffeeCup /></el-icon>
+                <icon></icon>
                 <span class="title">咖啡系列</span>
               </template>
             </el-menu-item>
@@ -27,13 +28,14 @@
             </el-menu-item>
             <el-menu-item index="4" @click="setPath('DetailDemo')" class="menu-item">
               <el-icon><Memo /></el-icon> 
+              <!-- <el-image class="icon" src="../assets/icons/logo.png" fit="fill"/> -->
               <span class="title">详情</span>
             </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
     </div>
-    <div class="cart" @click="addCart()">
+    <div class="cart" @click="goCart('CartPage')">
       <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
       <div class="cart-num">{{num}}</div>
       <div class="cart-name">购物车</div>
@@ -58,6 +60,9 @@ export default {
         },
         addCart(){
           this.num+=1
+        },
+        goCart(comppath){
+          this.$router.push('/'+comppath)
         }
         
     },
@@ -118,7 +123,15 @@ export default {
       display: inline;
       margin-left: 30px;
       margin-right: 20px;
-      
+    }
 
+
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      /* vertical-align: -0.15em; */
+      fill: currentColor;
+      overflow: hidden;
     }
 </style>

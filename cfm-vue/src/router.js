@@ -21,6 +21,11 @@ const routes =  [
     name: "detaildemo",
     component:() => import("./components/DetailDemo")
   },
+  {
+    path:"/cartpage",
+    name:"cartpage",
+    component:() => import("./components/CartPage.vue")
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),
