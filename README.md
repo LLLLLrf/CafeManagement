@@ -8,20 +8,64 @@ SCNU&amp;UoA Cafe Management
 
   - **[Node.js v16.14.2](http://nodejs.cn/)**
   - **[npm v8.5.5]**
+- **安装[MySQL v8.0.28](https://www.mysql.com/)**
 
 ### 前端
 
 #### 安装依赖
 
 ```bash
-    cd cfm-vue
-    npm i
+cd cfm-vue
+npm i
 ```
 
 #### 快速启动
 
 ```bash
-    npm run electron:serve
+npm run electron:serve
+```
+
+### 后端
+
+#### 数据库信息
+
+- host --> localhost
+- user -->cfm
+- password --> cfm123456
+- database --> cfm
+- table --> orders,goods
+
+#### 快速配置数据库
+
+- 创建数据库
+
+```sql
+create database cfm;
+```
+
+- 新建数据库用户
+
+```sql
+create user 'cfm'@'%' identified by 'cfm123456';
+```
+
+- 授权
+
+```sql
+grant all on cfm.* to 'cfm'@'%';
+```
+
+#### 安装依赖
+
+```bash
+cd cfm-node
+npm i
+```
+
+#### 快速启动
+
+```bash
+node server.js
 ```
 
 ## Document
