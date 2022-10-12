@@ -11,7 +11,7 @@
                 <!--图片插入-->
                 <div>
                     <el-image
-                    style="width:350px;height:350px;margin-left:-400px;margin-top:100px;"
+                    style="width:350px;height:350px;margin-left:-400px;margin-top:50px;"
                     :src="src" />
                 </div>
                 <!--商品描述-->
@@ -106,6 +106,7 @@ export default{
     .p{
         font-family:Arial, Helvetica, sans-serif;
         margin-top:120px;
+        margin-left:28px;
         font-size:32px;
     }
     .el-button:focus{
