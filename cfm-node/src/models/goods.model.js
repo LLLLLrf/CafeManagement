@@ -3,6 +3,12 @@ module.exports = (sequelize, Sequelize) => {
       name: {
         type: Sequelize.STRING
       },
+      class: {
+        type: Sequelize.STRING
+      },
+      ask:{
+        type: Sequelize.JSON
+      },
       sale: {
         type: Sequelize.BOOLEAN
       },
