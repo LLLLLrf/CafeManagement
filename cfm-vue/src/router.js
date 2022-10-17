@@ -25,6 +25,11 @@ const routes =  [
     path:"/cartpage",
     name:"cartpage",
     component:() => import("./components/CartPage.vue")
+  },
+  {
+    path: '/api',
+    name: 'api',
+    component:() => import('./components/APItest.vue')
   }
 ];
 const router = createRouter({

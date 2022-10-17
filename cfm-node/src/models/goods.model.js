@@ -6,7 +6,10 @@ module.exports = (sequelize, Sequelize) => {
       sale: {
         type: Sequelize.BOOLEAN
       },
-      image_address: {
+      image_name: {
+        type: Sequelize.STRING
+      },
+      image: {
         type: Sequelize.STRING
       },
       price: {

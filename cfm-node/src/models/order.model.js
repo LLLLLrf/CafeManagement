@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Orders = sequelize.define("orders", {
-      staticid: {
-        type: Sequelize.STRING
-      },
       paytime: {
         type: Sequelize.STRING
       },

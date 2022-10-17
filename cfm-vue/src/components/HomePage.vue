@@ -31,6 +31,7 @@
               <!-- <el-image class="icon" src="../assets/icons/logo.png" fit="fill"/> -->
               <span class="title">详情</span>
             </el-menu-item>
+            <el-menu-item index="5" @click="setPath('api')">api</el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
