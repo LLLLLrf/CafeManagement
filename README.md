@@ -52,7 +52,7 @@ create user 'cfm'@'%' identified by 'cfm123456';
 - 授权
 
 ```sql
-grant all on cfm.* to 'cfm'@'%';
+grant all on cfmdb.* to 'cfm'@'%';
 ```
 
 #### 安装依赖
