@@ -11,11 +11,11 @@
                 <!--图片插入-->
                 <div>
                     <el-image
-                    style="width:350px;height:350px;margin-left:-400px;margin-top:100px;"
+                    style="width:350px;height:350px;margin-left:-400px;margin-top:50px;"
                     :src="src" />
                 </div>
                 <!--商品描述-->
-                <div class="des"><em>{{description}}</em></div>
+                <span class="des"><em>{{description}}</em></span>
             </el-col>
 
             <el-col span="12" offset="6" style="margin-top:120px;text-align:left;">
@@ -64,7 +64,7 @@ export default{
     data(){
         return{
             src:"https://www.starbucks.com.cn/images/products/cappuccino.jpg",
-            description:"描述",
+            description:"卡布奇诺是一种加入以同量的意大利特浓咖啡和蒸汽泡沫牛奶相混合的意大利咖啡。此时咖啡的颜色，就像卡布奇诺教会的修士在深褐色的外衣上覆上一条头巾一样，咖啡因此得名。传统的卡布奇诺咖啡是三分之一浓缩咖啡，三分之一蒸汽牛奶和三分之一泡沫牛奶，并在上面撒上小颗粒的肉桂粉末。",
             name:"卡布奇诺",
             price:"20",
         }
@@ -79,8 +79,6 @@ export default{
 
 
 <style scoped>
-    .layout{
-    }
     .backbutton{
         color:white;
         margin-left:-800px;
@@ -89,11 +87,12 @@ export default{
         border:white;
     }
     .des{
-        display:inline;
+        display:block;
+        width:200px;
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin-left:-400px;
         font-size:small;
-        text-indent:50px;
+        text-indent:20px;
+        margin-left:-320px;
     }
     .name{
         font-family:Arial, Helvetica, sans-serif;
@@ -107,6 +106,7 @@ export default{
     .p{
         font-family:Arial, Helvetica, sans-serif;
         margin-top:120px;
+        margin-left:28px;
         font-size:32px;
     }
     .el-button:focus{
