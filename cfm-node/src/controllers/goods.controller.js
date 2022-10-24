@@ -35,8 +35,21 @@ exports.create = (req, res) => {
   };
 // Retrieve all Goods from the database.
 exports.findAll = (req, res) => {
-    const name = req.body.name;
-    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+    Goods.findAll({ where: null })
+      .then(data => {
+        res.send(data)
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving materials."
+        });
+      });
+  };
+  // Retrieve all Goods from the database.
+exports.findOne = (req, res) => {
+    const name = req.params.name;
+    var condition = { name: name } 
     Goods.findAll({ where: condition })
       .then(data => {
         res.send(data)

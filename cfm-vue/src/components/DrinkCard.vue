@@ -1,10 +1,9 @@
 <template>
     <div>
-        <div v-for="(img,index) in coffeeimgs" :key="img" class="card" @click="add_cart()">
-
-        <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
-        <el-image class="img" :src="img" :fit="fit" @click.stop="visible=true"/>
-        <span class="img-title">{{price}}￥ {{coffeenames[index]}}</span>
+        <div v-for="(good) in goods" :key="good.name" class="card" @click="changeStatus(good.name)">
+            <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
+            <el-image class="img" :src="good.img" :fit="fit" @click.stop="changeStatus(good.name)"/>
+            <span class="img-title">{{good.price}}￥ {{good.name}}</span>
         </div>
 
         <el-drawer
@@ -20,7 +19,7 @@
             </button>
             <div :id="titleId" style="width:86%;color: #fff;font-size:large;font-weight:bold;display:inline;margin:20px 7% 0 auto;">饮品详情</div>
             </template>
-            <DetailPage></DetailPage>
+            <DetailPage :good="goodmsg"></DetailPage>
         </el-drawer>
     </div>
 </template>
@@ -29,6 +28,7 @@
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
     import { ref } from 'vue'
+    import GoodsService from '../services/GoodsService'
     
     export default{
         components:{DetailPage},
@@ -39,31 +39,18 @@
                 num:0,
                 show:false,
                 fit : 'fill',
-                coffeenames : ['焦糖玛奇朵', '美式咖啡', '拿铁', '摩卡', '卡布奇诺','浓缩咖啡','红茶拿铁','枫味玛奇朵','粉檬泡泡饮','橙花白巧玛奇朵','经典天乐雪','冰冷萃咖啡','棉云冷萃','气炫冰山美式', '拿铁', '摩卡'],
-                coffeeimgs : ['https://www.starbucks.com.cn/images/products/caramel-macchiato.jpg',
-                        'https://www.starbucks.com.cn/images/products/caffe-americano.jpg',
-                        'https://www.starbucks.com.cn/images/products/caffe-latte.jpg',
-                        'https://www.starbucks.com.cn/images/products/caffe-mocha.jpg',
-                        'https://www.starbucks.com.cn/images/products/cappuccino.jpg',
-                        'https://www.starbucks.com.cn/images/products/espresso.jpg',
-                        'https://www.starbucks.com.cn/images/products/black-tea-latte.jpg',
-                        'http://www.nanyangchapu.cn/uploads/allimg/200522/1-2005221Q413505.jpg',
-                        'http://www.nanyangchapu.cn/uploads/allimg/200522/1-2005221Q45b00.jpg',
-                        'http://www.nanyangchapu.cn/uploads/allimg/200522/1-2005221Q551555.jpg',
-                        'http://www.nanyangchapu.cn/uploads/allimg/200522/1-2005221Q631629.jpg',
-                        'https://www.starbucks.com.cn/images/products/cold-brew.jpg',
-                        'https://www.starbucks.com.cn/images/legacy/cold-foam-cold-brew/cold-foam-cold-brew-filling.gif',
-                        'https://www.starbucks.com.cn/images/products/sparkling-espresso-tonic.jpg',
-                        'https://www.starbucks.com.cn/images/products/caffe-latte.jpg',
-                        'https://www.starbucks.com.cn/images/products/caffe-mocha.jpg',
-                    ],
+                goods: undefined,
+                goodmsg: undefined
             }
         },
         methods:{
-            changeStatus() {
-                if (this.show) { this.show = false }
-                else { this.show = true }
-                alert('test')
+            changeStatus(viewingname) {
+                GoodsService.getbyname(viewingname)
+                    .then(response => {
+                        this.goodmsg = response.data[0]
+                    })
+                this.goodmsg=viewingname
+                this.visible = true
             },
             add_cart(){
                 this.num+=1;
@@ -74,7 +61,12 @@
                 
             },
         },
-            
+        mounted() {
+            GoodsService.getAll()
+                .then(response => {
+                    this.goods = response.data
+                })
+        },
     }
 </script>
 

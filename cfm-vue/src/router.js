@@ -17,11 +17,6 @@ const routes =  [
     component:() => import("./components/MilkPage")
   },
   {
-    path: "/detaildemo",
-    name: "detaildemo",
-    component:() => import("./components/DetailDemo")
-  },
-  {
     path:"/cartpage",
     name:"cartpage",
     component:() => import("./components/CartPage.vue")

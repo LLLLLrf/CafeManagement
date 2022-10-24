@@ -5,6 +5,8 @@ module.exports = app => {
     router.post("/", goods.create);
     // Retrieve all Docs
     router.get("/", goods.findAll);
+    // Retrieve all Docs
+    router.get("/:name", goods.findOne);
     // Update a Doc with id
     router.put("/:id", goods.update);
     // Delete a Doc with id

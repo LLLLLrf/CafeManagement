@@ -3,6 +3,9 @@ class GoodsService {
   getAll() {
     return http.get("/goods");
   }
+  getbyname(name){
+    return http.get(`/goods/${name}`);
+  }
   create(data) {
     return http.post("/goods", data);
   }
