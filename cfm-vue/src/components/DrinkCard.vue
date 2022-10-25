@@ -19,7 +19,7 @@
             </button>
             <div :id="titleId" style="width:86%;color: #fff;font-size:large;font-weight:bold;display:inline;margin:20px 7% 0 auto;">饮品详情</div>
             </template>
-            <DetailPage :good="goodmsg"></DetailPage>
+            <DetailPage @detail="getdetail" :good="goodmsg" :key="visible"></DetailPage>
         </el-drawer>
     </div>
 </template>
@@ -40,7 +40,8 @@
                 show:false,
                 fit : 'fill',
                 goods: undefined,
-                goodmsg: undefined
+                goodmsg: undefined,
+                orderlist:[],
             }
         },
         methods:{
@@ -58,8 +59,13 @@
                     message: '成功加入购物车',
                     type: 'success',
                 });
-                
             },
+            getdetail(detail) {
+                console.log(this.orderlist)
+                detail.id = this.orderlist.length
+                this.orderlist.push(detail)
+                console.log(this.orderlist)
+            }
         },
         mounted() {
             GoodsService.getAll()

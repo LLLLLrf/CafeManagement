@@ -3,7 +3,7 @@
     <div class="menu-name">咖啡系列</div>
     <!-- 这里宽度设100vh才不会有左右滑动 -->
     <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
-
+    
     <DrinkCard ref="DrinkCard" style="position:absolute;left:160px"></DrinkCard>
 
   </div>

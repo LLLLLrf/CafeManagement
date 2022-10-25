@@ -70,7 +70,7 @@ export default {
             var orders = {
                 paytime: 0,
                 finish: 0,
-                orderlist: {name:'cafe',amount:2},
+                orderlist: [{id:1, name: 'cafe1',temp:'hot',sugar:'less',amount:1 }, {id:2, name: 'cafe1',temp:'cold',sugar:'normal',amount:2}],
                 category: 'now'
             };
             OrdersService.create(orders)
@@ -93,7 +93,7 @@ export default {
             var orders = {
                 paytime: 0,
                 finish: 1,
-                orderlist: { name: 'cafe', amount: 2 },
+                orderlist: { name: ['cafe1','cafe2'], amount: 2 },
                 category: 'now'
             };
             OrdersService.goodsupdate(5, orders)

@@ -55,17 +55,20 @@ export default {
         }
     },
     methods: {
-        setPath(comppath){
-            this.$router.push('/'+comppath)
-            console.log(this.$router)
-        },
-        addCart(){
-          this.num+=1
-        },
-        goCart(comppath){
-          this.$router.push('/'+comppath)
-        }
-        
+      changepage(comppath){
+        this.setPath(comppath)
+      },
+      setPath(comppath){
+        this.$router.push('/'+comppath)
+        console.log(this.$router)
+      },
+      addCart(){
+        this.num+=1
+      },
+      goCart(comppath){
+        this.$router.push('/'+comppath)
+      }
+      
     },
     mounted() {
         this.setPath('CoffeePage')
