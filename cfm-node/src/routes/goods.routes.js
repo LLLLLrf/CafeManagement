@@ -8,6 +8,8 @@ module.exports = app => {
     // Retrieve all Docs
     router.get("/:name", goods.findOne);
     // Update a Doc with id
+    router.get("/class/:cato", goods.findbyclass);
+    // Update a Doc with id
     router.put("/:id", goods.update);
     // Delete a Doc with id
     router.delete("/:id", goods.delete);

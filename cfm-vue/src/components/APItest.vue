@@ -29,7 +29,8 @@ export default {
     methods:{
         goodscreate(){
             var goods = {
-                name: 'cafe4',
+                name: 'cafe',
+                class: 'cafe',
                 sale: 1,
                 image_name: 'map.png',
                 image: 0,

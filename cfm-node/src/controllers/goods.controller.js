@@ -123,19 +123,21 @@ exports.deleteAll = (req, res) => {
         });
       });
   };
-// // Find all published Docs
-// exports.findAllPublished = (req, res) => {
-//     Goods.findAll({ where: { published: true } })
-//       .then(data => {
-//         res.send(data);
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || "Some error occurred while retrieving docs."
-//         });
-//       });
-//   };
+// find by class
+exports.findbyclass = (req, res) => {
+    const cato = req.params.cato;
+    var condition = { class: cato } 
+    Goods.findAll({ where: condition })
+      .then(data => {
+        res.send(data)
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving materials."
+        });
+      });
+  };
 
 //   exports.getAllUploader = (req,res) => {
 //     Goods.findAll({

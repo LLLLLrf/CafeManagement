@@ -2,20 +2,20 @@ import { createWebHistory, createRouter } from "vue-router";
 
 const routes =  [
   {
-    path: "/coffeepage",
-    name: "coffeepage",
-    component:() => import("./components/CoffeePage")
+    path: "/drink",
+    name: "drink",
+    component:() => import("./components/DrinkCard.vue")
   },
-  {
-    path: "/fruitpage",
-    name: "fruitpage",
-    component:() => import("./components/FruitPage")
-  },
-  {
-    path: "/milkpage",
-    name: "milkpage",
-    component:() => import("./components/MilkPage")
-  },
+  // {
+  //   path: "/fruitpage",
+  //   name: "fruitpage",
+  //   component:() => import("./components/FruitPage")
+  // },
+  // {
+  //   path: "/milkpage",
+  //   name: "milkpage",
+  //   component:() => import("./components/MilkPage")
+  // },
   {
     path:"/cartpage",
     name:"cartpage",
@@ -25,7 +25,7 @@ const routes =  [
     path: '/api',
     name: 'api',
     component:() => import('./components/APItest.vue')
-  }
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
