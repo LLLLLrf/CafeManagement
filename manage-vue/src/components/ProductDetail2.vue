@@ -7,7 +7,7 @@
                         <svg width="48" height="48" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-029747aa=""><path fill="currentColor" d="M609.408 149.376 277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0 30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688 29.12 29.12 0 0 0-41.728 0z"></path></svg>
                     </button>
                 </div>
-                <div class="add"><el-button color="rgba(34, 75, 238, 1)" type="primary" round>+添加一个商品</el-button></div>
+                <div class="add" @click="addgoods"><el-button color="rgba(34, 75, 238, 1)" type="primary">+添加一个商品</el-button></div>
 
                 <div>
                     <el-image class="image"
@@ -26,7 +26,7 @@
                         <el-button class="l" type="primary">&nbsp;&nbsp;&nbsp;大杯&nbsp;&nbsp;&nbsp;</el-button>
                         <el-button class="more">&nbsp;&nbsp;&nbsp;+添加&nbsp;&nbsp;&nbsp;</el-button>
                 </div> 
-                <el-button class="new" round size="large">添加选项</el-button>
+                <el-button class="new" size="large" @click="addselection">添加选项</el-button>
                 <h2 class="price">价格：￥{{price}}</h2>
 
             </el-col>
@@ -50,14 +50,16 @@ export default{
         pageback(){
             this.$router.go(-1)
         },
-    },
+        addgoods(){
+        },
+        addselection(){
+        },
+    }
 }
 </script>
 
 
 <style scoped>
-    .layout{
-    }
     .backbutton{
         color:white;
         margin-left:-1000px;

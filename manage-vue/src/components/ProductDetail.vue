@@ -17,7 +17,7 @@
             <el-img class="img" :src="good.img"></el-img>
             <div class="good-name">{{good.name}}</div>
             <span class="good-msg">￥<strong>{{good.price}}</strong> 月售<em>{{good.sold}}</em></span>
-            <el-button @click="go_page2(gooo.name)" class="button3">
+            <el-button @click="go_page2" class="button3">
                 <el-icon><Plus /></el-icon>
             </el-button>
         </div>
@@ -42,7 +42,7 @@ export default{
                     this.good.name = response.data[0]
                 })
             this.good.name=name*/
-            this.$router.path("/ProductDetail2")
+            this.$router.push('/ProductDetail2')
             }
         },
         addseries(){
