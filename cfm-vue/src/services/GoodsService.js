@@ -6,6 +6,9 @@ class GoodsService {
   getbyname(name){
     return http.get(`/goods/${name}`);
   }
+  getbyclass(cato){
+    return http.get(`/goods/class/${cato}`);
+  }
   create(data) {
     return http.post("/goods", data);
   }

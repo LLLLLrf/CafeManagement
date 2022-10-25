@@ -11,27 +11,22 @@
             :default-active="activeIndex"
             class="el-menu-vertical-demo"
           >
-            <el-menu-item index="1" @click="setPath('CoffeePage')" class="menu-item"  style="margin-top:10px">
+            <el-menu-item index="1" @click="setName('cafe')" class="menu-item"  style="margin-top:10px">
               <template #title>
                 <el-icon><CoffeeCup /></el-icon>
                 <icon></icon>
                 <span class="title">咖啡系列</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="2" @click="setPath('FruitPage')" class="menu-item">
+            <el-menu-item index="2" @click="setName('fruit')" class="menu-item">
               <el-icon><IceTea /></el-icon>
               <span class="title">果茶系列</span>
             </el-menu-item>
-            <el-menu-item index="3" @click="setPath('MilkPage')" class="menu-item">
+            <el-menu-item index="3" @click="setName('milk')" class="menu-item">
               <el-icon><IceDrink /></el-icon> 
               <span class="title">奶茶系列</span>
             </el-menu-item>
-            <el-menu-item index="4" @click="setPath('DetailDemo')" class="menu-item">
-              <el-icon><Memo /></el-icon> 
-              <!-- <el-image class="icon" src="../assets/icons/logo.png" fit="fill"/> -->
-              <span class="title">详情</span>
-            </el-menu-item>
-            <el-menu-item index="5" @click="setPath('api')">api</el-menu-item>
+            <el-menu-item index="4" @click="api('api')">api</el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
@@ -55,11 +50,11 @@ export default {
         }
     },
     methods: {
-      changepage(comppath){
-        this.setPath(comppath)
+      api(){
+        this.$router.push({name:"api"})
       },
-      setPath(comppath){
-        this.$router.push('/'+comppath)
+      setName(compname){
+        this.$router.push({ name: "drink", query:{page:compname}})
         console.log(this.$router)
       },
       addCart(){
@@ -71,7 +66,7 @@ export default {
       
     },
     mounted() {
-        this.setPath('CoffeePage')
+        this.setName('cafe')
     },
 
 }
