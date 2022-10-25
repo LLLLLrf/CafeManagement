@@ -22,6 +22,11 @@ const routes =  [
     component:() => import("./components/CartPage.vue")
   },
   {
+    path:"/productdetail2",
+    name:"productdetail2",
+    component:() => import("./components/ProductDetail2.vue")
+  },
+  {
     path: '/api',
     name: 'api',
     component:() => import('./components/APItest.vue')

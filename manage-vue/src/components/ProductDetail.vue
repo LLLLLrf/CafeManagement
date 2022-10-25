@@ -42,7 +42,7 @@ export default{
                     this.good.name = response.data[0]
                 })
             this.good.name=name*/
-            this.$router.path("/page2")
+            this.$router.path("/ProductDetail2")
             }
         },
         addseries(){
