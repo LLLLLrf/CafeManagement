@@ -25,7 +25,7 @@ const routes =  [
     path: '/api',
     name: 'api',
     component:() => import('./components/APItest.vue')
-  },
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),

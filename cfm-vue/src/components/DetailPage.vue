@@ -21,6 +21,9 @@
                     <el-option label="正常" value="normal" />
                 </el-select>
             </el-form-item>
+            <el-form-item label="糖">
+                <el-input-number v-model="sig.amount" :min="1" :max="99"/>
+            </el-form-item>
         </el-form>
         <el-button @click="onsubmit()">submit</el-button>
     </div>

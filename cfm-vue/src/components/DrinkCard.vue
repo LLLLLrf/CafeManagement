@@ -31,7 +31,6 @@
 <script>
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
-    import { ref } from 'vue'
     import GoodsService from '../services/GoodsService'
     
     export default{
@@ -39,7 +38,7 @@
         data(){
             return{
                 page: this.$route.query.page,
-                visible:ref(false),
+                visible:false,
                 price:0,
                 num:0,
                 show:false,
@@ -58,18 +57,15 @@
                 this.goodmsg=viewingname
                 this.visible = true
             },
-            add_cart(){
-                this.num+=1;
-                ElMessage({
-                    message: '成功加入购物车',
-                    type: 'success',
-                });
-            },
             getdetail(detail) {
-                console.log(this.orderlist)
                 detail.id = this.orderlist.length
                 this.orderlist.push(detail)
-                console.log(this.orderlist)
+                this.$emit('details',this.orderlist)
+                ElMessage({
+                    message: 'success add in cart',
+                    type: 'success',
+                });
+                this.visible=false
             }
         },
         mounted() {
@@ -79,7 +75,13 @@
                 })
         },
         updated() {
-            this.page = this.$route.query.page
+            if(this.page!==this.$route.query.page){
+                this.page=this.$route.query.page
+                GoodsService.getbyclass(this.page)
+                    .then(response => {
+                        this.goods = response.data
+                    })
+            }
         }
     }
 </script>

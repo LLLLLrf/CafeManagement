@@ -31,22 +31,28 @@
         </el-col>
       </el-row>
     </div>
-    <div class="cart" @click="goCart('CartPage')">
+    <div class="cart" @click="goCart()">
       <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
-      <div class="cart-num">{{num}}</div>
+      <div class="cart-num">{{orderList.length}}</div>
       <div class="cart-name">购物车</div>
     </div>
-    <router-view class="content"></router-view>
+    <router-view @details="getdetails" class="content"></router-view>
+    <el-drawer v-model="drawer" title="cart" direction="btt" :before-close="handleClose" size="80%">
+      <CartPage @status="finishorder" :orderList="orderList"></CartPage>
+    </el-drawer>
   </div>
 </template>
 
 
 <script>
+import CartPage from './CartPage.vue'
 export default {
     // props:['num'],
+    components:{CartPage},
     data(){
         return{
-          num:0
+          orderList:[],
+          drawer:false
         }
     },
     methods: {
@@ -57,11 +63,18 @@ export default {
         this.$router.push({ name: "drink", query:{page:compname}})
         console.log(this.$router)
       },
-      addCart(){
-        this.num+=1
+      goCart(){
+        this.drawer=true
+        // this.$router.push({name:'cartpage',params:{orderList:this.orderList}})
       },
-      goCart(comppath){
-        this.$router.push('/'+comppath)
+      getdetails(details){
+        this.orderList=details
+      },
+      finishorder(status){
+        if(status){
+          this.orderList=[]
+          this.drawer=false
+        }
       }
       
     },

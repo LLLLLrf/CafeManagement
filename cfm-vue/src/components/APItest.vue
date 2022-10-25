@@ -28,7 +28,7 @@ export default {
     },
     methods:{
         goodscreate(){
-            var goods = {
+            var cafe = {
                 name: 'cafe',
                 class: 'cafe',
                 sale: 1,
@@ -37,7 +37,25 @@ export default {
                 price: 10,
                 describe: 'post test'
             };
-            GoodsService.create(goods)
+            var fruit = {
+                name: 'fruit',
+                class: 'fruit',
+                sale: 1,
+                image_name: 'map.png',
+                image: 0,
+                price: 20,
+                describe: 'post test'
+            };
+            var milk = {
+                name: 'milk',
+                class: 'milk',
+                sale: 1,
+                image_name: 'map.png',
+                image: 0,
+                price: 30,
+                describe: 'post test'
+            };
+            GoodsService.create(cafe)
             .then(response => {
                 console.log(response.data);
                 ElMessage({
@@ -49,6 +67,30 @@ export default {
                 console.log(err)
                 ElMessage.error(err.toString())
             })
+            GoodsService.create(fruit)
+                .then(response => {
+                    console.log(response.data);
+                    ElMessage({
+                        message: "上传成功！",
+                        type: "success",
+                    });
+                })
+                .catch(err => {
+                    console.log(err)
+                    ElMessage.error(err.toString())
+                })
+            GoodsService.create(milk)
+                .then(response => {
+                    console.log(response.data);
+                    ElMessage({
+                        message: "上传成功！",
+                        type: "success",
+                    });
+                })
+                .catch(err => {
+                    console.log(err)
+                    ElMessage.error(err.toString())
+                })
         },
         goodsdeleteall(){
             GoodsService.deleteAll()

@@ -15,6 +15,8 @@ exports.create = (req, res) => {
     // Create a Goods
     const goods = {
       name: req.body.name,
+      class: req.body.class,
+      ask: req.body.ask,
       sale: req.body.sale,
       image_name: req.body.image_name,
       image: 0,
