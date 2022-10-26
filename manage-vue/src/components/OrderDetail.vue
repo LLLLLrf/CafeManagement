@@ -5,7 +5,33 @@
     <div class="card">
       <el-icon class="card-icon" :size="26"><List /></el-icon>
       <div class="card-title">订单详情</div>
-
+      <div v-for="item in order" :key="item.id">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>{{id}}</span>
+              <el-button class="button" text>Finish</el-button>
+            </div>
+          </template>
+          <div v-for="(subitem) in this.order.orderlist" :key="subitem.id">
+            <el-descriptions-item label="Product id">
+              <el-tag size="small">{{ subitem.id}}</el-tag>
+            </el-descriptions-item>
+            <el-descriptions-item label="Product Name">
+              {{ subitem.name}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product amount">
+              {{ subitem.amount}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product temp">
+              {{ subitem.temp}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product sugar">
+              {{ subitem.sugar}}
+            </el-descriptions-item>
+          </div>
+        </el-card>
+      </div>
     </div>
     <div class="card" style="margin-left:200px">
       <el-icon class="card-icon" :size="26"><Tickets /></el-icon>
@@ -16,17 +42,23 @@
 </template>
 
 <script>
+import OrdersService from '@/services/OrdersService';
 export default{
     components:{
   },
   data() {
     return {
+      order:undefined
     }
   },
   methods:{
 
   },
   mounted(){
+    OrdersService.getAll()
+      .then(response => {
+        this.order = response.data
+      })
   }
 }
 </script>
