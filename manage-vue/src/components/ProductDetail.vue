@@ -11,7 +11,7 @@
                 <el-icon><Plus />添加商品</el-icon>
             </el-button>
         </span>
-        <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
+        <hr style="background:#2F3CF4;height:2px;clear: both;"/>
 
         <div v-for = "good in goods" :key="good.name" class="card">
             <el-img class="img" :src="good.img"></el-img>
@@ -42,7 +42,7 @@ export default{
                     this.good.name = response.data[0]
                 })
             this.good.name=name*/
-            this.$router.push('/ProductDetail2')
+            this.$router.push('/SingleProduct')
             }
         },
         addseries(){
@@ -55,30 +55,37 @@ export default{
 
 </script>
 
-<style>
-.menu-name{
-text-align: left;
-width: 100%;
-margin-left: 200px;
-font-weight: bolder;
-}
+<style scoped>
+  .menu-name{
+    text-align: left;
+    margin-left: 40px;
+    font-weight: bolder;
+    float: left;
+  }
 
 .button1{
-    text-align: left;
+    /* text-align: left; */
     width:80px;
-    height:48px;
+    height:34px;
     color:white;
     background-color:blue;
     border:white;
+    float: left;
+    margin-left: 4%;
+    margin-bottom: 10px;
+    margin-top: -4px;
 }
 .button2{
-    margin-left:550px;
+    margin-left:6%;
     vertical-align: middle;
     width:80px;
-    height:48px;
+    height:34px;
     color:white;
     background-color:blue;
     border:white;
+    float: left;
+    margin-bottom:10px;
+    margin-top: -4px;
 }
 .button3{
     margin-left:20px;

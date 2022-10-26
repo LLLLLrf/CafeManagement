@@ -37,7 +37,7 @@ data() {
 }
 </script>
 
-<style>
+<style scoped>
 .menu-name{
 text-align: left;
 width: 100%;

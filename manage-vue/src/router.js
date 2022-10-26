@@ -17,14 +17,14 @@ const routes =  [
     component:() => import("./components/TotalProfit")
   },
   {
-    path:"/cartpage",
-    name:"cartpage",
-    component:() => import("./components/CartPage.vue")
+    path:"/singleproduct",
+    name:"singleproduct",
+    component:() => import("./components/SingleProduct.vue")
   },
   {
-    path:"/productdetail2",
-    name:"productdetail2",
-    component:() => import("./components/ProductDetail2.vue")
+    path: '/singleorder',
+    name: 'singleorder',
+    component:() => import('./components/SingleOrder.vue')
   },
   {
     path: '/api',

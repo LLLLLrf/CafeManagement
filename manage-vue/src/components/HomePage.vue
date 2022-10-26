@@ -13,61 +13,52 @@
           >
             <el-menu-item index="1" @click="setPath('OrderDetail')" class="menu-item"  style="margin-top:10px">
               <template #title>
-                <el-icon><CoffeeCup color="#2F3CF4"/></el-icon>
+                <el-icon><Tickets color="#2F3CF4"/></el-icon>
                 <icon></icon>
                 <span class="title">订单详情</span>
               </template>
             </el-menu-item>
             <el-menu-item index="2" @click="setPath('ProductDetail')" class="menu-item">
-              <el-icon><IceTea color="#2F3CF4"/></el-icon>
+              <el-icon><ShoppingBag color="#2F3CF4"/></el-icon>
               <span class="title">商品详情</span>
             </el-menu-item>
             <el-menu-item index="3" @click="setPath('TotalProfit')" class="menu-item">
-              <el-icon><IceDrink color="#2F3CF4"/></el-icon> 
+              <el-icon><Coin color="#2F3CF4"/></el-icon> 
               <span class="title">收入统计</span>
             </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>
     </div>
-    <div class="cart" @click="goCart('CartPage')">
-      <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
-      <div class="cart-num">{{num}}</div>
-      <div class="cart-name">购物车</div>
-    </div>
+
     <router-view class="content"></router-view>
   </div>
 </template>
 
 
 <script>
+import { ShoppingBag } from '@element-plus/icons-vue'
+
 export default {
     // props:['num'],
-    data(){
-        return{
-          num:0
-        }
+    data() {
+        return {
+            num: 0
+        };
     },
     methods: {
-      changepage(comppath){
-        this.setPath(comppath)
-      },
-      setPath(comppath){
-        this.$router.push('/'+comppath)
-        console.log(this.$router)
-      },
-      addCart(){
-        this.num+=1
-      },
-      goCart(comppath){
-        this.$router.push('/'+comppath)
-      }
-      
+        changepage(comppath) {
+            this.setPath(comppath);
+        },
+        setPath(comppath) {
+            this.$router.push("/" + comppath);
+            console.log(this.$router);
+        },
     },
     mounted() {
-        this.setPath('OrderDetail')
+        this.setPath("OrderDetail");
     },
-
+    components: { ShoppingBag }
 }
 </script>
 
