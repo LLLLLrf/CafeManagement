@@ -71,12 +71,14 @@
   export default {
     data() {
       return {
+      colors:["#D8FACD,#FFF6A1,#FAB9C3"],
         tableData: [{
           date: '2022-10-23',
           payment: '微信',
           state: '未开始',
           color: '#FAB9C3',
           type: "3"
+          
         }, {
           date: '2022-10-22',
           payment: '支付宝',
@@ -171,7 +173,7 @@
         row;
         this.$router.push("/SingleOrder")
       }
-    }
+    },
   };
 
 </script>
