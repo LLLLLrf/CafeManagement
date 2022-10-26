@@ -62,6 +62,7 @@
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">支付方式</div>
       </div>
+
     </div>
   </div>
 </template>
@@ -172,6 +173,7 @@
       }
     }
   };
+
 </script>
 
 <style scoped>

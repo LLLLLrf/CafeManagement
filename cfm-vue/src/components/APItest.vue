@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="position:absolute;left:160px">
         /api/goods
         {{goods}}
         <el-button @click="goodscreate()">goodscreate</el-button>

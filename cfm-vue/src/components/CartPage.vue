@@ -1,12 +1,48 @@
 <template>
-    <div class="layout" style="position:absolute;left:160px">
-        <div class="menu-name">购物车详情</div>
+    <div class="layout">
+        <!-- <div class="menu-name">购物车详情</div> -->
         <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
         <el-row>
             <el-col :span="10" style="font-size:4em;color:#2F3CF4;font-weight:900;margin-left: 40px;">ORDER</el-col>
         </el-row>
-    <div v-for="(item) in this.orderList" :key="item.id">{{item}}</div>
+    <!-- <div v-for="(item) in this.orderList" :key="item.id">{{item}}</div> -->
+    <el-descriptions title="Order Info" column="6" border>
+        <div v-for="(item) in this.orderList" :key="item.id">
+            <el-descriptions-item label="Product id">
+                <el-tag size="small">{{item.id}}</el-tag>
+            </el-descriptions-item>
+            <el-descriptions-item label="Product Name">
+                {{item.name}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product amount">
+                {{item.amount}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product temp">
+                {{item.temp}}
+            </el-descriptions-item>
+            <el-descriptions-item label="Product sugar">
+                {{item.sugar}}
+            </el-descriptions-item>
+            <el-descriptions-item label="delete">
+                <el-popconfirm confirm-button-text="Yes" cancel-button-text="No" :icon="InfoFilled"
+                    title="Are you sure to delete this?" @confirm="delitem(item.id)">
+                    <template #reference>
+                        <el-button>X</el-button>
+                    </template>
+                </el-popconfirm>
+            </el-descriptions-item>
+            
+        </div>
+        <el-descriptions-item label="Total Price">
+            {{totalprice}}
+        </el-descriptions-item>
+    </el-descriptions>
+    <el-radio-group v-model="paymodel">
+        <el-radio label="WeChat">WeChat Pay</el-radio>
+        <el-radio label="Apple">Apple Pay</el-radio>
+    </el-radio-group>
     <div>
+        
         <el-button @click="onsubmit()">submit</el-button>
     </div>
     </div>
@@ -19,6 +55,8 @@ export default{
 props:['orderList'],
 data() {
     return {
+        totalprice:0,
+        paymodel: ''
     }
 },
 methods: {
@@ -36,18 +74,33 @@ methods: {
                     message: "order success!",
                     type: "success",
                 });
-                this.$emit('status',1)
+                this.$emit('status', { status: 'success' ,data:{}})
             })
             .catch(err => {
                 console.log(err)
                 ElMessage.error(err.toString())
             })
     },
-    test(){
-        console.log(this.orderList)
+    delitem(id) {
+        var data=[]
+        this.orderList.forEach(item=>{
+            if(item.id<id){
+                data.push(item)
+            }
+            if(item.id>id){
+                item.id--
+                data.push(item)
+            }
+        })
+        this.$emit('status', { status: 'change', data: data })
+
     }
-    
 },
+mounted(){
+    this.orderList.forEach((item)=>{
+        this.totalprice+=item.price*item.amount
+    })
+}
 }
 </script>
 

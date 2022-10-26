@@ -71,9 +71,13 @@ export default {
         this.orderList=details
       },
       finishorder(status){
-        if(status){
+        console.log(status)
+        if(status.status==='success'){
           this.orderList=[]
           this.drawer=false
+        }
+        if(status.status==='change'){
+          this.orderList=this.status.data
         }
       }
       
