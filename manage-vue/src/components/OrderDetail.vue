@@ -30,7 +30,7 @@
         #default="scope"
         align="center"
         >
-        <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags">{{scope.row.state}}</el-tag>
+        <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{scope.row.state}}</el-tag>
       </el-table-column>
       <el-table-column
         label="订单详情"
@@ -62,16 +62,20 @@
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">支付方式</div>
       </div>
-
+      <el-bottom @click="alertOrder">check order</el-bottom>
     </div>
   </div>
 </template>
 
 <script>
+import GoodsService from '../services/GoodsService'
+import OrdersService from '../services/OrdersService'
   export default {
     data() {
       return {
-      colors:["#D8FACD,#FFF6A1,#FAB9C3"],
+        goods:[],
+        orders:[],
+        colors:["#D8FACD,#FFF6A1,#FAB9C3"],
         tableData: [{
           date: '2022-10-23',
           payment: '微信',
@@ -172,7 +176,21 @@
         index;
         row;
         this.$router.push("/SingleOrder")
-      }
+      },
+      alertOrder(){
+        console.log(this.orders)
+      },
+    },
+
+    mounted() {
+        GoodsService.getAll()
+        .then(response => {
+            this.goods=response.data
+        })
+        OrdersService.getAll()
+        .then(response =>{
+            this.orders=response.data
+        })
     },
   };
 

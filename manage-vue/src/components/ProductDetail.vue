@@ -14,7 +14,7 @@
         <hr style="background:#2F3CF4;height:2px;clear: both;"/>
 
         <div v-for = "good in goods" :key="good.name" class="card">
-            <el-img class="img" :src="good.img"></el-img>
+            <el-image class="img" :src="good.img"></el-image>
             <div class="good-name">{{good.name}}</div>
             <span class="good-msg">￥<strong>{{good.price}}</strong> 月售<em>{{good.sold}}</em></span>
             <el-button @click="go_page2" class="button3">
@@ -26,12 +26,19 @@
 
 <script>
 //import GoodsService from '../services/GoodsService'
-
+import GoodsService from '../services/GoodsService'
 export default{
     data() {
         return{
             goods:[
-                {img:"",name:"生椰拿铁",price:20,sold:100,},{},{},{},{},{},{},{},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
             ],
         }
     },
@@ -50,6 +57,10 @@ export default{
         addgoods(){
         },
     mounted(){
+        GoodsService.getAll()
+        .then(response => {
+            this.goods=response.data
+        })
     }
 }
 

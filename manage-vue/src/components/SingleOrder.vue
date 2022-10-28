@@ -5,7 +5,9 @@
       <div class="card">
         <el-icon class="card-icon" :size="26"><List /></el-icon>
         <div class="card-title">订单详情</div>
-  
+        <div>
+            订单编号 {{ordernumber}}
+        </div>
       </div>
       <div class="card" style="margin-left:16%">
         <el-icon class="card-icon" :size="26"><Tickets /></el-icon>
@@ -17,10 +19,19 @@
   
   <script>
   export default{
-      components:{
+    props:['tableData'],
+
+    components:{
     },
     data() {
       return {
+        
+        orders:[
+            {
+                ordernumber:this.tableData.date
+                
+            },
+        ]
       }
     },
     methods:{
