@@ -15,5 +15,11 @@ class OrdersService {
   deleteAll() {
     return http.delete(`/orders`);
   }
+  findbykey(data){
+    return http.post(`/orders/key`,data)
+  }
+  getincomebyday(data){
+    return http.post(`/orders/income`,data)
+  }
 }
 export default new OrdersService();

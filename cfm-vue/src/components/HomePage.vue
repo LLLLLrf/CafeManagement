@@ -33,7 +33,7 @@
     </div>
     <div class="cart" @click="goCart()">
       <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
-      <div class="cart-num">{{orderList.length}}</div>
+      <div class="cart-num">{{ amount }}</div>
       <div class="cart-name">购物车</div>
     </div>
     <router-view @details="getdetails" class="content"></router-view>
@@ -51,6 +51,7 @@ export default {
     components:{CartPage},
     data(){
         return{
+          amount:0,
           orderList:[],
           drawer:false
         }
@@ -61,7 +62,6 @@ export default {
       },
       setName(compname){
         this.$router.push({ name: "drink", query:{page:compname}})
-        console.log(this.$router)
       },
       goCart(){
         this.drawer=true
@@ -69,6 +69,11 @@ export default {
       },
       getdetails(details){
         this.orderList=details
+        var amount = 0
+        this.orderList.forEach(item => {
+          amount += item.amount
+        })
+        this.amount = amount
       },
       finishorder(status){
         console.log(status)

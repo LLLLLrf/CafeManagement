@@ -111,10 +111,12 @@ export default {
         },
         orderscreate() {
             var orders = {
+                publicid:new Date().toDateString,
                 paytime: 0,
                 finish: 0,
                 orderlist: [{id:1, name: 'cafe1',temp:'hot',sugar:'less',amount:1 }, {id:2, name: 'cafe1',temp:'cold',sugar:'normal',amount:2}],
-                category: 'now'
+                category: 'now',
+                totalprice:10
             };
             OrdersService.create(orders)
                 .then(response => {

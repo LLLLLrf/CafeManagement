@@ -11,5 +11,9 @@ module.exports = app => {
     router.delete("/:id", orders.delete);
     // Delete all Docs
     router.delete("/", orders.deleteAll);
+    // find by key word
+    router.post("/key",orders.findbyKey);
+    // get income by day
+    router.post("/income",orders.getincomebyday);
     app.use('/api/orders', router);
   };

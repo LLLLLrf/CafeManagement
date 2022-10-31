@@ -29,7 +29,7 @@ const routes =  [
   {
     path: '/api',
     name: 'api',
-    component:() => import('./components/APItest.vue')
+    component:() => import('./components/ManageAPI.vue')
   },
 ];
 const router = createRouter({

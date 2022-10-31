@@ -3,6 +3,8 @@ const db = require("../models/index");
 const Orders = db.orders;
 const Op = db.Sequelize.Op;
 const fs = require('fs');
+const { DATE, where } = require("sequelize");
+const { send } = require("process");
 // Create and Save a new Orders
 exports.create = (req, res) => {
   console.log(req)
@@ -15,10 +17,12 @@ exports.create = (req, res) => {
     }
     // Create a Orders
     const orders = {
+      publicid:req.body.publicid,
       paytime: req.body.paytime,
       finish: req.body.finish,
       orderlist: req.body.orderlist,
-      category: req.body.category
+      category: req.body.category,
+      totalprice:req.body.totalprice
     };
     // Save Orders in the database
     Orders.create(orders)
@@ -109,56 +113,35 @@ exports.deleteAll = (req, res) => {
         });
       });
   };
-// // Find all published Docs
-// exports.findAllPublished = (req, res) => {
-//     Orders.findAll({ where: { published: true } })
-//       .then(data => {
-//         res.send(data);
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || "Some error occurred while retrieving docs."
-//         });
-//       });
-//   };
-
-//   exports.getAllUploader = (req,res) => {
-//     Orders.findAll({
-//       attributes:[
-//         Sequelize.fn('DISTINCT',Sequelize.col('uploader')),
-//         'uploader'
-//       ]
-//     })
-//       .then((uploader) => {
-//         // console.log(count)
-//         res.send(uploader)
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || '无法获取所有类别'
-//         })
-//       })
-//   }
-
-//   exports.findAllByUploader = (req,res) => {
-//     const uplder=req.body.uploader
-//     Orders.findAll({
-//       where: {
-//         uploader: uplder
-//       },
-//       order: [
-//         ['updatedAt','DESC']
-//       ] 
-//     })
-//       .then(data => {
-//         res.send(data)
-//       })
-//       .catch(err => {
-//         res.status(500).send({
-//           message:
-//             err.message || '查询失败'
-//         })
-//       })
-//   }
+// find by name key word
+exports.findbyKey = (req, res) => {
+    const key = req.body.key;
+    var condition = { orderlist: { [Op.like]: Sequelize.literal(`'%${key}%'`) } };
+    Orders.findAll({ where: condition })
+      .then(data => {
+        res.send(data)
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving orders."
+        });
+      });
+  };
+// get income by day
+exports.getincomebyday=(req,res)=>{
+  const day=req.body.day
+  Orders.findAll({where:{createdAt:{[Op.lt]:new Date()-day*24*60*60*1000}}})
+  .then(data=>{
+    var total=0;
+    for(var i=0;i<data.length;i++){
+      total+=data[i].dataValues.totalprice
+    }
+    res.send({income:total})
+  })
+  .catch(err=>{
+    res.status(500).send({
+      message:err.message
+    })
+  })
+}

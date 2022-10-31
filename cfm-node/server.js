@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 const cors = require('cors')
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "*"
 };
 app.use(cors(corsOptions));
 var bodyParser = require('body-parser') 

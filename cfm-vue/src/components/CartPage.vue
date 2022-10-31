@@ -62,10 +62,12 @@ data() {
 methods: {
     onsubmit(){
         var orders = {
+            publicid:new Date().toDateString,
             paytime: 0,
             finish: 0,
             orderlist: this.orderList,
-            category: 'now'
+            category: 'now',
+            totalprice:this.totalprice
         };
         OrdersService.create(orders)
             .then(response => {

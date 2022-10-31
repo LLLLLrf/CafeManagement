@@ -51,14 +51,16 @@
       </div>
 
       <el-input
-      v-model="input2"
+      v-model="key"
       class="search-input"
       placeholder="请输入商品信息等关键词">
         <template #prepend>
-          <el-button><el-icon><Search /></el-icon></el-button>
+          <el-button @click="findbykey()"><el-icon><Search /></el-icon></el-button>
         </template>
       </el-input>
-
+      <div>
+        {{findlist}}
+      </div>
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">支付方式</div>
       </div>
@@ -68,11 +70,14 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus';
 import GoodsService from '../services/GoodsService'
 import OrdersService from '../services/OrdersService'
   export default {
     data() {
       return {
+        key:undefined,
+        findlist:undefined,
         goods:[],
         orders:[],
         colors:["#D8FACD,#FFF6A1,#FAB9C3"],
@@ -180,6 +185,17 @@ import OrdersService from '../services/OrdersService'
       alertOrder(){
         console.log(this.orders)
       },
+      findbykey(){
+        var key={key:this.key};
+        console.log(key)
+        OrdersService.findbykey(key)
+        .then(response=>{
+          this.findlist=response.data;
+        })
+        .catch(err=>{
+          ElMessage.error(err.toString())
+        })
+      }
     },
 
     mounted() {
