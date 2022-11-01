@@ -7,6 +7,8 @@ var corsOptions = {
   origin: "*"
 };
 app.use(cors(corsOptions));
+const uploadRoutes=require('./src/routes/upload.routes')
+uploadRoutes(app)
 var bodyParser = require('body-parser') 
 app.use(bodyParser.urlencoded({ extended: false })) 
 app.use(bodyParser.json())
