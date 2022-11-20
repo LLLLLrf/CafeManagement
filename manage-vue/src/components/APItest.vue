@@ -12,18 +12,21 @@
         <el-button @click="ordersdeleteall()">ordersdeleteall</el-button>
         <el-button @click="ordersdelete()">ordersdelete</el-button>
         <el-button @click="ordersupdate()">ordersupdate</el-button>
-
+        /api/files
+        {{files}}
     </div>
 </template>
 <script>
 import { ElMessage } from 'element-plus'
 import GoodsService from '../services/GoodsService'
 import OrdersService from '../services/OrdersService'
+import UploadService from '../services/UploadFilesService'
 export default {
     data(){
         return{
             goods: undefined,
-            orders: undefined
+            orders: undefined,
+            files:undefined
         }
     },
     methods:{
@@ -110,6 +113,10 @@ export default {
         OrdersService.getAll()
         .then(response =>{
             this.orders=response.data
+        })
+        UploadService.getFiles()
+        .then(response=>{
+            this.files=response.data
         })
     },
 }

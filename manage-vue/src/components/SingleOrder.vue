@@ -1,84 +1,121 @@
 <template>
-    <div style="">
-      <div class="menu-name" @click="GoBack">订单详情</div>
-      <hr style="background:#2F3CF4;height:2px;margin-left: 0px;"/>
-      <div class="card">
-        <el-icon class="card-icon" :size="26"><List /></el-icon>
+  <div style="">
+    <div class="menu-name" @click="GoBack">订单详情</div>
+    <hr style="background:#2F3CF4;height:2px;margin-left: 0px;"/>
+    <div class="card">
+      <el-row>
+        <el-icon class="card-icon" :size="26">
+          <List />
+        </el-icon>
         <div class="card-title">订单详情</div>
-        <div>
-            订单编号 {{ordernumber}}
-        </div>
+      </el-row>
+      <div v-if="orderdata">
+        <el-descriptions title="" class="card-content" :column="1">
+          <el-descriptions-item label="订单编号">{{orderdata.publicid}}</el-descriptions-item>
+          <el-descriptions-item label="生成时间">{{ new Date(orderdata.createdAt).toLocaleString()}}</el-descriptions-item>
+          <el-descriptions-item label="支付时间">{{orderdata.paytime==='0'?'无':orderdata.paytime}}</el-descriptions-item>
+          <el-descriptions-item label="支付方式">{{orderdata.category}}</el-descriptions-item>
+          <el-descriptions-item label="订单状态">{{orderdata.finish==='0' ? '未完成' : '已完成'}}</el-descriptions-item>
+        </el-descriptions>
       </div>
-      <div class="card" style="margin-left:16%">
-        <el-icon class="card-icon" :size="26"><Tickets /></el-icon>
+      
+    </div>
+    <div class="card" style="margin-left:16%">
+      <el-row>
+        <el-icon class="card-icon" :size="26">
+          <Tickets />
+        </el-icon>
         <div class="card-title">账单</div>
-        <div></div>
+      </el-row>
+      <div v-if="orderdata">
+        <el-row v-for="item in orderdata.orderlist" :key="item.id">
+          <el-descriptions title="" class="card-content" :column="1">
+            <el-descriptions-item :label="item.id">{{item.name}} ✖ {{item.amount}}</el-descriptions-item>
+            <el-descriptions-item label="  -">{{ item.temp === 'hot' ? '热饮' : item.temp === 'cold'?'冷饮':'异常'}}</el-descriptions-item>
+            <el-descriptions-item label="  -">{{ item.sugar === 'less' ? '少糖' : item.temp === 'normal' ? '正常糖' :'异常'}}</el-descriptions-item>
+          </el-descriptions>
+        </el-row>
+        <el-row>总金额：￥ {{orderdata.totalprice}}</el-row>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script>
-  export default{
-    props:['tableData'],
-
-    components:{
-    },
-    data() {
-      return {
-        
-        orders:[
-            {
-                ordernumber:this.tableData.date
-                
-            },
-        ]
-      }
-    },
-    methods:{
-        GoBack(){
-            this.$router.push("/OrderDetail")
-        }
-    },
-    mounted(){
+<script>
+import OrdersService from '@/services/OrdersService'
+export default{
+  components:{
+  },
+  data() {
+    return {
+      id:this.$route.query.id,
+      orderdata:undefined
     }
+  },
+  methods:{
+      GoBack(){
+          this.$router.push("/OrderDetail")
+      },
+    test() {
+      console.log(this.orderdata.publicid)
+    }
+  },
+  mounted(){
+    OrdersService.findbyId({id:this.id})
+      .then(response=>{
+        this.orderdata=response.data[0]
+      })
   }
-  </script>
-  
-  <style scoped>
-  
-  .menu-name{
-    text-align: left;
-    width: 100%;
-    margin-left: 40px;
-    font-weight: bolder;
-  }
-  
-  .card {
-      width: 34%;
-      height: 800px;
-      border-radius: 30px;
-      background: #fff;
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-      margin-left: 10%;
-      margin-top: 40px;
-      float: left;
-  }
-  
-  .card-title{
-    font-weight: bold;
-    font-size: 1.8em;
-    font-family: "黑体";
-    text-align: left;
-    margin-top: 30px;
-    margin-left: 20px;
-    /* display: inline; */
+}
+</script>
+
+<style scoped>
+
+.menu-name{
+  text-align: left;
+  width: 100%;
+  margin-left: 40px;
+  font-weight: bolder;
+}
+
+.card {
+    width: 34%;
+    height: 800px;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    margin-left: 10%;
+    margin-top: 40px;
     float: left;
-  }
-  
-  .card-icon{
-    /* display: inline; */
-    margin-left: 40px;
-    margin-top: 34px;
-    float: left;
-  }
-  </style>
+}
+
+.card-title{
+  font-weight: bold;
+  font-size: 1.8em;
+  font-family: "黑体";
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 20px;
+  /* display: inline; */
+  float: left;
+}
+
+.card-content{
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: "黑体";
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 20px;
+
+  /* display: inline; */
+  float: left;
+}
+
+.card-icon{
+  /* display: inline; */
+  margin-left: 40px;
+  margin-top: 34px;
+  float: left;
+}
+</style>

@@ -61,8 +61,9 @@ data() {
 },
 methods: {
     onsubmit(){
+        var time = new Date().toLocaleString().split(/[ ,/,:]/).join('')
         var orders = {
-            publicid:new Date().toDateString,
+            publicid:time,
             paytime: 0,
             finish: 0,
             orderlist: this.orderList,
