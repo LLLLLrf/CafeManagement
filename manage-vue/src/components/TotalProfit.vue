@@ -2,10 +2,10 @@
   <div>
     <div style="">
       <div class="menu-name">收入统计</div>
-      <hr style="background:#2F3CF4;height:2px;margin-left: 160px;" />
+      <hr style="background:#2F3CF4;height:2px;" />
     </div>
     
-    <div class="sevenday" style="margin-left:200px">
+    <div class="sevenday" style="margin-left:100px">
       <div class="card-title"></div>
       <DrawChart></DrawChart>
       <el-row>{{this.income.week}}</el-row>
@@ -17,7 +17,7 @@
       <DrawPieChart></DrawPieChart>
     </div>
     
-    <div class="month" style="margin-left:200px;height: max-content;width: max-content;">
+    <div class="month" style="margin-left:100px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <MonthChart></MonthChart>
       <el-row>{{this.income.month}}</el-row>
