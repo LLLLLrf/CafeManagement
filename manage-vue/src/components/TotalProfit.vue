@@ -5,30 +5,30 @@
       <hr style="background:#2F3CF4;height:2px;margin-left: 160px;" />
     </div>
     
-    <div class="card1" style="margin-left:200px">
+    <div class="sevenday" style="margin-left:200px">
       <div class="card-title"></div>
       <DrawChart></DrawChart>
       <el-row>{{this.income.week}}</el-row>
     </div>
     
-    <div class="card2" style="margin-left:100px;height: max-content;width: max-content;">
+    <div class="today" style="margin-left:100px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <el-row>{{this.income.day}}</el-row>
       <DrawPieChart></DrawPieChart>
     </div>
     
-    <div class="card3" style="margin-left:200px;height: max-content;width: max-content;">
+    <div class="month" style="margin-left:200px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <MonthChart></MonthChart>
       <el-row>{{this.income.month}}</el-row>
     </div>
     
-    <div class="card4" style="margin-left:250px">
+    <div class="year" style="margin-left:250px">
       <div class="card-title">本年收入</div>
       <el-row>{{this.income.year}}</el-row>
     </div>
     
-    <div class="card5" style="margin-left:250px">
+    <div class="ranking" style="margin-left:250px">
       <div class="card-title">本日饮品排行</div>
     </div>
 
@@ -108,7 +108,7 @@ font-weight: bolder;
 }
 
 
-.card1 {
+.sevenday {
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
@@ -118,7 +118,7 @@ font-weight: bolder;
 }
 
 /* 右边较长的那个 */
-.card2 {    
+.today {    
 
     border-radius: 30px;
     background: #fff;
@@ -128,7 +128,7 @@ font-weight: bolder;
     float: left;
 }
 
-.card3 {
+.month {
 
     border-radius: 30px;
     background: #fff;
@@ -138,7 +138,7 @@ font-weight: bolder;
     float: left;
 }
 
-.card4 {
+.year {
 
     width: 440px;
     height: 230px;
@@ -150,7 +150,7 @@ font-weight: bolder;
     float: left;
 }
 
-.card5 {
+.ranking {
 
     width: 440px;
     height: 230px;
