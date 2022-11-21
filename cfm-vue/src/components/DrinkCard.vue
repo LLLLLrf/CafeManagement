@@ -32,7 +32,7 @@
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
     import GoodsService from '../services/GoodsService'
-    
+    import UploadFilesService from '../services/UploadFilesService';
     export default{
         components:{DetailPage},
         data(){
@@ -51,10 +51,17 @@
         methods:{
             changeStatus(viewingname) {
                 GoodsService.getbyname(viewingname)
-                    .then(response => {
-                        this.goodmsg = response.data[0]
+                .then(response => {
+                    this.goodmsg = response.data[0]
+                    UploadFilesService.getFilesByName(this.goodmsg.image_name)
+                    .then(response=>{
+                        this.goodmsg.image=response.data
+                        console.log(this.goodmsg)
                     })
+                })
                 this.goodmsg=viewingname
+
+                console.log(this.goodmsg)
                 this.visible = true
             },
             getdetail(detail) {

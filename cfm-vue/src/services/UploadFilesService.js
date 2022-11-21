@@ -13,6 +13,7 @@ class UploadFilesService {
     return http.get("/files");
   }
   getFilesByName(name) {
+    console.log(name)
     return http.get(`/files/${name}`);
   }
 }

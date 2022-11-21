@@ -7,7 +7,7 @@ const { DATE, where } = require("sequelize");
 const { send } = require("process");
 // Create and Save a new Orders
 exports.create = (req, res) => {
-  console.log(req)
+  // console.log(req)
     // Validate request
     if (!req.body.orderlist) {
       res.status(400).send({
@@ -145,3 +145,17 @@ exports.getincomebyday=(req,res)=>{
     })
   })
 }
+
+exports.findbyId= (req, res) => {
+  const id = req.body.id;
+  Orders.findAll({ where: {id:id} })
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving orders."
+      });
+    });
+};

@@ -1,7 +1,8 @@
 import http from "../api-http";
+import UploadFilesService from "./UploadFilesService";
 class GoodsService {
   getAll() {
-    return http.get("/goods");
+    return this.getImg(http.get("/goods"));
   }
   getbyname(name){
     return http.get(`/goods/${name}`);
@@ -17,6 +18,16 @@ class GoodsService {
   }
   deleteAll() {
     return http.delete(`/goods`);
+  }
+  getImg(data){
+    data.then(response=>{
+      // console.log(response.data[0].image_name)
+      for(var i=0;i<response.data.length;i++){
+        var img=UploadFilesService.getFilesByName(response.data[i].image_name)
+        console.log(img)
+      }
+    })
+    return data;
   }
 }
 export default new GoodsService();

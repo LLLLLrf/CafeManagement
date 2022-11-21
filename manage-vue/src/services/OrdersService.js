@@ -21,5 +21,8 @@ class OrdersService {
   getincomebyday(data){
     return http.post(`/orders/income`,data)
   }
+  findbyId(data){
+    return http.post(`/orders/id`,data)
+  }
 }
 export default new OrdersService();

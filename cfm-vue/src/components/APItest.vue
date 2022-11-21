@@ -110,8 +110,9 @@ export default {
             GoodsService.delete(4)
         },
         orderscreate() {
+            var time = new Date().toLocaleString().split(/[ ,/,:]/).join('')
             var orders = {
-                publicid:new Date().toDateString,
+                publicid:time,
                 paytime: 0,
                 finish: 0,
                 orderlist: [{id:1, name: 'cafe1',temp:'hot',sugar:'less',amount:1 }, {id:2, name: 'cafe1',temp:'cold',sugar:'normal',amount:2}],

@@ -25,20 +25,19 @@
 </template>
 
 <script>
-//import GoodsService from '../services/GoodsService'
 import GoodsService from '../services/GoodsService'
 export default{
     data() {
         return{
             goods:[
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
-                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
             ],
         }
     },
@@ -50,12 +49,13 @@ export default{
                 })
             this.good.name=name*/
             this.$router.push('/SingleProduct')
-            }
         },
         addseries(){
         },
         addgoods(){
+            this.$router.push({ name:'singleproduct'})
         },
+    },
     mounted(){
         GoodsService.getAll()
         .then(response => {

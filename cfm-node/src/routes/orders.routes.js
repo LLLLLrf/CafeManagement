@@ -15,5 +15,8 @@ module.exports = app => {
     router.post("/key",orders.findbyKey);
     // get income by day
     router.post("/income",orders.getincomebyday);
+    // find by key word
+    router.post("/id",orders.findbyId);
+
     app.use('/api/orders', router);
   };

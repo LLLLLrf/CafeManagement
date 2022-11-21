@@ -6,7 +6,7 @@
                 {{good.name}}
             </el-form-item>
             <el-form-item label="image">
-                <!-- <img :src="good.image"/> -->
+                <img :src="good.image"/>
             </el-form-item>
             <el-form-item label="describe">
                 {{good.describe}}

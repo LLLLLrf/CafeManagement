@@ -6,38 +6,39 @@
       :data="tableData"
       style="width: 60%;float: left;">
       <el-table-column
-        type="index"
         label="订单编号"
-        :index="indexMethod"
+        prop="publicid"
         width="140"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="date"
-        label="日期"
+        prop="createdAt"
+        label="时间"
+        #default="scope"
         width="180"
         align="center">
+        {{new Date(scope.row.createdAt).toLocaleString()}}
       </el-table-column>
       <el-table-column
-        prop="payment"
+        prop="category"
         label="支付方式"
         width="180"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="state"
+        prop="finish"
         label="订单状态"
         #default="scope"
         align="center"
         >
-        <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{scope.row.state}}</el-tag>
+        <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0' ? '未完成' : '已完成' }}</el-tag>
       </el-table-column>
       <el-table-column
         label="订单详情"
         #default="scope"
         align="center"
         >
-        <el-button size="small" @click="ToDetail(scope.$index, scope.row)" style="color:#2F3CF4" link>
+        <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
           <el-icon><Fold /></el-icon> 
           查看详情
         </el-button>
@@ -63,7 +64,9 @@
       </div>
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">支付方式</div>
-      </div>    </div>
+      </div>
+      <el-button @click="alertOrder">check order</el-button>
+    </div>
   </div>
 </template>
 
@@ -79,93 +82,7 @@ import OrdersService from '../services/OrdersService'
         goods:[],
         orders:[],
         colors:["#D8FACD,#FFF6A1,#FAB9C3"],
-        tableData: [{
-          date: '2022-10-23',
-          payment: '微信',
-          state: '未开始',
-          color: '#FAB9C3',
-          type: "3"
-          
-        }, {
-          date: '2022-10-22',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        }, {
-          date: '2022-10-24',
-          payment: '微信',
-          state: '未开始',
-          color: '#FAB9C3',
-          type: "3"
-        }, {
-          date: '2022-10-21',
-          payment: '微信',
-          state: '已完成',
-          color:'#D8FACD',
-          type: "1"
-        },{
-          date: '2022-10-22',
-          payment: '支付宝',
-          state: '已完成',
-          color: '#D8FACD',
-          type: "1"
-        },{
-          date: '2022-10-22',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-22',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-27',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-26',
-          payment: '微信',
-          state: '未开始',
-          color: '#FAB9C3',
-          type: "3"
-        },{
-          date: '2022-10-24',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-22',
-          payment: '微信',
-          state: '已完成',
-          color: '#D8FACD',
-          type: "1"
-        },{
-          date: '2022-10-22',
-          payment: '支付宝',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-25',
-          payment: '微信',
-          state: '制作中',
-          color: '#FFF6A1',
-          type: "2"
-        },{
-          date: '2022-10-26',
-          payment: '支付宝',
-          state: '已完成',
-          color: '#D8FACD',
-          type: "1"
-        },
-      ],
+        tableData:undefined
       }
     },
     methods: {
@@ -175,14 +92,11 @@ import OrdersService from '../services/OrdersService'
         var day = this.tableData[index].date.split("-").join('')
         return day+str+(index+1).toString()
       },
-      ToDetail(index, row){
-        index;
-        row;
-        this.$router.push("/SingleOrder")
+      ToDetail(id){
+        this.$router.push({name:'singleorder',query:{id:id}})
       },
       findbykey(){
         var key={key:this.key};
-        console.log(key)
         OrdersService.findbykey(key)
         .then(response=>{
           this.findlist=response.data;
@@ -201,6 +115,7 @@ import OrdersService from '../services/OrdersService'
         OrdersService.getAll()
         .then(response =>{
             this.orders=response.data
+            this.tableData=this.orders
         })
     },
   };
