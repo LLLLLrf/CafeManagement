@@ -5,18 +5,19 @@
       <hr style="background:#2F3CF4;height:2px;margin-left: 160px;" />
     </div>
     
-    <div class="card1" style="margin-left:250px">
-      <div class="card-title">七日收入</div>
+    <div class="card1" style="margin-left:200px">
+      <div class="card-title"></div>
+      <DrawChart></DrawChart>
       <el-row>{{this.income.week}}</el-row>
     </div>
     
-    <div class="card2" style="margin-left:150px;height: max-content;width: max-content;">
+    <div class="card2" style="margin-left:100px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <el-row>{{this.income.day}}</el-row>
       <DrawPieChart></DrawPieChart>
     </div>
     
-    <div class="card3" style="margin-left:250px;height: max-content;width: max-content;">
+    <div class="card3" style="margin-left:200px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <MonthChart></MonthChart>
       <el-row>{{this.income.month}}</el-row>
@@ -119,9 +120,6 @@ font-weight: bolder;
 /* 右边较长的那个 */
 .card2 {    
 
-    left: 500px;
-    width:440px;
-    height: 480px;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
@@ -132,8 +130,6 @@ font-weight: bolder;
 
 .card3 {
 
-    width: 440px;
-    height: 230px;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
@@ -155,9 +151,7 @@ font-weight: bolder;
 }
 
 .card5 {
-    position:absolute;
-    top:570px;
-    left:500px;
+
     width: 440px;
     height: 230px;
     border-radius: 30px;
