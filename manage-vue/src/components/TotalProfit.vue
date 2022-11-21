@@ -4,16 +4,19 @@
       <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
   </div>
 
-    <div class="card1" style="margin-left:250px">
-      <div class="card-title">七日收入</div>
+    <div class="card1" style="margin-left:250px;height: max-content;">
+      <div class="card-title"></div>
+      <DrawChart></DrawChart>
     </div>
 
-    <div class="card2" style="margin-left:250px">
-      <div class="card-title">本日收入</div>
+    <div class="card2" style="margin-left:150px;height: max-content;width: max-content;">
+      <div class="card-title"></div>
+      <DrawPieChart></DrawPieChart>
     </div>
 
-    <div class="card3" style="margin-left:250px">
-      <div class="card-title">本月收入</div>
+    <div class="card3" style="margin-left:250px;height: max-content;width: max-content;">
+      <div class="card-title"></div>
+      <MonthChart></MonthChart>
     </div>
 
     <div class="card4" style="margin-left:250px">
@@ -27,8 +30,12 @@
 </template>
 
 <script>
+import DrawChart from './DrawChart.vue';
+import DrawPieChart from './DrawPieChart.vue';
+import MonthChart from './MonthChart.vue';
 export default{
   components:{
+    DrawChart,DrawPieChart,MonthChart
 },
 data() {
   return {
@@ -47,10 +54,6 @@ font-weight: bolder;
 
 
 .card1 {
-    position:absolute;
-    top:70px;
-    width: 440px;
-    height: 230px;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
@@ -61,8 +64,7 @@ font-weight: bolder;
 
 /* 右边较长的那个 */
 .card2 {    
-    position:absolute;
-    top:70px;
+
     left: 500px;
     width:440px;
     height: 480px;
@@ -75,8 +77,7 @@ font-weight: bolder;
 }
 
 .card3 {
-    position:absolute;
-    top:320px;
+
     width: 440px;
     height: 230px;
     border-radius: 30px;
@@ -88,8 +89,7 @@ font-weight: bolder;
 }
 
 .card4 {
-    position:absolute;
-    top:570px;
+
     width: 440px;
     height: 230px;
     border-radius: 30px;
@@ -101,8 +101,7 @@ font-weight: bolder;
 }
 
 .card5 {
-    position:absolute;
-    top:570px;
+
     left:500px;
     width: 440px;
     height: 230px;
