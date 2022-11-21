@@ -1,9 +1,9 @@
 <template>
     <div class="layout">
         <!-- <div class="menu-name">购物车详情</div> -->
-        <hr style="background:#2F3CF4;height:2px;margin-left: 160px;"/>
+        <hr style="background:#2F3CF4;height:2px;"/>
         <el-row>
-            <el-col :span="10" style="font-size:4em;color:#2F3CF4;font-weight:900;margin-left: 40px;">ORDER</el-col>
+            <el-col :span="4" style="font-size:4em;color:#2F3CF4;font-weight:900;margin-bottom: 20px;">ORDER</el-col>
         </el-row>
     <!-- <div v-for="(item) in this.orderList" :key="item.id">{{item}}</div> -->
     <el-descriptions title="Order Info" column="6" border>
@@ -37,9 +37,21 @@
             {{totalprice}}
         </el-descriptions-item>
     </el-descriptions>
-    <el-radio-group v-model="paymodel">
-        <el-radio label="WeChat">WeChat Pay</el-radio>
-        <el-radio label="Apple">Apple Pay</el-radio>
+
+    
+    <el-radio-group v-model="paymodel" style="width:max-content;margin:auto">
+        <el-radio label="WeChat" style="margin-top:40px;margin-bottom:20px">
+            <img src="../assets/payment/wechat.png" style="width:40px;height:30px;align-items: center;justify-items: center;">
+            <div style="float: right;height: 10px;margin-top: 6px;">
+                WeChat Pay
+            </div>
+        </el-radio>
+        <el-radio label="Apple" style="margin-top:40px;margin-bottom:20px">
+            <img src="../assets/payment/apple.png" style="width:80px;height:60px;align-items: center;justify-items: center;">
+            <div style="float: right;height: 10px;margin-top: 20px;">
+                Apple Pay
+            </div>
+        </el-radio>
     </el-radio-group>
     <div>
         
@@ -51,12 +63,13 @@
 <script>
 import OrdersService from '@/services/OrdersService';
 import { ElMessage } from 'element-plus';
+
 export default{
 props:['orderList'],
 data() {
     return {
         totalprice:0,
-        paymodel: ''
+        paymodel: '',
     }
 },
 methods: {
@@ -113,6 +126,7 @@ font-weight: bolder;
 }
 
 .layout{
+    margin-top: -20px;
     margin-left: 0px;
 }
 </style>

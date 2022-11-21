@@ -63,9 +63,7 @@
       </div>
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">支付方式</div>
-      </div>
-      <el-bottom @click="alertOrder">check order</el-bottom>
-    </div>
+      </div>    </div>
   </div>
 </template>
 
@@ -181,9 +179,6 @@ import OrdersService from '../services/OrdersService'
         index;
         row;
         this.$router.push("/SingleOrder")
-      },
-      alertOrder(){
-        console.log(this.orders)
       },
       findbykey(){
         var key={key:this.key};

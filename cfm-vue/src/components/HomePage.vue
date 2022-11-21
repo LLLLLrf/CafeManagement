@@ -37,7 +37,7 @@
       <div class="cart-name">购物车</div>
     </div>
     <router-view @details="getdetails" class="content"></router-view>
-    <el-drawer v-model="drawer" title="cart" direction="btt" :before-close="handleClose" size="80%">
+    <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="80%" :show-close="false">
       <CartPage @status="finishorder" :orderList="orderList"></CartPage>
     </el-drawer>
   </div>
@@ -101,6 +101,7 @@ export default {
         margin-left: 8px;
         display: inline;
     }
+    
     .nav{
         /* margin-top: -30px; */
         width: 160px;

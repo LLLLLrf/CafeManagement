@@ -31,14 +31,14 @@ export default{
     data() {
         return{
             goods:[
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
+                {img:"",name:"生椰拿铁",price:20,sold:100,},
             ],
         }
     },

@@ -6,13 +6,12 @@
         <el-icon class="card-icon" :size="26"><List /></el-icon>
         <div class="card-title">订单详情</div>
         <div>
-            订单编号 {{ordernumber}}
+            订单编号 {{this.ordernumber}}
         </div>
       </div>
       <div class="card" style="margin-left:16%">
         <el-icon class="card-icon" :size="26"><Tickets /></el-icon>
         <div class="card-title">账单</div>
-        <div></div>
       </div>
     </div>
   </template>
@@ -20,19 +19,12 @@
   <script>
   export default{
     props:['tableData'],
-
     components:{
     },
     data() {
       return {
-        
-        orders:[
-            {
-                ordernumber:this.tableData.date
-                
-            },
-        ]
-      }
+          // ordernumber:this.tableData.date
+        }
     },
     methods:{
         GoBack(){
@@ -40,6 +32,7 @@
         }
     },
     mounted(){
+      alert()
     }
   }
   </script>
