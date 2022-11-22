@@ -5,32 +5,35 @@
       <hr style="background:#2F3CF4;height:2px;" />
     </div>
     
-    <div class="sevenday" style="margin-left:100px">
+    <div class="sevenday" style="margin-left:50px;margin-bottom: 20px;width:max-content">
       <div class="card-title"></div>
       <DrawChart></DrawChart>
       <el-row>{{this.income.week}}</el-row>
     </div>
     
-    <div class="today" style="margin-left:100px;height: max-content;width: max-content;">
+    <div class="today" style="float: right;margin-right:30px;height: max-content;width: max-content;margin-bottom: 20px;">
       <div class="card-title"></div>
       <el-row>{{this.income.day}}</el-row>
       <DrawPieChart></DrawPieChart>
     </div>
     
-    <div class="month" style="margin-left:100px;height: max-content;width: max-content;">
+    <div class="month" style="float: right;margin-right:30px;margin-bottom: 20px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <MonthChart></MonthChart>
       <el-row>{{this.income.month}}</el-row>
     </div>
     
-    <div class="year" style="margin-left:250px">
-      <div class="card-title">本年收入</div>
+    <div class="ranking" style="margin-left:50px">
+        <div class="card-title"></div>
+        <RankingChart></RankingChart>
+      </div>
+
+    <div class="year" style="float:left; margin-left:50px;">
+      <div class="card-title"></div>
+      <YearChart></YearChart>
       <el-row>{{this.income.year}}</el-row>
     </div>
     
-    <div class="ranking" style="margin-left:250px">
-      <div class="card-title">本日饮品排行</div>
-    </div>
 
   </div>
 </template>
@@ -42,9 +45,11 @@ import OrdersService from '../services/OrdersService'
 import DrawChart from './DrawChart.vue';
 import DrawPieChart from './DrawPieChart.vue';
 import MonthChart from './MonthChart.vue';
+import YearChart from './YearChart.vue';
+import RankingChart from './RankingChart.vue'
 export default{
   components:{
-      DrawChart,DrawPieChart,MonthChart
+      DrawChart,DrawPieChart,MonthChart,YearChart,RankingChart
 },
   data() {
     return {
@@ -112,8 +117,7 @@ font-weight: bolder;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-left: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
 }
 
@@ -123,8 +127,7 @@ font-weight: bolder;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-left: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
 }
 
@@ -134,31 +137,30 @@ font-weight: bolder;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     margin-left: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
 }
 
 .year {
 
-    width: 440px;
-    height: 230px;
+    width: max-content;
+    height: max-content;
+    margin-bottom: 40px;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-left: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
 }
 
 .ranking {
-
-    width: 440px;
-    height: 230px;
+    margin-bottom: 20px;
+    width: max-content;
+    height: max-content;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-left: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
 }
 

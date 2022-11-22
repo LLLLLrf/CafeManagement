@@ -93,7 +93,7 @@ export default {
     .content{
       /* width: 100vh; */
       margin-top: -40px;
-      margin-left: 160px;
+      margin-left: 166px;
     }
     .cart{
       position: fixed;

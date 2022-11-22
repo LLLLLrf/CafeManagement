@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="pie" style="margin:40px;"></div>
+        <div id="pie" style="margin:20px 10px 0 10px;"></div>
     </div>
 </template>
 
@@ -90,7 +90,7 @@ import echarts from 'echarts'
 
 <style scoped>
     #pie{
-        width: 500px;
-        height: 500px;
+        width: 26vw;
+        height: 40vh;
     }
 </style>

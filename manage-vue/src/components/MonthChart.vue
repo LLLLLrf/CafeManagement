@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="month" style="margin:40px;"></div>
+        <div id="month" style="margin:20px;"></div>
     </div>
 </template>
 
@@ -115,7 +115,7 @@ import echarts from 'echarts'
 
 <style scoped>
     #month{
-        width: 600px;
-        height: 500px;
+        width: 36vw;
+        height: 36vh;
     }
 </style>
