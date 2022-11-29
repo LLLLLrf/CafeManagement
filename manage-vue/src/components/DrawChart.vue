@@ -1,8 +1,10 @@
 <template>
     <div>
-        <div id="main" style="width:46vw;height:40vh;margin: 20px 10px 0px 10px;"></div>
+        <div id="main" style="width:48vw;height:34vh;margin: 20px 10px 0px 10px;"></div>
     </div>
 </template>
+
+
 
 <script>
 //2.引用echarts库
@@ -56,15 +58,6 @@ import echarts from 'echarts'
                 },
                 //series是系列的意思，代表着整个图标的核心，具体表现在数据上和整个图标的类型和样式上
                 series: [
-                    // {
-                    //     name: 'line', //表示折线图表示的是英语的成绩
-                    //     type: 'line', //type表示的是这组数据的用什么类型的图标去渲染，很明显是折线图
-                    //     data: this.datas //表示折线图的数据来源是data中的datas
-                    // },{
-                    //     // name: 'bar',//表示的英语科目使用的是柱状图
-                    //     type: 'bar',  //同理，该图标既用了折线图又用了柱状图
-                    //     data: this.datas //数据来源相同，表示数学和英语成绩是一样的，
-                    // }
                     {
                         name: 'coffee',
                         type: 'bar',
@@ -105,9 +98,9 @@ import echarts from 'echarts'
     }
 </script>
 
+
 <style scoped>
     #main{
-        width: 500px;
-        height: 500px;
+
     }
 </style>

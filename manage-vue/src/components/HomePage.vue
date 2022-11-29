@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100vw">
     <div class="nav">
       <el-row class="tac">
         <el-col>
@@ -80,6 +80,7 @@ export default {
         height: 100vh;
         z-index: 1000;
     }
+    
     .title{
       font-size: larger;
       color: #2F3CF4;
@@ -91,9 +92,9 @@ export default {
     }
 
     .content{
-      /* width: 100vh; */
+      /* width: 100vw; */
       margin-top: -40px;
-      margin-left: 166px;
+      margin-left: 160px;
     }
     .cart{
       position: fixed;

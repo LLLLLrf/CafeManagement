@@ -5,7 +5,7 @@
       <hr style="background:#2F3CF4;height:2px;" />
     </div>
     
-    <div class="sevenday" style="margin-left:50px;margin-bottom: 20px;width:max-content">
+    <div class="sevenday" style="margin-left:40px;margin-bottom: 20px;width:max-content">
       <div class="card-title"></div>
       <DrawChart></DrawChart>
       <el-row>{{this.income.week}}</el-row>
@@ -23,12 +23,12 @@
       <el-row>{{this.income.month}}</el-row>
     </div>
     
-    <div class="ranking" style="margin-left:50px">
+    <div class="ranking" style="margin-left:40px">
         <div class="card-title"></div>
         <RankingChart></RankingChart>
       </div>
 
-    <div class="year" style="float:left; margin-left:50px;">
+    <div class="year" style="float:left; margin-left:40px;">
       <div class="card-title"></div>
       <YearChart></YearChart>
       <el-row>{{this.income.year}}</el-row>
@@ -136,7 +136,6 @@ font-weight: bolder;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-left: 80px;
     margin-top: 20px;
     float: left;
 }
@@ -145,7 +144,7 @@ font-weight: bolder;
 
     width: max-content;
     height: max-content;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     border-radius: 30px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;

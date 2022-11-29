@@ -91,6 +91,6 @@ import echarts from 'echarts'
 <style scoped>
     #pie{
         width: 26vw;
-        height: 40vh;
+        height: 34vh;
     }
 </style>

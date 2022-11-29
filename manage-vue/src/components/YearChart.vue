@@ -11,8 +11,6 @@ import echarts from 'echarts'
         data() {
             return {
                 //在data中去设置图标的数据
-                days:['Mon','Tue','Wen','Thu','Fri','Sat','Sun'],
-                datas: [88,64,98,118,198,149,180]
             }
         },
         mounted() {
@@ -23,7 +21,7 @@ import echarts from 'echarts'
             //创建并初始化一个echarts的配置项对象option，所有的echarts图标的数据样式都是
             //来自于这个option对象的配置，其实这个option可以写在data中，或者通过父组件等其他
             //组件传值过来使用。
-            let base = +new Date(1968, 9, 3);
+            let base = +new Date(2020, 9, 3);
             let oneDay = 24 * 3600 * 1000;
             let date = [];
             let data = [Math.random() * 300];

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="month" style="margin:20px;"></div>
+        <div id="month" style="margin:20px 10px 10px 10px;"></div>
     </div>
 </template>
 
@@ -71,7 +71,7 @@ import echarts from 'echarts'
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+                        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12'],
                         axisLabel: {
                             formatter: '{value} th',
                             align: 'center'
@@ -85,25 +85,25 @@ import echarts from 'echarts'
                         name: 'coffee',
                         type: 'line',
                         // stack: 'Total',
-                        data: [32, 32, 11, 34, 40, 35, 40, 90, 80, 30, 40]
+                        data: [32, 32, 11, 34, 40, 35, 40, 90, 80, 30, 40,30]
                         },
                         {
                         name: 'fruit',
                         type: 'line',
                         // stack: 'Total',
-                        data: [10, 22, 8, 24, 20, 33, 20, 60, 50, 40, 60]
+                        data: [10, 22, 8, 24, 20, 33, 20, 60, 50, 40, 60,40]
                         },
                         {
                         name: 'milk',
                         type: 'line',
                         // stack: 'Total',
-                        data: [14, 25, 12, 30, 50, 55, 40, 102, 90, 60, 50]
+                        data: [14, 25, 12, 30, 50, 55, 40, 102, 90, 60, 50,30]
                         },
                         {
                         name: 'total',
                         type: 'line',
                         // stack: 'Total',
-                        data: [56, 79, 31, 88, 110, 123, 100, 252, 220, 130, 150]
+                        data: [56, 79, 31, 88, 110, 123, 100, 252, 220, 130, 150,60]
                         },
                     ]
                     };
@@ -115,7 +115,7 @@ import echarts from 'echarts'
 
 <style scoped>
     #month{
-        width: 36vw;
+        width: 40vw;
         height: 36vh;
     }
 </style>

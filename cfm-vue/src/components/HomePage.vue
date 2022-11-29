@@ -3,7 +3,7 @@
     <div class="nav">
       <el-row class="tac">
         <el-col>
-          <div>
+          <div style="margin-top:-40px">
             <el-icon><Coffee /></el-icon>
             <h5 class="head-title">ABD cafe</h5>
           </div>

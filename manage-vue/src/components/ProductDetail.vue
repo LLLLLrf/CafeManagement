@@ -79,7 +79,7 @@ export default{
     width:80px;
     height:34px;
     color:white;
-    background-color:blue;
+    background-color:#2F3CF4;
     border:white;
     float: left;
     margin-left: 4%;
@@ -92,7 +92,7 @@ export default{
     width:80px;
     height:34px;
     color:white;
-    background-color:blue;
+    background-color:#2F3CF4;
     border:white;
     float: left;
     margin-bottom:10px;
@@ -104,7 +104,7 @@ export default{
     height:30px;
     border-radius:30px;
     color:white;
-    background-color:blue;
+    background-color:#2F3CF4;
     border:white;
 }
 .card{

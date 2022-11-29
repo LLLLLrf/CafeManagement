@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="rank" style="width:34vw;height:40vh;margin: 10px 10px 0px 10px;"></div>
+        <div id="rank" style="width:36vw;height:36vh;margin: 20px 10px 10px -10px;"></div>
     </div>
 </template>
 
@@ -11,8 +11,8 @@ import echarts from 'echarts'
         data() {
             return {
                 //在data中去设置图标的数据
-                days:['Mon','Tue','Wen','Thu','Fri','Sat','Sun'],
-                datas: [88,64,98,118,198,149,180]
+                // days:['Mon','Tue','Wen','Thu','Fri','Sat','Sun'],
+                // datas: [88,64,98,118,198,149,180]
             }
         },
         mounted() {
@@ -34,36 +34,37 @@ import echarts from 'echarts'
                 },
             dataset: {
                 source: [
-                ['score', 'amount', 'product'],
-                [89.3, 58212, 'Matcha Latte'],
-                [57.1, 78254, 'Milk Tea'],
-                [74.4, 41032, 'Cheese Cocoa'],
-                [50.1, 12755, 'Cheese Brownie'],
-                [89.7, 20145, 'Matcha Cocoa'],
-                [68.1, 79146, 'Tea'],
-                [19.6, 91852, 'Orange Juice'],
-                [10.6, 101852, 'Lemon Juice'],
-                [32.7, 20112, 'Walnut Brownie']
+                [ 'amount', 'product'],
+                [58212, 'Matcha Latte'],
+                [78254, 'Milk Tea'],
+                [41032, 'Cheese Cocoa'],
+                [12755, 'Cheese Brownie'],
+                [20145, 'Matcha Cocoa'],
+                [79146, 'Tea'],
+                [91852, 'Orange Juice'],
+                [101852, 'Lemon Juice'],
+                [20112, 'Walnut Brownie']
                 ]
             },
             grid: { containLabel: true },
-            xAxis: { name: 'amount' },
+            xAxis: { name: '' },
             yAxis: { type: 'category' },
-            visualMap: {
-                orient: 'horizontal',
-                left: 'center',
-                min: 10,
-                max: 100,
-                text: ['High Score', 'Low Score'],
-                // Map the score column to color
-                dimension: 0,
-                inRange: {
-                color: ['#65B581', '#FFCE34', '#FD665F']
-                }
-            },
+            // visualMap: {
+            //     orient: 'horizontal',
+            //     left: 'center',
+            //     min: 10,
+            //     max: 100,
+            //     text: ['High Score', 'Low Score'],
+            //     // Map the score column to color
+            //     dimension: 0,
+            //     inRange: {
+            //     color: ['#65B581', '#FFCE34', '#FD665F']
+            //     }
+            // },
             series: [
                 {
                 type: 'bar',
+                color: '#FD665F',
                 encode: {
                     // Map the "amount" column to X axis.
                     x: 'amount',
