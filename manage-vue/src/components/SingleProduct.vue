@@ -1,49 +1,59 @@
 <template>
-    <div class="layout">
+    <div class="layout" v-if="this.good">
         <el-row justify="center" style="margin-left:200px">
             <el-col span="6">
-                <div>
-                    <button class="backbutton" @click="pageback">
-                        <svg width="48" height="48" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-029747aa=""><path fill="currentColor" d="M609.408 149.376 277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0 30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688 29.12 29.12 0 0 0-41.728 0z"></path></svg>
-                    </button>
-                </div>
-                <div class="add" @click="addgoods"><el-button color="rgba(34, 75, 238, 1)" type="primary">+添加一个商品</el-button></div>
-
                 <div>
                     <el-image class="image"
                     :src="src" />
                 </div>
-                <div class="des"><em>{{description}}</em></div>
             </el-col>
 
             <el-col span="18"  style="margin-top:120px;text-align:left;">
-                <h1 class="name">{{coffee}}</h1>
-                <hr class="cut" />
-                <div class="RadioSelection">
-                    <h2 class="t">规格</h2>
-                        <el-button class="s" type="primary" size="nomral" >&nbsp;&nbsp;&nbsp;小杯&nbsp;&nbsp;&nbsp;</el-button>
-                        <el-button class="m" type="primary">&nbsp;&nbsp;&nbsp;中杯&nbsp;&nbsp;&nbsp;</el-button>
-                        <el-button class="l" type="primary">&nbsp;&nbsp;&nbsp;大杯&nbsp;&nbsp;&nbsp;</el-button>
-                        <el-button class="more">&nbsp;&nbsp;&nbsp;+添加&nbsp;&nbsp;&nbsp;</el-button>
-                </div> 
-                <el-button class="new" size="large" @click="addselection">添加选项</el-button>
-                <h2 class="price">价格：￥{{price}}</h2>
+                <div>
+                    <el-form :model="change" label-width="120px">
+                        <el-form-item label="Class">
+                            <el-select v-model="change.class" placeholder="please select class">
+                                <el-option label="COFFEE" value="COFFEE" />
+                                <el-option label="TEA" value="TEA" />
+                                <el-option label="SODA" value="SODA"/>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="Name">
+                            <el-input v-model="change.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="Price">
+                            ￥
+                            <el-input-number v-model="change.price" :min="0" :max="999" @change="handleChange" />
+                        </el-form-item>
+                        <el-form-item label="On Sale">
+                            <el-switch v-model="change.sale" />
+                        </el-form-item>
+                        <el-form-item label="Describe">
+                            <el-input v-model="change.describe"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="onSubmit">Save</el-button>
+                            <el-button>Restore</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
 
             </el-col>
         </el-row>
+        <el-button @click="test">test</el-button>
     </div>
 </template>
 
 
 <script>
+import GoodsService from '@/services/GoodsService';
 export default{
     data(){
         return{
             src:"https://www.starbucks.com.cn/images/products/cappuccino.jpg",
-            description:"点击为商品添加描述",
-            coffee:"卡布奇诺",
-            price:"20",
-            addion:"添加一个商品"
+            good:undefined,
+            change:undefined
+            
         }
     },
     methods:{
@@ -54,7 +64,18 @@ export default{
         },
         addselection(){
         },
-    }
+        test(){
+            // console.log(this.$route.query)
+        }
+    },
+    mounted() {
+        GoodsService.getbyname(this.$route.query.name)
+        .then(res=>{
+            this.good=res.data[0]
+            this.change=this.good
+            console.log(this.good)
+        })
+    },
 }
 </script>
 
