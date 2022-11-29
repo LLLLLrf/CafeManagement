@@ -17,7 +17,7 @@
             <el-image class="img" :src="good.img"></el-image>
             <div class="good-name">{{good.name}}</div>
             <span class="good-msg">￥<strong>{{good.price}}</strong> 月售<em>{{good.sold}}</em></span>
-            <el-button @click="go_page2" class="button3">
+            <el-button @click="goodsdetail(good.name)" class="button3">
                 <el-icon><Plus /></el-icon>
             </el-button>
         </div>
@@ -42,18 +42,9 @@ export default{
         }
     },
     methods:{
-        go_page2(){
-            /*GoodsService.getbyname(name)
-                .then(response => {
-                    this.good.name = response.data[0]
-                })
-            this.good.name=name*/
-            this.$router.push('/SingleProduct')
-        },
-        addseries(){
-        },
-        addgoods(){
-            this.$router.push({ name:'singleproduct'})
+        goodsdetail(name){
+            console.log(name)
+            this.$router.push({ name:'singleproduct',query:{name:name}})
         },
     },
     mounted(){
