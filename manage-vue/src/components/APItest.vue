@@ -64,7 +64,7 @@ export default {
                 price: 20,
                 describe: 'post test'
             };
-            GoodsService.goodsupdate(5,goods)
+            GoodsService.update(5,goods)
         },
         goodsdelete(){
             GoodsService.delete(4)
