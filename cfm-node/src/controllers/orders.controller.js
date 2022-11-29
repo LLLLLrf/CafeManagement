@@ -159,3 +159,33 @@ exports.findbyId= (req, res) => {
       });
     });
 };
+
+exports.getWeekData=(req,res)=>{
+  const { QueryTypes } = require('sequelize');
+  var sql="select DATE_FORMAT(updatedAt,'%Y-%m-%d') as day ,sum(totalprice) as price from orders where updatedAt>=DATE_SUB(now(),INTERVAL 7 DAY) group by day order by day desc limit 7;"
+  db.sequelize.query(sql, { type: QueryTypes.SELECT })
+  .then(data=>{
+    res.send(data)
+  })
+}
+
+exports.getMonthData=(req,res)=>{
+  const { QueryTypes } = require('sequelize');
+  var sql="select DATE_FORMAT(updatedAt,'%Y-%m') as month ,sum(totalprice) as price from orders where updatedAt>=DATE_SUB(now(),INTERVAL 365 DAY) group by month order by month desc limit 12;"
+  db.sequelize.query(sql, { type: QueryTypes.SELECT })
+  .then(data=>{
+    res.send(data)
+  })
+}
+
+exports.getDayData=(req,res)=>{
+  Orders.findAll({where:{createdAt:{[Op.lt]:new Date()-24*60*60*1000}}})
+  .then(data=>{
+    res.send(data)
+  })
+  .catch(err=>{
+    res.status(500).send({
+      message:err.message
+    })
+  })
+}

@@ -2,7 +2,8 @@
     <div>
         /api/orders
         {{ orders }}
-        <br/><br/><br/>
+        <br/><br/><br/><el-button @click="orderscreate()">orderscreate</el-button>
+        <el-button @click="getweekdata()">getweekdata</el-button>
         /api/goods
         {{ goods }}
         <br /><br /><br />
@@ -41,6 +42,31 @@ export default {
             })
             .catch(err=>{
                 ElMessage.error(err.toString())
+            })
+        },
+        orderscreate() {
+            var orders = {
+                paytime: 0,
+                finish: 0,
+                orderlist: [{ id: 1, name: 'cafe1', temp: 'hot', sugar: 'less', amount: 1 }, { id: 2, name: 'cafe1', temp: 'cold', sugar: 'normal', amount: 2 }],
+                category: 'now'
+            };
+            OrdersService.create(orders)
+                .then(response => {
+                    console.log(response.data);
+                    ElMessage({
+                        message: "上传成功！",
+                        type: "success",
+                    });
+                })
+                .catch(err => {
+                    console.log(err)
+                    ElMessage.error(err.toString())
+                })
+        },
+        getweekdata(){
+            OrdersService.getweekdata({}).then(res=>{
+                console.log(res.data)
             })
         }
     },
