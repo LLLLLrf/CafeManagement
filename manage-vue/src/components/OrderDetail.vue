@@ -2,28 +2,33 @@
   <div>
     <div class="menu-name">订单详情</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
-    <el-table :data="tableData" style="width: 60%;float: left;height: 90vh;overflow-y: scroll;min-width: 670px;">
-      <el-table-column label="订单编号" prop="publicid" width="140" align="center">
-      </el-table-column>
-      <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
-        {{ new Date(scope.row.createdAt).toLocaleString() }}
-      </el-table-column>
-      <el-table-column prop="category" label="支付方式" width="180" align="center">
-      </el-table-column>
-      <el-table-column prop="finish" label="订单状态" #default="scope" align="center">
-        <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
-            ? '未完成' : '已完成'
-        }}</el-tag>
-      </el-table-column>
-      <el-table-column label="订单详情" #default="scope" align="center">
-        <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
-          <el-icon>
-            <Fold />
-          </el-icon>
-          查看详情
-        </el-button>
-      </el-table-column>
-    </el-table>
+
+    <el-scrollbar height="90vh" style="width: 60%;float: left;height: 90vh;min-width: 670px;">
+
+      <el-table :data="tableData" style="float: left;height: 90vh;min-width: 670px;">
+        <el-table-column label="订单编号" prop="publicid" width="140" align="center">
+        </el-table-column>
+        <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
+          {{ new Date(scope.row.createdAt).toLocaleString() }}
+        </el-table-column>
+        <el-table-column prop="category" label="支付方式" width="180" align="center">
+        </el-table-column>
+        <el-table-column prop="finish" label="订单状态" #default="scope" align="center">
+          <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
+              ? '未完成' : '已完成'
+          }}</el-tag>
+        </el-table-column>
+        <el-table-column label="订单详情" #default="scope" align="center">
+          <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
+            <el-icon>
+              <Fold />
+            </el-icon>
+            查看详情
+          </el-button>
+        </el-table-column>
+      </el-table>
+    </el-scrollbar>
+
 
     <div class="search">
       <el-icon :size='20' color="#2F3CF4" style="float:left;margin-top: 16px;margin-left: 26px;">
@@ -180,7 +185,5 @@ export default {
   border-radius: 4px;
   border:0.6px #2F3CF4 solid;
 }
-
-
 
 </style>
