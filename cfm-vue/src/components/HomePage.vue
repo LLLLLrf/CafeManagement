@@ -11,18 +11,18 @@
             :default-active="activeIndex"
             class="el-menu-vertical-demo"
           >
-            <el-menu-item index="1" @click="setName('cafe')" class="menu-item"  style="margin-top:10px">
+            <el-menu-item index="1" @click="setName('coffee')" class="menu-item"  style="margin-top:10px">
               <template #title>
                 <el-icon><CoffeeCup /></el-icon>
                 <icon></icon>
                 <span class="title">咖啡系列</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="2" @click="setName('fruit')" class="menu-item">
+            <el-menu-item index="2" @click="setName('tea')" class="menu-item">
               <el-icon><IceTea /></el-icon>
               <span class="title">果茶系列</span>
             </el-menu-item>
-            <el-menu-item index="3" @click="setName('milk')" class="menu-item">
+            <el-menu-item index="3" @click="setName('soda')" class="menu-item">
               <el-icon><IceDrink /></el-icon> 
               <span class="title">奶茶系列</span>
             </el-menu-item>
@@ -88,7 +88,7 @@ export default {
       
     },
     mounted() {
-        this.setName('cafe')
+        this.setName('coffee')
     },
 
 }

@@ -7,7 +7,7 @@
         <div v-for="(good) in goods" :key="good.name" class="card" @click="changeStatus(good.name)">
             <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
             <el-image class="img" :src="good.img" :fit="fit" @click.stop="changeStatus(good.name)"/>
-            <span class="img-title">{{good.price}}￥ {{good.name}}</span>
+                <div class="img-title" style="margin-left: 10px;width: 190px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{good.price}}￥ {{good.name}}</div>
         </div>
 
         <el-drawer
@@ -76,9 +76,11 @@
             }
         },
         mounted() {
-            GoodsService.getbyclass(this.page)
+            console.log(this.page.toUpperCase())
+            GoodsService.getbyclass(this.page.toUpperCase())
                 .then(response => {
                     this.goods = response.data
+                    console.log(this.goods)
                 })
         },
         updated() {
@@ -143,7 +145,8 @@
         transform: translateY(-2px);
     }
     .img-title{
-        font-family:'幼圆';
+        /* font-family:'Courier New', Courier, monospace; */
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 1.2em;
         font-weight: 500;
         line-height: 50px;
