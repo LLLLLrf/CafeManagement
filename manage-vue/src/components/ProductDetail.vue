@@ -14,9 +14,11 @@
         <hr style="background:#2F3CF4;height:2px;clear: both;"/>
 
         <div v-for = "good in goods" :key="good.name" class="card">
-            <el-image class="img" :src="good.img"></el-image>
-            <div class="good-name">{{good.name}}</div>
-            <span class="good-msg">￥<strong>{{good.price}}</strong> 月售<em>{{good.sold}}</em></span>
+            <el-image class="img" :src="good.img" style="border-radius:20px;width: 180px;height: 180px;"></el-image>
+            <div class="good-name" style="white-space:nowrap;text-overflow: ellipsis;overflow: hidden;width: 160px;margin-left: 10px;">
+                {{good.name}}
+            </div>
+            <span class="good-msg">￥{{good.price}} 月售<em>{{good.sold}}</em></span>
             <el-button @click="goodsdetail(good.name)" class="button3">
                 <el-icon><Plus /></el-icon>
             </el-button>
@@ -29,16 +31,7 @@ import GoodsService from '../services/GoodsService'
 export default{
     data() {
         return{
-            goods:[
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-                {img:"https://img.zcool.cn/community/01445a5acae323a801204029cf4ead.jpg@1280w_1l_2o_100sh.jpg",name:"生椰拿铁",price:20,sold:100,},
-            ],
+            goods:[],
         }
     },
     methods:{
@@ -104,22 +97,17 @@ export default{
 .card{
     float: left;
     display:block;
-    width: 200px;
-    height:200px;
-    margin-left: 150px;
+    width: 180px;
+    margin-left: 90px;
     margin-bottom: 40px;
-    border-radius: 30px;
     overflow: hidden;
 }
 .img{
     display:block;
-    width:150px;
-    height:150px;
 }
 .good-name{
-    font-size:1.4em;
+    font-size:1.2em;
     font-family:Arial, Helvetica, sans-serif;
-    font-stretch:expanded;
     line-height: 20px;
     text-align: left;
     margin-left:10px;
