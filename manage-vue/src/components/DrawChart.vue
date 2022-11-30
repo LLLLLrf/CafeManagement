@@ -9,6 +9,8 @@
 <script>
 //2.引用echarts库
 import * as echarts from 'echarts'
+import OrdersService from '@/services/OrdersService';
+
     export default {
         data() {
             return {
@@ -18,6 +20,11 @@ import * as echarts from 'echarts'
             }
         },
         mounted() {
+            OrdersService.getweekdata().then(res=>{
+                this.datas=res;
+            }).catch(err=>{
+                console.log(err)
+            })
             //先初始化echarts，得到一个echarts对象
             //创建一个echarts对象的方法是echarts中的init()方法
             let mycharts = echarts.init(document.getElementById("main"));//初始化echarts对象

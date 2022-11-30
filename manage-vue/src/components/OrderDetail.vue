@@ -37,16 +37,16 @@
        v-model="value"
        class="search-input"
        placeholder="选择商品名称"
+       multiple
        filterable
-       allow-create
        default-first-option
        :reserve-keyword="false"
        >
         <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          v-for="item in goods"
+          :key="item.id"
+          :label="item.name"
+          :value="item.name"
         >
         </el-option>
       </el-select>
@@ -75,9 +75,11 @@
 import { ElMessage } from 'element-plus';
 import GoodsService from '../services/GoodsService'
 import OrdersService from '../services/OrdersService'
+
 export default {
   data() {
     return {
+      value:undefined,
       key: undefined,
       findlist: undefined,
       goods: [],

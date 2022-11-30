@@ -28,13 +28,13 @@
               </div>
             </el-form-item>
             <el-form-item label="temp:">
-                <el-select v-model="sig.temp" placeholder="please select your zone">
+                <el-select v-model="sig.temp" placeholder="please select temperature">
                     <el-option label="hot" value="hot" />
                     <el-option label="cold" value="cold" />
                 </el-select>
             </el-form-item>
             <el-form-item label="sugar:">
-                <el-select v-model="sig.sugar" placeholder="please select your zone">
+                <el-select v-model="sig.sugar" placeholder="please select suger">
                     <el-option label="less" value="less" />
                     <el-option label="normal" value="normal" />
                 </el-select>
