@@ -39,6 +39,13 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Goods.findAll({ where: null })
       .then(data => {
+        const directoryPath = __basedir + "/uploads/";
+        for(let i=0;i<data.length;i++){
+          let fileName = data[i].dataValues.image_name;
+          let bitmap = fs.readFileSync(directoryPath + fileName);
+          let base64str = Buffer.from(bitmap, 'binary').toString('base64');
+          data[i].dataValues.image="data:image/png;base64,"+base64str
+        }
         res.send(data)
       })
       .catch(err => {
@@ -54,6 +61,13 @@ exports.findOne = (req, res) => {
     var condition = { name: name } 
     Goods.findAll({ where: condition })
       .then(data => {
+        const directoryPath = __basedir + "/uploads/";
+        for(let i=0;i<data.length;i++){
+          let fileName = data[i].dataValues.image_name;
+          let bitmap = fs.readFileSync(directoryPath + fileName);
+          let base64str = Buffer.from(bitmap, 'binary').toString('base64');
+          data[i].dataValues.image="data:image/png;base64,"+base64str
+        }
         res.send(data)
       })
       .catch(err => {
@@ -131,6 +145,13 @@ exports.findbyclass = (req, res) => {
     var condition = { class: cato } 
     Goods.findAll({ where: condition })
       .then(data => {
+        const directoryPath = __basedir + "/uploads/";
+        for(let i=0;i<data.length;i++){
+          let fileName = data[i].dataValues.image_name;
+          let bitmap = fs.readFileSync(directoryPath + fileName);
+          let base64str = Buffer.from(bitmap, 'binary').toString('base64');
+          data[i].dataValues.image="data:image/png;base64,"+base64str
+        }
         res.send(data)
       })
       .catch(err => {

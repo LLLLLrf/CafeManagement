@@ -9,7 +9,7 @@
             </el-form-item>
             <el-form-item label="image:">
               <div style=";min-width: 100px;">
-                <img :src="good.image"/>
+                <img :src="good.image" height="200" width="200"/>
               </div>
             </el-form-item>
             <el-form-item label="describe:">

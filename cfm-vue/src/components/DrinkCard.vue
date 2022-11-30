@@ -6,7 +6,7 @@
 
         <div v-for="(good) in goods" :key="good.name" class="card" @click="changeStatus(good.name)">
             <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
-            <el-image class="img" :src="good.img" :fit="fit" @click.stop="changeStatus(good.name)"/>
+            <el-image class="img" :src="good.image" :fit="fit" @click.stop="changeStatus(good.name)"/>
                 <div class="img-title" style="margin-left: 10px;width: 180px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{good.price}}￥ {{good.name}}</div>
         </div>
 
@@ -32,7 +32,6 @@
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
     import GoodsService from '../services/GoodsService'
-    import UploadFilesService from '../services/UploadFilesService';
     export default{
         components:{DetailPage},
         data(){
@@ -53,11 +52,6 @@
                 GoodsService.getbyname(viewingname)
                 .then(response => {
                     this.goodmsg = response.data[0]
-                    UploadFilesService.getFilesByName(this.goodmsg.image_name)
-                    .then(response=>{
-                        this.goodmsg.image=response.data
-                        console.log(this.goodmsg)
-                    })
                 })
                 this.goodmsg=viewingname
 
