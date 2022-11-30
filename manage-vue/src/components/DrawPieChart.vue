@@ -17,8 +17,9 @@ import * as echarts from 'echarts'
             }
         },
         mounted() {
-            OrdersService.getdaydata().then(res=>{
+            OrdersService.getweekdata().then(res=>{
                 this.datas=res;
+                console.log("this.datas")
                 console.log(this.datas)
             }).catch(err=>{
                 console.log(err)

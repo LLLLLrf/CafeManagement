@@ -2,7 +2,7 @@
   <div>
     <div class="menu-name">订单详情</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
-    <el-table :data="tableData" style="width: 60%;float: left;">
+    <el-table :data="tableData" style="width: 60%;float: left;height: 90vh;overflow-y: scroll;">
       <el-table-column label="订单编号" prop="publicid" width="140" align="center">
       </el-table-column>
       <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
@@ -33,7 +33,24 @@
         条件搜索
       </div>
 
-      <el-input v-model="key" class="search-input" placeholder="请输入商品信息等关键词">
+      <el-select 
+       v-model="value"
+       class="search-input"
+       placeholder="选择商品名称"
+       filterable
+       allow-create
+       default-first-option
+       :reserve-keyword="false"
+       >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+      <!-- <el-input v-model="key" class="search-input" placeholder="请输入商品信息等关键词">
         <template #prepend>
           <el-button @click="findbykey()">
             <el-icon>
@@ -41,16 +58,13 @@
             </el-icon>
           </el-button>
         </template>
-      </el-input>
+      </el-input> -->
       <div>
         {{ findlist }}
       </div>
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">日期</div>
         <div>
-          
-
-
         </div>
       </div>
     </div>
