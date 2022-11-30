@@ -70,7 +70,7 @@ def database(table):
 
     # 使用预处理语句创建表
     sql = """CREATE TABLE `orders` (
-            `id`  TEXT NOT NULL,
+            `id`  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `createdAt`  TEXT NOT NULL,
             `updatedAt`  TEXT NOT NULL,
             `publicid`  TEXT,
