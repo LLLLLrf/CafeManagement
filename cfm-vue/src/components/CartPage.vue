@@ -96,6 +96,9 @@ methods: {
                 console.log(err)
                 ElMessage.error(err.toString())
             })
+            setTimeout(() => {
+                    location.reload()
+                }, 200);
     },
     delitem(id) {
         var data=[]
