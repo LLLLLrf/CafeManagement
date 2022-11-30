@@ -1,6 +1,7 @@
 <template>
     <div style="position:absolute;left:160px">
-        /api/goods
+        test
+        <!-- /api/goods
         {{goods}}
         <el-button @click="goodscreate()">goodscreate</el-button>
         <el-button @click="goodsdeleteall()">goodsdeleteall</el-button>
@@ -11,14 +12,15 @@
         <el-button @click="orderscreate()">orderscreate</el-button>
         <el-button @click="ordersdeleteall()">ordersdeleteall</el-button>
         <el-button @click="ordersdelete()">ordersdelete</el-button>
-        <el-button @click="ordersupdate()">ordersupdate</el-button>
-
+        <el-button @click="ordersupdate()">ordersupdate</el-button> -->
+        <el-button @click="test">test</el-button>
     </div>
 </template>
 <script>
-import { ElMessage } from 'element-plus'
-import GoodsService from '../services/GoodsService'
-import OrdersService from '../services/OrdersService'
+// import { ElMessage } from 'element-plus'
+// import GoodsService from '../services/GoodsService'
+// import OrdersService from '../services/OrdersService'
+import http from "../api-http";
 export default {
     data(){
         return{
@@ -27,136 +29,141 @@ export default {
         }
     },
     methods:{
-        goodscreate(){
-            var cafe = {
-                name: 'cafe',
-                class: 'cafe',
-                sale: 1,
-                image_name: 'map.png',
-                image: 0,
-                price: 10,
-                describe: 'post test'
-            };
-            var fruit = {
-                name: 'fruit',
-                class: 'fruit',
-                sale: 1,
-                image_name: 'map.png',
-                image: 0,
-                price: 20,
-                describe: 'post test'
-            };
-            var milk = {
-                name: 'milk',
-                class: 'milk',
-                sale: 1,
-                image_name: 'map.png',
-                image: 0,
-                price: 30,
-                describe: 'post test'
-            };
-            GoodsService.create(cafe)
-            .then(response => {
-                console.log(response.data);
-                ElMessage({
-                    message: "上传成功！",
-                    type: "success",
-                });
+        test(){
+            http.get("/pay").then(res=>{
+                console.log(res)
             })
-            .catch(err => {
-                console.log(err)
-                ElMessage.error(err.toString())
-            })
-            GoodsService.create(fruit)
-                .then(response => {
-                    console.log(response.data);
-                    ElMessage({
-                        message: "上传成功！",
-                        type: "success",
-                    });
-                })
-                .catch(err => {
-                    console.log(err)
-                    ElMessage.error(err.toString())
-                })
-            GoodsService.create(milk)
-                .then(response => {
-                    console.log(response.data);
-                    ElMessage({
-                        message: "上传成功！",
-                        type: "success",
-                    });
-                })
-                .catch(err => {
-                    console.log(err)
-                    ElMessage.error(err.toString())
-                })
-        },
-        goodsdeleteall(){
-            GoodsService.deleteAll()
-        },
-        goodsupdate(){
-            var goods = {
-                name: 'cafe',
-                sale: 1,
-                image_name: 'map.png',
-                image: 0,
-                price: 20,
-                describe: 'post test'
-            };
-            GoodsService.goodsupdate(5,goods)
-        },
-        goodsdelete(){
-            GoodsService.delete(4)
-        },
-        orderscreate() {
-            var time = new Date().toLocaleString().split(/[ ,/,:]/).join('')
-            var orders = {
-                publicid:time,
-                paytime: 0,
-                finish: 0,
-                orderlist: [{id:1, name: 'cafe1',temp:'hot',sugar:'less',amount:1 }, {id:2, name: 'cafe1',temp:'cold',sugar:'normal',amount:2}],
-                category: 'now',
-                totalprice:10
-            };
-            OrdersService.create(orders)
-                .then(response => {
-                    console.log(response.data);
-                    ElMessage({
-                        message: "上传成功！",
-                        type: "success",
-                    });
-                })
-                .catch(err => {
-                    console.log(err)
-                    ElMessage.error(err.toString())
-                })
-        },
-        ordersdeleteall() {
-            OrdersService.deleteAll()
-        },
-        ordersupdate() {
-            var orders = {
-                paytime: 0,
-                finish: 1,
-                orderlist: { name: ['cafe1','cafe2'], amount: 2 },
-                category: 'now'
-            };
-            OrdersService.goodsupdate(5, orders)
-        },
-        ordersdelete() {
-            OrdersService.delete(4)
         }
+        // goodscreate(){
+        //     var cafe = {
+        //         name: 'cafe',
+        //         class: 'cafe',
+        //         sale: 1,
+        //         image_name: 'map.png',
+        //         image: 0,
+        //         price: 10,
+        //         describe: 'post test'
+        //     };
+        //     var fruit = {
+        //         name: 'fruit',
+        //         class: 'fruit',
+        //         sale: 1,
+        //         image_name: 'map.png',
+        //         image: 0,
+        //         price: 20,
+        //         describe: 'post test'
+        //     };
+        //     var milk = {
+        //         name: 'milk',
+        //         class: 'milk',
+        //         sale: 1,
+        //         image_name: 'map.png',
+        //         image: 0,
+        //         price: 30,
+        //         describe: 'post test'
+        //     };
+        //     GoodsService.create(cafe)
+        //     .then(response => {
+        //         console.log(response.data);
+        //         ElMessage({
+        //             message: "上传成功！",
+        //             type: "success",
+        //         });
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //         ElMessage.error(err.toString())
+        //     })
+        //     GoodsService.create(fruit)
+        //         .then(response => {
+        //             console.log(response.data);
+        //             ElMessage({
+        //                 message: "上传成功！",
+        //                 type: "success",
+        //             });
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //             ElMessage.error(err.toString())
+        //         })
+        //     GoodsService.create(milk)
+        //         .then(response => {
+        //             console.log(response.data);
+        //             ElMessage({
+        //                 message: "上传成功！",
+        //                 type: "success",
+        //             });
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //             ElMessage.error(err.toString())
+        //         })
+        // },
+        // goodsdeleteall(){
+        //     GoodsService.deleteAll()
+        // },
+        // goodsupdate(){
+        //     var goods = {
+        //         name: 'cafe',
+        //         sale: 1,
+        //         image_name: 'map.png',
+        //         image: 0,
+        //         price: 20,
+        //         describe: 'post test'
+        //     };
+        //     GoodsService.goodsupdate(5,goods)
+        // },
+        // goodsdelete(){
+        //     GoodsService.delete(4)
+        // },
+        // orderscreate() {
+        //     var time = new Date().toLocaleString().split(/[ ,/,:]/).join('')
+        //     var orders = {
+        //         publicid:time,
+        //         paytime: 0,
+        //         finish: 0,
+        //         orderlist: [{id:1, name: 'cafe1',temp:'hot',sugar:'less',amount:1 }, {id:2, name: 'cafe1',temp:'cold',sugar:'normal',amount:2}],
+        //         category: 'now',
+        //         totalprice:10
+        //     };
+        //     OrdersService.create(orders)
+        //         .then(response => {
+        //             console.log(response.data);
+        //             ElMessage({
+        //                 message: "上传成功！",
+        //                 type: "success",
+        //             });
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //             ElMessage.error(err.toString())
+        //         })
+        // },
+        // ordersdeleteall() {
+        //     OrdersService.deleteAll()
+        // },
+        // ordersupdate() {
+        //     var orders = {
+        //         paytime: 0,
+        //         finish: 1,
+        //         orderlist: { name: ['cafe1','cafe2'], amount: 2 },
+        //         category: 'now'
+        //     };
+        //     OrdersService.goodsupdate(5, orders)
+        // },
+        // ordersdelete() {
+        //     OrdersService.delete(4)
+        // }
     },
     mounted() {
-        GoodsService.getAll()
-        .then(response => {
-            this.goods=response.data
-        })
-        OrdersService.getAll()
-        .then(response =>{
-            this.orders=response.data
-        })
+        // GoodsService.getAll()
+        // .then(response => {
+        //     this.goods=response.data
+        // })
+        // OrdersService.getAll()
+        // .then(response =>{
+        //     this.orders=response.data
+        // })
     },
 }
 </script>
