@@ -144,7 +144,7 @@ def database(table):
 
 
 # main
-# table = get_cell_value(str(sys.argv[1]))  # 文件路径
-table=get_cell_value('E:\workspace\Project\CafeManagement\sh\orders_exp.xlsx')
+table = get_cell_value(str(sys.argv[1]))  # 文件路径
+# table=get_cell_value('E:\workspace\Project\CafeManagement\sh\orders_exp.xlsx')
 # print(table)
 database(table)
