@@ -2,35 +2,47 @@
     <div class="layout">
         <!-- create order option -->
         <el-form :model="form" label-width="120px" class="order-form">
-            <el-form-item label="name">
+            <el-form-item label="name:">
+              <div style=";min-width: 100px;">
                 {{good.name}}
+              </div>
             </el-form-item>
-            <el-form-item label="image">
+            <el-form-item label="image:">
+              <div style=";min-width: 100px;">
                 <img :src="good.image"/>
+              </div>
             </el-form-item>
-            <el-form-item label="describe">
+            <el-form-item label="describe:">
+              <div style=";min-width: 100px;">
                 {{good.describe}}
+              </div>
             </el-form-item>
-            <el-form-item label="release date">
+            <el-form-item label="release date:">
+              <div style=";min-width: 100px;">
                 {{new Date(good.createdAt).toDateString()}}
+              </div>
             </el-form-item>
-            <el-form-item label="price">
+            <el-form-item label="price:">
+              <div style=";min-width: 100px;">
                 {{good.price}}
+              </div>
             </el-form-item>
-            <el-form-item label="temp">
+            <el-form-item label="temp:">
                 <el-select v-model="sig.temp" placeholder="please select your zone">
                     <el-option label="hot" value="hot" />
                     <el-option label="cold" value="cold" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="sugar">
+            <el-form-item label="sugar:">
                 <el-select v-model="sig.sugar" placeholder="please select your zone">
                     <el-option label="less" value="less" />
                     <el-option label="normal" value="normal" />
                 </el-select>
             </el-form-item>
-            <el-form-item label="amount">
+            <el-form-item label="amount:">
+              <div style="border: #2F3CF4 2px solid;border-radius:6px;padding: -4px;">
                 <el-input-number v-model="sig.amount" :min="1" :max="99"  class="choose-num"/>
+              </div>
             </el-form-item>
         </el-form>
         <button class="btn-shine" @click="onsubmit()">
@@ -78,11 +90,12 @@ export default{
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 /deep/ .el-select .el-input__wrapper{
     /* background-color: blueviolet; */
-    border-radius: 70px;
+    border-radius: 8px;
     /* background-color: cornsilk; */
     border: #2F3CF4 2px solid;
 }

@@ -20,11 +20,11 @@
             </el-menu-item>
             <el-menu-item index="2" @click="setName('tea')" class="menu-item">
               <el-icon><IceTea /></el-icon>
-              <span class="title">果茶系列</span>
+              <span class="title">茶饮系列</span>
             </el-menu-item>
             <el-menu-item index="3" @click="setName('soda')" class="menu-item">
               <el-icon><IceDrink /></el-icon> 
-              <span class="title">奶茶系列</span>
+              <span class="title">汽水系列</span>
             </el-menu-item>
             <el-menu-item index="4" @click="api('api')">api</el-menu-item>
           </el-menu>
