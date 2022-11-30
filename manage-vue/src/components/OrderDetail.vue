@@ -2,7 +2,7 @@
   <div>
     <div class="menu-name">订单详情</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
-    <el-table :data="tableData" style="width: 60%;float: left;height: 90vh;overflow-y: scroll;">
+    <el-table :data="tableData" style="width: 60%;float: left;height: 90vh;overflow-y: scroll;min-width: 670px;">
       <el-table-column label="订单编号" prop="publicid" width="140" align="center">
       </el-table-column>
       <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
@@ -177,7 +177,8 @@ export default {
 .search-input {
   margin-top: 10px;
   width: 94%;
-  border-radius: 18px;
+  border-radius: 4px;
+  border:0.6px #2F3CF4 solid;
 }
 
 
