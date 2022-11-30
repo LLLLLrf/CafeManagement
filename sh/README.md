@@ -50,3 +50,17 @@ pip install -r requirements.txt
 ```bash
 python3 msg_to_mysql.py ./goods_msg.xlsx 
 ```
+
+## 导入订单数据
+
+- 配置python依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+- 运行更新脚本（Windows下，若用conda配置环境要用绝对路径）
+
+```bash
+python3 orders_to_mysql.py ./orders_exp.xlsx 
+```
