@@ -2,13 +2,10 @@
     <div class="layout">
         <div class="menu-name">商品详情</div>
         <span>
-            <el-button @click="addseries()" class="button1">
-                <el-icon><Plus />添加系列</el-icon>
-            </el-button>
-        </span>
-        <span>
-            <el-button @click="addgoods()" class="button2">
-                <el-icon><Plus />添加商品</el-icon>
+            <el-button @click="addgoods" class="button2">
+                <el-icon><Plus />
+                </el-icon>
+                    添加商品
             </el-button>
         </span>
         <hr style="background:#2F3CF4;height:2px;clear: both;"/>
@@ -39,7 +36,7 @@ export default{
             this.$router.push({ name:'singleproduct',query:{name:name}})
         },
         addgoods(){
-            
+            this.$router.push('/UploadProduct')
         }
     },
     mounted(){

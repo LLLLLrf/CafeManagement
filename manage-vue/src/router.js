@@ -14,7 +14,7 @@ const routes =  [
   {
     path: "/totalprofit",
     name: "totalprofit",
-    component:() => import("./components/TotalProfit")
+    component:() => import("./components/TotalProfit.vue")
   },
   {
     path:"/singleproduct",
@@ -31,6 +31,12 @@ const routes =  [
     name: 'api',
     component:() => import('./components/ManageAPI.vue')
   },
+  {
+    path: '/uploadproduct',
+    name: 'uploadproduct',
+    component:() => import('./components/UploadProduct.vue')
+  },
+  
 ];
 const router = createRouter({
   history: createWebHistory(),
