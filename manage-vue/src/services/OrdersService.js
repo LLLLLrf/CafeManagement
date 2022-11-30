@@ -24,5 +24,17 @@ class OrdersService {
   findbyId(data){
     return http.post(`/orders/id`,data)
   }
+  getweekdata(data){
+    // data:{}
+    return http.post(`/orders/getweekdata`,data);
+  }
+  getmonthdata(data){
+    // data:{}
+    return http.post(`/orders/getmonthdata`,data);
+  }
+  getdaydata(data){
+    // data:{}
+    return http.post(`/orders/getdaydata`,data);
+  }
 }
 export default new OrdersService();

@@ -46,6 +46,9 @@ export default{
             console.log(name)
             this.$router.push({ name:'singleproduct',query:{name:name}})
         },
+        addgoods(){
+            
+        }
     },
     mounted(){
         GoodsService.getAll()

@@ -21,6 +21,12 @@
                         <el-form-item label="Name">
                             <el-input v-model="change.name"></el-input>
                         </el-form-item>
+                        <el-form-item label="Temp">
+                            <el-checkbox-group v-model="good.ask.temp">
+                                <el-checkbox label="Hot" name="type" />
+                                <el-checkbox label="Cold" name="type" />
+                            </el-checkbox-group>
+                        </el-form-item>
                         <el-form-item label="Price">
                             ￥
                             <el-input-number v-model="change.price" :min="0" :max="999" @change="handleChange" />
@@ -32,21 +38,26 @@
                             <el-input v-model="change.describe"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="onSubmit">Save</el-button>
-                            <el-button>Restore</el-button>
+                            <el-button type="primary" @click="Save()">Save</el-button>
+                            <el-button @click="Cancel()">Cancel</el-button>
+                            <el-popconfirm title="Are you sure to delete this?" @confirm="Delete()">
+                                <template #reference>
+                                    <el-button type="danger">Delete</el-button>
+                                </template>
+                            </el-popconfirm>
                         </el-form-item>
                     </el-form>
                 </div>
 
             </el-col>
         </el-row>
-        <el-button @click="test">test</el-button>
     </div>
 </template>
 
 
 <script>
 import GoodsService from '@/services/GoodsService';
+import { ElMessage } from 'element-plus';
 export default{
     data(){
         return{
@@ -57,15 +68,23 @@ export default{
         }
     },
     methods:{
-        pageback(){
+        Save(){
+            GoodsService.update(this.good.id, this.change).then(()=>{
+                ElMessage.success("success Save")
+                this.$router.go(-1)
+            }).catch(err=>{
+                ElMessage.error(err)
+            })
+        },
+        Cancel(){
+            this.change=this.good
             this.$router.go(-1)
         },
-        addgoods(){
-        },
-        addselection(){
-        },
-        test(){
-            // console.log(this.$route.query)
+        Delete(){
+            GoodsService.delete(this.good.id).then(()=>{
+                ElMessage.success("success Delete")
+                this.$router.go(-1)
+            })
         }
     },
     mounted() {

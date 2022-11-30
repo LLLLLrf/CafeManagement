@@ -18,5 +18,11 @@ module.exports = app => {
     // find by key word
     router.post("/id",orders.findbyId);
 
+    router.post("/getweekdata",orders.getWeekData);
+
+    router.post("/getmonthdata",orders.getMonthData);
+
+    router.post("/getdaydata",orders.getDayData);
+
     app.use('/api/orders', router);
   };

@@ -100,7 +100,12 @@ def database(table):
 
         sql.append("'"+str(table[0][row][1])+"',")
         sql.append("'"+str(table[0][row][0])+"',")
-        ask = {'hot':table[0][row][2], 'cold':table[0][row][3]}
+        temp=[]
+        if(table[0][row][2]):
+            temp.append('Hot')
+        if(table[0][row][3]):
+            temp.append('Cold')
+        ask = {'temp':temp}
         d_ask = pymysql.converters.escape_string(json.dumps(ask))
         sql.append("'"+d_ask+"',")
         sql.append("'"+str(1)+"',")
