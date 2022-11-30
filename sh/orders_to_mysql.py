@@ -8,6 +8,7 @@ import pymysql
 import sys
 import time
 import json
+import random
 
 def parser_merged_cell(sheet: Worksheet, row, col):
     """
@@ -65,29 +66,26 @@ def database(table):
     cursor = db.cursor()
 
     # 使用 execute() 方法执行 SQL，如果表存在则删除
-    cursor.execute("DROP TABLE IF EXISTS `goods`")
+    cursor.execute("DROP TABLE IF EXISTS `orders`")
 
     # 使用预处理语句创建表
-    sql = """CREATE TABLE `goods` (
+    sql = """CREATE TABLE `orders` (
             `id`  TEXT NOT NULL,
             `createdAt`  TEXT NOT NULL,
             `updatedAt`  TEXT NOT NULL,
-            `name`  TEXT NOT NULL,
-            `class`  TEXT NOT NULL,
-            `ask`  JSON,
-            `sale`  BOOLEAN,
-            `image_name`  TEXT NOT NULL,
-            `image`  TEXT,
-            `price`  FLOAT,
-            `describe`  TEXT )"""
+            `publicid`  TEXT,
+            `paytime`  TEXT,
+            `finish`  TEXT,
+            `orderlist`  JSON,
+            `category`  TEXT,
+            `totalprice`  FLOAT)"""
 
     cursor.execute(sql)
     # 构造数据
     allsql = []
-    label = ['`name`', '`class`', '`ask`', '`sale`', '`image_name`',
-             '`image`', '`price`', '`describe`']
+    label = ['`publicid`', '`paytime`', '`finish`', '`orderlist`', '`category`', '`totalprice`']
     for row in range(1, len(table[0])):
-        sql = ["INSERT INTO goods(`id`,`createdAt`,`updatedAt`,"]
+        sql = ["INSERT INTO orders(`id`,`createdAt`,`updatedAt`,"]
         for col in range(len(label)):
             # if(table[0][row][col]!='None'):
             sql.append(label[col])
@@ -95,29 +93,33 @@ def database(table):
                 sql.append(",")
         sql.append(") VALUES (")
         sql.append("'"+str(row)+"',")
-        sql.append(time.strftime("'%Y-%m-%d %H:%M:%S'", time.localtime())+',')
-        sql.append(time.strftime("'%Y-%m-%d %H:%M:%S'", time.localtime())+',')
-
-        sql.append("'"+str(table[0][row][1])+"',")
-        sql.append("'"+str(table[0][row][0])+"',")
-        temp=[]
-        if(table[0][row][2]):
-            temp.append('Hot')
-        if(table[0][row][3]):
-            temp.append('Cold')
-        ask = {'temp':temp}
-        d_ask = pymysql.converters.escape_string(json.dumps(ask))
-        sql.append("'"+d_ask+"',")
-        sql.append("'"+str(1)+"',")
-        sql.append("'"+str(table[0][row][5])+"',")
-        sql.append("'"+str(0)+"',")
-        sql.append("'"+str(table[0][row][4])+"',")
-        sql.append("'"+str('unknown')+"'")
+        # sql.append(time.strftime("'%Y-%m-%d %H:%M:%S'", time.localtime())+',')
+        # sql.append(time.strftime("'%Y-%m-%d %H:%M:%S'", time.localtime())+',')
+        sql.append("'"+time.strftime(str(table[0][row][0]).zfill(4)+"-"+str(table[0][row][1]).zfill(2)+"-"+str(table[0][row][2]).zfill(2)+" "+str(table[0][row][3]).zfill(2)+":"+str(table[0][row][4]).zfill(2)+":"+str(table[0][row][5]).zfill(2), time.localtime())+"',")
+        sql.append("'"+time.strftime(str(table[0][row][0]).zfill(4)+"-"+str(table[0][row][1]).zfill(2)+"-"+str(table[0][row][2]).zfill(2)+" "+str(table[0][row][3]).zfill(2)+":"+str(table[0][row][4]).zfill(2)+":"+str(table[0][row][5]).zfill(2), time.localtime())+"',")
+        
+        publicid=str(table[0][row][0]).zfill(4)+str(table[0][row][1]).zfill(2)+str(table[0][row][2]).zfill(2)+str(table[0][row][3]).zfill(2)+str(table[0][row][4]).zfill(2)+str(table[0][row][5]).zfill(2)
+        sql.append("'"+publicid+"',")
+        sql.append("'"+time.strftime(str(table[0][row][0]).zfill(4)+"-"+str(table[0][row][1]).zfill(2)+"-"+str(table[0][row][2]).zfill(2)+" "+str(table[0][row][3]).zfill(2)+":"+str(table[0][row][4]).zfill(2)+":"+str(table[0][row][5]).zfill(2), time.localtime())+"',")
+        sql.append("'1',")
+        orderlist={
+            'data':[{
+                'id':0,
+                'name':str(table[0][row][6]),
+                'temp':random.choice(['Hot','Cold']),
+                'sugar':random.choice(['less','normal']),
+                'amount':str(table[0][row][7])
+            }]
+        }
+        d_orderlist = pymysql.converters.escape_string(json.dumps(orderlist))
+        sql.append("'"+d_orderlist+"',")
+        sql.append("'"+"alipay"+"',")
+        sql.append("'"+str(float(table[0][row][7]))+"'")
         
         sql.append(")")
         # print(''.join(''.join(sql).split('\n'))+'\n')
         allsql.append(''.join(''.join(sql).split('\n')))
-    # print(allsql[0])
+    print(allsql[0])
     
     for sql in allsql:
         try:
@@ -130,7 +132,7 @@ def database(table):
             db.rollback()
     
     # # 检查数据库
-    # sql="select * from origindata"
+    # sql="select * from orders"
     # cursor.execute(sql)
     # results = cursor.fetchall()
     # for row in results:
@@ -143,6 +145,6 @@ def database(table):
 
 # main
 # table = get_cell_value(str(sys.argv[1]))  # 文件路径
-table=get_cell_value('E:\workspace\Project\CafeManagement\sh\goods_msg.xlsx')
-print(table)
+table=get_cell_value('E:\workspace\Project\CafeManagement\sh\orders_exp.xlsx')
+# print(table)
 database(table)

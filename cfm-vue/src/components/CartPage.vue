@@ -79,7 +79,7 @@ methods: {
             publicid:time,
             paytime: 0,
             finish: 0,
-            orderlist: this.orderList,
+            orderlist: {data:this.orderList},
             category: 'now',
             totalprice:this.totalprice
         };

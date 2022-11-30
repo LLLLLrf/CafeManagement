@@ -4,7 +4,7 @@
             <el-col span="6">
                 <div>
                     <el-image class="image"
-                    :src="src" />
+                    :src="change.image" />
                 </div>
             </el-col>
 

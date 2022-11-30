@@ -28,7 +28,7 @@
         <div class="card-title">账单</div>
       </el-row>
       <div v-if="orderdata">
-        <el-row v-for="item in orderdata.orderlist" :key="item.id">
+        <el-row v-for="item in orderdata.orderlist.data" :key="item.id">
           <el-descriptions title="" class="card-content" :column="1">
             <el-descriptions-item :label="item.id">{{item.name}} ✖ {{item.amount}}</el-descriptions-item>
             <el-descriptions-item label="  -">{{ item.temp === 'hot' ? '热饮' : item.temp === 'cold'?'冷饮':'异常'}}</el-descriptions-item>

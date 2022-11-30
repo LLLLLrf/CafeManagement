@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       totalprice:{
-        type: Sequelize.DOUBLE
+        type: Sequelize.FLOAT
       }
     });
     return Orders;
