@@ -1,5 +1,5 @@
 <template>
-  <div style="width:100vw">
+  <div style="width:100vw;">
     <div class="nav">
       <el-row class="tac">
         <el-col>
@@ -67,6 +67,12 @@ export default {
 
 
 <style scoped>
+/* * {
+    background: #000 !important;
+    color: #0f0 !important;
+    outline: solid #f00 1px !important;
+} */
+
     .head-title{
         font-size: larger;
         margin-left: 8px;

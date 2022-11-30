@@ -113,7 +113,6 @@ export default {
 <style scoped>
 .menu-name {
   text-align: left;
-  width: 100%;
   margin-left: 40px;
   font-weight: bolder;
 }

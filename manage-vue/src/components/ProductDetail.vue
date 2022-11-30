@@ -56,9 +56,9 @@ export default{
 <style scoped>
   .menu-name{
     text-align: left;
-    margin-left: 40px;
     font-weight: bolder;
     float: left;
+    margin-left: 40px;
   }
 
 .button1{

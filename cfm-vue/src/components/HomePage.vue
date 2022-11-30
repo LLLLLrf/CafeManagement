@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100vw;">
     <div class="nav">
       <el-row class="tac">
         <el-col>
