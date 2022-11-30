@@ -9,7 +9,7 @@
             </el-form-item>
             <el-form-item label="image:">
               <div style=";min-width: 100px;">
-                <img :src="good.image" height="200" width="200"/>
+                <img :src="good.image" height="200" width="200" style="border-radius: 8px"/>
               </div>
             </el-form-item>
             <el-form-item label="describe:">
@@ -28,13 +28,13 @@
               </div>
             </el-form-item>
             <el-form-item label="temp:">
-                <el-select v-model="sig.temp" placeholder="please select your zone">
+                <el-select v-model="sig.temp" placeholder="please select temperature">
                     <el-option label="hot" value="hot" />
                     <el-option label="cold" value="cold" />
                 </el-select>
             </el-form-item>
             <el-form-item label="sugar:">
-                <el-select v-model="sig.sugar" placeholder="please select your zone">
+                <el-select v-model="sig.sugar" placeholder="please select suger">
                     <el-option label="less" value="less" />
                     <el-option label="normal" value="normal" />
                 </el-select>

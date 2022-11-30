@@ -73,11 +73,11 @@ export default {
     outline: solid #f00 1px !important;
 } */
 
-    .head-title{
-        font-size: larger;
-        margin-left: 8px;
-        display: inline;
-        color: #2F3CF4;
+  .head-title{
+      font-size: larger;
+      margin-left: 8px;
+      display: inline;
+      color: #2F3CF4;
     }
     .nav{
         /* margin-top: -30px; */
