@@ -69,6 +69,7 @@ export default{
     },
     methods:{
         Save(){
+            this.change.image='0'
             GoodsService.update(this.good.id, this.change).then(()=>{
                 ElMessage.success("success Save")
                 this.$router.go(-1)

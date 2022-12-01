@@ -18,8 +18,9 @@ class OrdersService {
   findbykey(data){
     return http.post(`/orders/key`,data)
   }
-  getincomebyday(data){
-    return http.post(`/orders/income`,data)
+  getorderbylrday(data){
+    // data:{lday:'2022-11-22 21:20:40',rday:'2022-11-24 21:20:40'}
+    return http.post(`/orders/lrday`,data)
   }
   findbyId(data){
     return http.post(`/orders/id`,data)
@@ -35,6 +36,10 @@ class OrdersService {
   getdaydata(data){
     // data:{}
     return http.post(`/orders/getdaydata`,data);
+  }
+  finishbyPublicid(data){
+    // data:{publicid:'202212020319'}
+    return http.post(`/orders/finishbyPublicid`,data)
   }
 }
 export default new OrdersService();

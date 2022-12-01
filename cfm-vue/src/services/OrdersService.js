@@ -21,5 +21,11 @@ class OrdersService {
   getincomebyday(data){
     return http.post(`/orders/income`,data)
   }
+  getunpay(data){
+    return http.post(`/orders/getunpay`,data)
+  }
+  checkpay(data){
+    return http.post(`/orders/checkpay`,data)
+  }
 }
 export default new OrdersService();

@@ -39,13 +39,14 @@
       </div>
 
       <el-select 
-       v-model="value"
+       v-model="key"
        class="search-input"
        placeholder="选择商品名称"
        multiple
        filterable
        default-first-option
        :reserve-keyword="false"
+       @change="findbykey"
        >
         <el-option
           v-for="item in goods"

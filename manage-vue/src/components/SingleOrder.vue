@@ -31,8 +31,8 @@
         <el-row v-for="item in orderdata.orderlist.data" :key="item.id">
           <el-descriptions title="" class="card-content" :column="1">
             <el-descriptions-item :label="item.id">{{item.name}} ✖ {{item.amount}}</el-descriptions-item>
-            <el-descriptions-item label="  -">{{ item.temp === 'hot' ? '热饮' : item.temp === 'cold'?'冷饮':'异常'}}</el-descriptions-item>
-            <el-descriptions-item label="  -">{{ item.sugar === 'less' ? '少糖' : item.temp === 'normal' ? '正常糖' :'异常'}}</el-descriptions-item>
+            <el-descriptions-item v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? '热饮' : item.temp === 'Cold'?'冷饮':'异常'}}</el-descriptions-item>
+            <el-descriptions-item v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'异常'}}</el-descriptions-item>
           </el-descriptions>
         </el-row>
         <el-row>总金额：￥ {{orderdata.totalprice}}</el-row>

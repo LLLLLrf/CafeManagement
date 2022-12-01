@@ -1,4 +1,4 @@
-const frontUrl='http://localhost:8080/'
+const frontUrl='http://localhost:8080/paysuccess'
 //引入 alipay sdk 模块
 const AliPaySdk = require('alipay-sdk').default
 
@@ -14,7 +14,24 @@ const alipaySdk = new AliPaySdk({
     sign_type: 'RSA2',
     charset: 'utf-8'
   })
-async function payMiddleware(data){
+async function checkpay(data){
+    // 实例化 AlipayForm
+    const formData = new AlipayForm()
+    // 下面是官网的测试代码
+    formData.setMethod('get');
+    formData.addField('bizContent', {
+        outTradeNo:data.outTradeNo
+    });
+
+    // 通过该接口主动查询订单状态
+    const result = await alipaySdk.exec(
+        'alipay.trade.query', 
+        {}, 
+        { formData: formData },
+    );
+    return result
+}
+async function paycreate(data){
     // 实例化 AlipayForm
     const formData = new AlipayForm()
     // 下面是官网的测试代码
@@ -28,8 +45,10 @@ async function payMiddleware(data){
         body: 'orderlist' // 出售商品的内容
     });
     //执行结果
-    const reult = await alipaySdk.exec('alipay.trade.page.pay',{},{ formData: formData })
+    const result = await alipaySdk.exec('alipay.trade.page.pay',{},{ formData: formData })
 
-    return reult
+    return result
 }
-module.exports = payMiddleware;
+
+exports.payapi = paycreate;
+exports.checkpay = checkpay;

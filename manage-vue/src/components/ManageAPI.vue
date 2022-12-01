@@ -1,17 +1,17 @@
 <template>
     <div>
         /api/orders
-        {{ orders }}
+        <!-- {{ orders }} -->
         <br/><br/><br/><el-button @click="orderscreate()">orderscreate</el-button>
         <el-button @click="getweekdata()">getweekdata</el-button>
         /api/goods
-        {{ goods }}
+        <!-- {{ goods }} -->
         <br /><br /><br />
-        {{income}}
-        <el-button @click="getincome(3)">3-income</el-button>
+        {{ orderbylr }}
+        <el-button @click="getbylrday()">getbylrday</el-button>
         <br /><br /><br />
         /api/files
-        {{files}}
+        <!-- {{files}} -->
         <br /><br /><br />
         <UploadComp></UploadComp>
     </div>
@@ -27,18 +27,18 @@ export default {
     data() {
         return {
             orders: undefined,
-            income:undefined,
+            orderbylr:undefined,
             fileList:undefined,
             files:undefined,
             goods:undefined
         }
     },
     methods: {
-        getincome(day){
-            var data={day:day}
-            OrdersService.getincomebyday(data)
+        getbylrday(){
+            var data= { lday: '2022-11-22 21:20:40', rday: '2022-11-24 21:20:40' }
+            OrdersService.getorderbylrday(data)
             .then(response=>{
-                this.income=response.data
+                this.orderbylr =response.data
             })
             .catch(err=>{
                 ElMessage.error(err.toString())

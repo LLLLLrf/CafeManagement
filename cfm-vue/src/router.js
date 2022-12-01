@@ -25,6 +25,11 @@ const routes =  [
     path: '/api',
     name: 'api',
     component:() => import('./components/APItest.vue')
+  },
+  {
+    path: '/paysuccess',
+    name: 'paysuccess',
+    component:() => import('./components/PaySuccess.vue')
   }
 ];
 const router = createRouter({

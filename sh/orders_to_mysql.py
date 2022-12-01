@@ -42,7 +42,7 @@ def get_cell_value(path):
     # iter_rows() 方法获得多个单元格
     print(my_sheet.max_row)
     print(my_sheet.max_column)
-    for row_index in range(2, my_sheet.max_row+1):
+    for row_index in range(2, 100):
         row = []
         # print(row_index)
         for col_index in range(1, my_sheet.max_column+1):
@@ -107,7 +107,7 @@ def database(table):
                 'id':0,
                 'name':str(table[0][row][6]),
                 'temp':random.choice(['Hot','Cold']),
-                'sugar':random.choice(['less','normal']),
+                'sugar':random.choice(['Less','Normal']),
                 'amount':str(table[0][row][7])
             }]
         }
