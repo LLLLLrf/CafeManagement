@@ -16,8 +16,8 @@
                 {{good.name}}
             </div>
             <span class="good-msg">￥{{good.price}} 月售<em>{{good.sold}}</em></span>
-            <el-button @click="goodsdetail(good.name)" class="button3">
-                <el-icon><Plus /></el-icon>
+            <el-button @click="goodsdetail(good.name)" class="edit_btn">
+                <el-icon><EditPen /></el-icon>
             </el-button>
         </div>
     </div>
@@ -81,8 +81,9 @@ export default{
     margin-bottom:10px;
     margin-top: -4px;
 }
-.button3{
-    margin-left:20px;
+.edit_btn{
+    /* margin-left:40px; */
+    float: right;
     width:30px;
     height:30px;
     border-radius:30px;
@@ -106,11 +107,16 @@ export default{
     font-family:Arial, Helvetica, sans-serif;
     line-height: 20px;
     text-align: left;
+    margin-top: 4px;
     margin-left:10px;
 }
 .good-msg{
-    font-family:'宋体';
     font-stretch:narrower;
     text-align: center;
+    margin-left: 10px;
+    line-height: 30px;
+    height: 30px;
+    justify-content: center;
+    float: left;
 }
 </style>

@@ -37,8 +37,8 @@
       <div class="cart-name">购物车</div>
     </div>
     <router-view @details="getdetails" class="content"></router-view>
-    <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="80%" :show-close="false">
-      <CartPage @status="finishorder" :orderList="orderList"></CartPage>
+    <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="60%" :show-close="false">
+      <CartPage @status="finishorder" :orderList="orderList" style="margin-top:-10px"></CartPage>
     </el-drawer>
   </div>
 </template>
@@ -96,6 +96,11 @@ export default {
 
 
 <style scoped>
+/* * {
+    background: #000 !important;
+    color: #0f0 !important;
+    outline: solid #f00 1px !important;
+} */
     .head-title{
         font-size: larger;
         margin-left: 8px;

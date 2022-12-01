@@ -11,13 +11,13 @@
       <el-row>{{this.income.week}}</el-row>
     </div>
     
-    <div class="today" style="float: right;margin-right:30px;height: max-content;width: max-content;margin-bottom: 20px;">
+    <div class="today" style="float: right;margin-right:6vw;height: max-content;width: max-content;margin-bottom: 20px;">
       <div class="card-title"></div>
       <el-row>{{this.income.day}}</el-row>
       <DrawPieChart></DrawPieChart>
     </div>
     
-    <div class="month" style="float: right;margin-right:30px;margin-bottom: 20px;height: max-content;width: max-content;">
+    <div class="month" style="float: right;margin-right:6vw;margin-bottom: 20px;height: max-content;width: max-content;">
       <div class="card-title"></div>
       <MonthChart></MonthChart>
       <el-row>{{this.income.month}}</el-row>
@@ -115,7 +115,7 @@ font-weight: bolder;
 .sevenday {
     border-radius: 30px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-top: 20px;
     float: left;
 }
@@ -125,7 +125,7 @@ font-weight: bolder;
 
     border-radius: 30px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-top: 20px;
     float: left;
 }
@@ -134,7 +134,7 @@ font-weight: bolder;
 
     border-radius: 30px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-top: 20px;
     float: left;
 }
@@ -146,7 +146,7 @@ font-weight: bolder;
     margin-bottom: 60px;
     border-radius: 30px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-top: 20px;
     float: left;
 }
@@ -157,7 +157,7 @@ font-weight: bolder;
     height: max-content;
     border-radius: 30px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-top: 20px;
     float: left;
 }

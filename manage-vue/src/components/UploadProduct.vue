@@ -26,7 +26,6 @@
       </el-upload>
       <el-button type="primary" @click="uploadFiles()">上传</el-button>
       <el-button type="primary" @click="commitData()">保存</el-button>
-
     </div>
   </template>
   

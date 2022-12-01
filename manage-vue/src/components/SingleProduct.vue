@@ -1,25 +1,25 @@
 <template>
     <div class="layout" v-if="this.good">
-        <el-row justify="center" style="margin-left:200px">
-            <el-col span="6">
+        <div style="">
+            <div style="margin-top:12vh;float: left;margin-left: 12vw;">
                 <div>
                     <el-image class="image"
                     :src="change.image" />
                 </div>
-            </el-col>
+            </div>
 
-            <el-col span="18"  style="margin-top:120px;text-align:left;">
+            <div style="margin-top:12vh;text-align:left;float: left;margin-left: 40px;max-width: 400px;">
                 <div>
-                    <el-form :model="change" label-width="120px">
+                    <el-form :model="change" label-width="100px">
                         <el-form-item label="Class">
-                            <el-select v-model="change.class" placeholder="please select class">
+                            <el-select v-model="change.class" placeholder="please select class" style="min-width:260px">
                                 <el-option label="COFFEE" value="COFFEE" />
                                 <el-option label="TEA" value="TEA" />
                                 <el-option label="SODA" value="SODA"/>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="Name">
-                            <el-input v-model="change.name"></el-input>
+                            <el-input v-model="change.name" style="min-width:260px"></el-input>
                         </el-form-item>
                         <el-form-item label="Temp">
                             <el-checkbox-group v-model="good.ask.temp">
@@ -35,7 +35,7 @@
                             <el-switch v-model="change.sale" />
                         </el-form-item>
                         <el-form-item label="Describe">
-                            <el-input v-model="change.describe"></el-input>
+                            <el-input v-model="change.describe" style="min-width:260px"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="Save()">Save</el-button>
@@ -49,8 +49,8 @@
                     </el-form>
                 </div>
 
-            </el-col>
-        </el-row>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -108,10 +108,9 @@ export default{
         border:white;
     }
     .image{
-        width:250px;
-        height:250px;
-        margin-left:-600px;
-        margin-bottom:-5px;
+        width:300px;
+        height:300px;
+        border-radius: 8px;
     }
     .add{
         display:inline;
@@ -134,32 +133,8 @@ export default{
         margin-left:-140px;
         margin-top: -25px;
     }
-    .cut{
-        height:1.25px;
-        width:400px;
-        border:none;
-        border-top:1px solid #000;
-        margin-left:-200px;
-        margin-top:-25px;
-    }
-    .t{
-        font-family:Arial, Helvetica, sans-serif;
-        font-size: 1cm;
-        margin-left:-124px;
-        margin-top: -20px;
-    }
     .RadioSelection{
         margin-top:20px;
-    }
-    .s{
-        margin-left:-122px;
-        margin-top:-40px;
-    }
-    .m{
-        margin-top:-40px;
-    }
-    .l{
-        margin-top:-40px;
     }
     .more{
         margin-top:-40px;

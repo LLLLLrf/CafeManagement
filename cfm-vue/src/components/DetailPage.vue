@@ -9,7 +9,16 @@
             </el-form-item>
             <el-form-item label="image:">
               <div style=";min-width: 100px;">
-                <img :src="good.image" height="200" width="200" style="border-radius: 8px"/>
+                <!-- <img :src="good.image" height="260" width="260" style="border-radius: 8px"/> -->
+
+                <el-image
+                  style="width: 260px; height: 260px;border-radius: 8px"
+                  :src="good.image"
+                  :preview-src-list="[good.image]"
+                  :initial-index="1"
+                  fit="cover"
+                />
+
               </div>
             </el-form-item>
             <el-form-item label="describe:">
@@ -67,6 +76,7 @@ export default{
                 sugar: undefined,
                 amount: 0,
                 price: 0,
+                fit:'cover',
             }
         };
     },
