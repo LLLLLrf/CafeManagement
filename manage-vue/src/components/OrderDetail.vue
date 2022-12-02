@@ -70,9 +70,7 @@
           </el-button>
         </template>
       </el-input> -->
-      <div>
-        {{ findlist }}
-      </div>
+
       <div>
         <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">日期</div>
         <div>
@@ -95,7 +93,6 @@ export default {
       key: undefined,
       findlist: undefined,
       goods: [],
-      orders: [],
       colors: ["#D8FACD,#FFF6A1,#FAB9C3"],
       tableData: undefined
     }
@@ -114,7 +111,8 @@ export default {
       var key = { key: this.key };
       OrdersService.findbykey(key)
         .then(response => {
-          this.findlist = response.data;
+          // this.findlist = response.data;
+          this.tableData=response.data
         })
         .catch(err => {
           ElMessage.error(err.toString())
@@ -129,9 +127,8 @@ export default {
       })
     OrdersService.getAll()
       .then(response => {
-        this.orders = response.data
-        this.tableData = this.orders
-        this.loading=false;
+        // this.orders = response.data
+        this.tableData = response.data
       })
       setTimeout(() => {
                 this.loading=false;
