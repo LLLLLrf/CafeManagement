@@ -54,8 +54,8 @@
         </el-radio>
     </el-radio-group>
     <div>
-        
-        <!-- <el-button @click="onsubmit()">submit</el-button> -->
+        <el-button v-if="payUrl"><a :href="payUrl">to pay</a></el-button>
+        <!-- <el-button v-else @click="onsubmit()">submit</el-button> -->
         <button @click="onsubmit()" class="btn">
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">
@@ -82,6 +82,7 @@ data() {
     return {
         totalprice:0,
         paymodel: '',
+        payUrl:undefined
     }
 },
 methods: {
@@ -97,12 +98,13 @@ methods: {
         };
         OrdersService.create(orders)
             .then(response => {
-                console.log(response.data);
+                this.payUrl=response.data
+                console.log(this.payUrl);
                 ElMessage({
                     message: "order success!",
                     type: "success",
                 });
-                this.$emit('status', { status: 'success' ,data:{}})
+                // this.$emit('status', { status: 'success' ,data:{}})
             })
             .catch(err => {
                 console.log(err)

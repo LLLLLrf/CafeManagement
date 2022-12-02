@@ -2,9 +2,7 @@ const { Sequelize } = require("../models/index");
 const db = require("../models/index");
 const Orders = db.orders;
 const Op = db.Sequelize.Op;
-const fs = require('fs');
-const { DATE, where } = require("sequelize");
-const { send } = require("process");
+const alipay = require("../middleware/alipay")
 // Create and Save a new Orders
 exports.create = (req, res) => {
   // console.log(req)
@@ -19,7 +17,7 @@ exports.create = (req, res) => {
     const orders = {
       publicid:req.body.publicid,
       paytime: req.body.paytime,
-      finish: req.body.finish,
+      finish: '0',
       orderlist: req.body.orderlist,
       category: req.body.category,
       totalprice:req.body.totalprice
@@ -27,7 +25,10 @@ exports.create = (req, res) => {
     // Save Orders in the database
     Orders.create(orders)
       .then(data => {
-        res.send(data);
+        alipay(data.dataValues)
+        .then(url=>{
+          res.send(url)
+        })
       })
       .catch(err => {
         res.status(500).send({
