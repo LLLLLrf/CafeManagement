@@ -3,6 +3,7 @@ const db = require("../models/index");
 const Orders = db.orders;
 const Op = db.Sequelize.Op;
 const alipay = require("../middleware/alipay")
+const axios = require("axios")
 // Create and Save a new Orders
 exports.create = (req, res) => {
   // console.log(req)
@@ -16,8 +17,8 @@ exports.create = (req, res) => {
     // Create a Orders
     const orders = {
       publicid:req.body.publicid,
-      paytime: req.body.paytime,
-      finish: '0',
+      paytime: '0',
+      finish: req.body.finish,
       orderlist: req.body.orderlist,
       category: req.body.category,
       totalprice:req.body.totalprice
@@ -25,7 +26,7 @@ exports.create = (req, res) => {
     // Save Orders in the database
     Orders.create(orders)
       .then(data => {
-        alipay(data.dataValues)
+        alipay.payapi(data.dataValues)
         .then(url=>{
           res.send(url)
         })
@@ -116,8 +117,12 @@ exports.deleteAll = (req, res) => {
   };
 // find by name key word
 exports.findbyKey = (req, res) => {
-    const key = req.body.key;
-    var condition = { orderlist: { [Op.like]: Sequelize.literal(`'%${key}%'`) } };
+    var key = req.body.key;
+    var keycondition=[]
+    for(let i=0;i<key.length;i++){
+      keycondition.push({orderlist: { [Op.like]: Sequelize.literal(`'%${key[i]}%'`) }})
+    }
+    var condition = { [Op.or]:[keycondition] };
     Orders.findAll({ where: condition })
       .then(data => {
         res.send(data)
@@ -129,16 +134,13 @@ exports.findbyKey = (req, res) => {
         });
       });
   };
-// get income by day
-exports.getincomebyday=(req,res)=>{
-  const day=req.body.day
-  Orders.findAll({where:{createdAt:{[Op.lt]:new Date()-day*24*60*60*1000}}})
+// get orders by day
+exports.getordersbyDay=(req,res)=>{
+  const lday=req.body.lday
+  const rday=req.body.rday
+  Orders.findAll({where:{[Op.and]:[{createdAt:{[Op.gte]:new Date(lday)}},{createdAt:{[Op.lte]:new Date(rday)}}]}})
   .then(data=>{
-    var total=0;
-    for(var i=0;i<data.length;i++){
-      total+=data[i].dataValues.totalprice
-    }
-    res.send({income:total})
+    res.send(data)
   })
   .catch(err=>{
     res.status(500).send({
@@ -189,4 +191,87 @@ exports.getDayData=(req,res)=>{
       message:err.message
     })
   })
+}
+
+exports.getUnpayOrder=(req,res)=>{
+  Orders.findAll({where:{paytime:'0'}})
+  .then(data=>{
+    res.send(data)
+  })
+  .catch(err=>{
+    res.status(500).send({
+      message:err.message
+    })
+  })
+}
+
+function updatepay(publicid){
+  Orders.update({paytime:new Date().toLocaleString()}, {
+    where: { publicid: publicid }
+  })
+  .catch();
+}
+
+exports.checkpay=(req,res)=>{
+  const publicid=req.body.publicid
+  alipay.checkpay({outTradeNo:publicid})
+  .then(data=>{
+      axios({
+      method: 'GET',
+      url: data
+    })
+    .then(data => {
+      console.log(data)
+      let r = data.data.alipay_trade_query_response;
+      if(r.code === '10000') { // 接口调用成功
+        switch(r.trade_status) {
+          case 'WAIT_BUYER_PAY':
+            res.send('交易创建，等待买家付款');
+            break;
+          case 'TRADE_CLOSED':
+            res.send('未付款交易超时关闭，或支付完成后全额退款');
+            break;
+          case 'TRADE_SUCCESS':
+            // updatepay(publicid)
+            res.send('交易支付成功');
+            break;
+          case 'TRADE_FINISHED':
+            res.send('交易结束，不可退款');
+            break;
+        }
+      } else if(r.code === '40004') {
+            // updatepay(publicid)
+        res.send('交易不存在');
+      }
+    })
+    .catch(err => {
+      res.json({
+        msg: '查询失败',
+        err
+      });
+    });
+  })
+}
+
+exports.finishbyPublicid=(req,res)=>{
+  const publicid = req.body.publicid;
+  Orders.update({finish:'1'}, {
+    where: { publicid: publicid }
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Orders was updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update Orders with publicid=${publicid}. Maybe Orders was not found or req.body is empty!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating Orders with id=" + publicid+err
+    });
+  });
 }

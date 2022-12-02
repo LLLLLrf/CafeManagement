@@ -26,7 +26,7 @@
               <el-icon><IceDrink /></el-icon> 
               <span class="title">汽水系列</span>
             </el-menu-item>
-            <el-menu-item index="4" @click="api('api')">api</el-menu-item>
+            <!-- <el-menu-item index="4" @click="api('api')">api</el-menu-item> -->
           </el-menu>
         </el-col>
       </el-row>
@@ -83,6 +83,9 @@ export default {
         }
         if(status.status==='change'){
           this.orderList=this.status.data
+        }
+        if(status.status==='empty'){
+          this.drawer = false
         }
       }
       

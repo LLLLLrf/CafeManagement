@@ -13,8 +13,8 @@ module.exports = app => {
     router.delete("/", orders.deleteAll);
     // find by key word
     router.post("/key",orders.findbyKey);
-    // get income by day
-    router.post("/income",orders.getincomebyday);
+    // get order by day
+    router.post("/lrday",orders.getordersbyDay);
     // find by key word
     router.post("/id",orders.findbyId);
 
@@ -23,6 +23,12 @@ module.exports = app => {
     router.post("/getmonthdata",orders.getMonthData);
 
     router.post("/getdaydata",orders.getDayData);
+
+    router.post("/getunpay",orders.getUnpayOrder);
+
+    router.post("/checkpay",orders.checkpay);
+
+    router.post("/finishbyPublicid",orders.finishbyPublicid)
 
     app.use('/api/orders', router);
   };

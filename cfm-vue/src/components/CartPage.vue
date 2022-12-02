@@ -1,5 +1,6 @@
 <template>
     <div class="layout">
+
         <!-- <div class="menu-name">购物车详情</div> -->
         <hr style="background:#2F3CF4;height:2px;"/>
         <el-row>
@@ -39,19 +40,20 @@
     </el-descriptions>
 
     
+    <div v-if="!payUrl">
     <el-radio-group v-model="paymodel" style="width:max-content;margin:auto">
-        <el-radio label="WeChat" style="margin-top:40px;margin-bottom:20px">
-            <img src="../assets/payment/wechat.png" style="width:40px;height:30px;align-items: center;justify-items: center;">
-            <div style="float: right;height: 12px;margin-top: 6px;font-weight: 600;font-size: 1.2em;">
-                WeChat Pay
+        <el-radio label="Alipay" style="margin-top:40px;margin-bottom:20px">
+            <img src="../assets/payment/alipay.png" style="width:40px;height:40px;align-items: center;justify-items: center;">
+            <div style="float: right;height: 12px;margin-top: 12px;font-weight: 600;font-size: 1.2em;">
+                Alipay
             </div>
         </el-radio>
-        <el-radio label="Apple" style="margin-top:40px;margin-bottom:20px">
+        <!-- <el-radio label="Apple" style="margin-top:40px;margin-bottom:20px">
             <img src="../assets/payment/apple.png" style="width:80px;height:60px;align-items: center;justify-items: center;">
             <div style="float: right;height: 12px;margin-top: 20px;font-weight: 600;font-size: 1.2em;">
                 Apple Pay
             </div>
-        </el-radio>
+        </el-radio> -->
     </el-radio-group>
     <div>
         <el-button v-if="payUrl"><a :href="payUrl">to pay</a></el-button>
@@ -69,31 +71,41 @@
         </button>
 
     </div>
+    <div v-if="payUrl">
+        <el-row><iframe :src="payUrl" class="iframe"/></el-row>
+        <el-row><el-button @click="close()" style="margin:auto;">Close</el-button></el-row>
+    </div>
+    
     </div>
 </template>
 
 <script>
 import OrdersService from '@/services/OrdersService';
 import { ElMessage } from 'element-plus';
-
 export default{
 props:['orderList'],
 data() {
     return {
         totalprice:0,
         paymodel: '',
-        payUrl:undefined
+        payUrl:undefined,
+        publicid:0
     }
 },
 methods: {
     onsubmit(){
-        var time = new Date().toLocaleString().split(/[ ,/,:]/).join('')
+        if(!this.orderList.length){
+            ElMessage.error("Empty Cart")
+            this.$emit('status', { status: 'empty', data: {} })
+            return
+        }
+        this.publicid = new Date().toLocaleString().split(/[ ,/,:]/).join('')
         var orders = {
-            publicid:time,
+            publicid:this.publicid,
             paytime: 0,
             finish: 0,
             orderlist: {data:this.orderList},
-            category: 'now',
+            category: this.paymodel,
             totalprice:this.totalprice
         };
         OrdersService.create(orders)
@@ -104,15 +116,18 @@ methods: {
                     message: "order success!",
                     type: "success",
                 });
+                // setTimeout(() => {
+                //     window.location.href = this.payUrl
+                // }, 500);
                 // this.$emit('status', { status: 'success' ,data:{}})
             })
             .catch(err => {
                 console.log(err)
                 ElMessage.error(err.toString())
             })
-            setTimeout(() => {
-                    location.reload()
-                }, 200);
+            // setTimeout(() => {
+            //         location.reload()
+            //     }, 200);
     },
     delitem(id) {
         var data=[]
@@ -126,7 +141,18 @@ methods: {
             }
         })
         this.$emit('status', { status: 'change', data: data })
-
+    },
+    close(){
+        OrdersService.checkpay({ outTradeNo :this.publicid})
+        .then(res=>{
+            ElMessage({
+                message:res.data
+            })
+            setTimeout(() => {
+                    location.reload()
+                }, 1000);
+            
+        })
     }
 },
 mounted(){
@@ -204,4 +230,9 @@ font-weight: bolder;
 }
 
 
+.iframe{
+    width: 80%;
+    height: 400px;
+    margin: auto;
+}
 </style>

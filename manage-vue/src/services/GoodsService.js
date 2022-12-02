@@ -7,6 +7,19 @@ class GoodsService {
     return http.get(`/goods/${name}`);
   }
   create(data) {
+  //   data : {
+  //     name: 'cafename',
+  //     class: 'COFFEE',
+  //     ask: {
+  //       temp: ["Hot", "Cold"],
+  //       sugar: ["Less","Normal"]
+  //     },
+  //     sale: 1,
+  //     image_name: 'cafe.png',
+  //     image: 0,
+  //     price: 10,
+  //     describe: 'this is sample cafe'
+  // };
     return http.post("/goods", data);
   }
   update(id, data) {
