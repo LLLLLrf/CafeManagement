@@ -1,9 +1,40 @@
 <template>
     <div>
-    <div style="text-align: center; 
+
+    <el-form :model="data" label-position="top" label-width="120px" style="margin-top:20px;margin-left: 10px;">
+    <el-form-item label="product name">
+      <el-input v-model="data.name"  placeholder="name" style="width:220px;margin-left: 40px;"/>
+    </el-form-item>
+    <el-form-item label="product type">
+      <el-select v-model="data.class" placeholder="choose the type of drink" style="width: 220px;margin-left: 40px;">
+        <el-option label="Zone one" value="coffee" />
+        <el-option label="Zone two" value="tea" />
+        <el-option label="Zone three" value="soda" />
+      </el-select>
+    </el-form-item>
+ 
+    <el-form-item label="Temperature">
+      <el-radio-group v-model="data.ask.temp" style="margin-left:40px">
+        <el-radio label="Hot" />
+        <el-radio label="Cold" />
+      </el-radio-group>
+    </el-form-item>
+    <el-form-item label="Description" >
+      <el-input v-model="data.describe" type="textarea" style="width:70vw;margin-left: 40px;"/>
+    </el-form-item>
+    <el-form-item style="margin-left:40px">
+      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button>Cancel</el-button>
+    </el-form-item>
+  </el-form>
+
+  <div style="text-align: center; 
       font-family:Impact;
       font-weight:500;
-      font-size: 1.4em;">
+      font-size: 1.4em;
+      margin-top: 20px;
+      margin-left: 40px;
+      ">
 
       <el-upload
         action="#"
@@ -20,71 +51,14 @@
           src="../assets/icons/upload-file.png"
           alt="upload"
         />
-        <div class="el-upload__text">拖拽文件到此处 或 <em>点击此处上传</em></div>
+        <div class="el-upload__text">拖拽图片到此处 或 <em>点击此处上传</em></div>
         <template #tip>
           <div class="el-upload__tip">文件需小于 512Mb</div>
         </template>
       </el-upload>
-      <el-button type="primary" @click="uploadFiles()">上传</el-button>
-      <el-button type="primary" @click="commitData()">保存</el-button>
+      <el-button type="primary" @click="uploadFiles()" style="float:left;">Upload</el-button>
+      <el-button type="primary" @click="commitData()" style="float:left;">Save</el-button>
     </div>
-
-    <el-form :model="data" label-width="120px">
-    <el-form-item label="Activity name">
-      <el-input v-model="data.name" />
-    </el-form-item>
-    <el-form-item label="Activity zone">
-      <el-select v-model="form.class" placeholder="please select your zone">
-        <el-option label="Zone one" value="coffee" />
-        <el-option label="Zone two" value="tea" />
-        <el-option label="Zone three" value="soda" />
-      </el-select>
-    </el-form-item>
-    <el-form-item label="Activity time">
-      <el-col :span="11">
-        <el-date-picker
-          v-model="form.date1"
-          type="date"
-          placeholder="Pick a date"
-          style="width: 100%"
-        />
-      </el-col>
-      <el-col :span="2" class="text-center">
-        <span class="text-gray-500">-</span>
-      </el-col>
-      <el-col :span="11">
-        <el-time-picker
-          v-model="form.date2"
-          placeholder="Pick a time"
-          style="width: 100%"
-        />
-      </el-col>
-    </el-form-item>
-    <el-form-item label="Instant delivery">
-      <el-switch v-model="form.delivery" />
-    </el-form-item>
-    <el-form-item label="Activity type">
-      <el-checkbox-group v-model="form.type">
-        <el-checkbox label="Online activities" name="type" />
-        <el-checkbox label="Promotion activities" name="type" />
-        <el-checkbox label="Offline activities" name="type" />
-        <el-checkbox label="Simple brand exposure" name="type" />
-      </el-checkbox-group>
-    </el-form-item>
-    <el-form-item label="Resources">
-      <el-radio-group v-model="form.resource">
-        <el-radio label="Sponsor" />
-        <el-radio label="Venue" />
-      </el-radio-group>
-    </el-form-item>
-    <el-form-item label="Activity form">
-      <el-input v-model="form.desc" type="textarea" />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit">Create</el-button>
-      <el-button>Cancel</el-button>
-    </el-form-item>
-  </el-form>
 
   </div>
   </template>
@@ -109,7 +83,7 @@ export default {
             class:undefined,
             ask:{
                 temp:[],
-                sugar:[],
+                sugar:['Less','Normal'],
             },
             sale:1,
             image_name:undefined,
@@ -150,35 +124,7 @@ export default {
         this.progressInfos[idx] = { percentage: 0, fileName: file.name };
         this.type = "todo-type";
         this.uploader = "todo-uploader";
-        // UploadService.upload(
-        //   file,
-        //   (event) => {
-        //     this.progressInfos[idx].percentage = Math.round(
-        //       (100 * event.loaded) / event.total
-        //     );
-        //   },
-        //   this.type,
-        //   this.uploader
-        // )
-        //   .then((response) => {
-        //     if (response.data.message.includes("文件上传成功:")) {
-        //       ElMessage({
-        //         message: "文件上传成功！",
-        //         type: "success",
-        //       });
-        //     }
-        //     let prevMessage = this.message ? this.message + "\n" : "";
-        //     this.message = prevMessage + response.data.message;
-        //     return UploadService.getFiles();
-        //   })
-        //   .then((files) => {
-        //     this.fileInfos = files.data;
-        //   })
-        //   .catch(() => {
-        //     ElMessage.error(file.name + "上传失败");
-        //     this.progressInfos[idx].percentage = 0;
-        //     this.message = "Could not upload the file:" + file.name;
-        //   });
+
       },
       commitData() {
         //   this.isUpload = true;
@@ -207,12 +153,12 @@ export default {
   .upload-icon {
     width: 15%;
     height: 30%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     margin-top: 6%;
   }
   .upload{
     width:40vw;
-    margin: auto;
+    /* margin: auto; */
   }
 </style>
   

@@ -114,7 +114,7 @@ def database(table):
         d_orderlist = pymysql.converters.escape_string(json.dumps(orderlist))
         sql.append("'"+d_orderlist+"',")
         sql.append("'"+"alipay"+"',")
-        sql.append("'"+str(float(table[0][row][7]))+"'")
+        sql.append("'"+str(float(table[0][row][8]))+"'")
         
         sql.append(")")
         # print(''.join(''.join(sql).split('\n'))+'\n')
