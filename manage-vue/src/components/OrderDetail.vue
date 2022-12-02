@@ -5,7 +5,12 @@
 
     <el-scrollbar height="90vh" style="width: 60%;float: left;height: 90vh;min-width: 670px;">
 
-      <el-table :data="tableData" style="float: left;height: 90vh;min-width: 670px;">
+      <el-table
+       :data="tableData"
+        style="float: left;height: 90vh;min-width: 670px;"
+        max-height="90vh" 
+        v-loading="loading"
+        >
         <el-table-column label="订单编号" prop="publicid" width="140" align="center">
         </el-table-column>
         <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
@@ -14,7 +19,7 @@
         <el-table-column prop="category" label="支付方式" width="180" align="center">
         </el-table-column>
         <el-table-column prop="finish" label="订单状态" #default="scope" align="center">
-          <el-tag :color='scope.row.color' :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
+          <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
               ? '未完成' : '已完成'
           }}</el-tag>
         </el-table-column>
@@ -85,6 +90,7 @@ import OrdersService from '../services/OrdersService'
 export default {
   data() {
     return {
+      loading:true,
       value:undefined,
       key: undefined,
       findlist: undefined,
@@ -125,10 +131,14 @@ export default {
       .then(response => {
         this.orders = response.data
         this.tableData = this.orders
+        this.loading=false;
       })
-
+      setTimeout(() => {
+                this.loading=false;
+            }, 400);
   },
-};
+
+}
 
 </script>
 

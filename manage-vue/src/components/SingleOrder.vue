@@ -9,14 +9,21 @@
         </el-icon>
         <div class="card-title">订单详情</div>
       </el-row>
-      <div v-if="orderdata">
-        <el-descriptions title="" class="card-content" :column="1">
-          <el-descriptions-item label="订单编号">{{orderdata.publicid}}</el-descriptions-item>
-          <el-descriptions-item label="生成时间">{{ new Date(orderdata.createdAt).toLocaleString()}}</el-descriptions-item>
-          <el-descriptions-item label="支付时间">{{orderdata.paytime==='0'?'无':orderdata.paytime}}</el-descriptions-item>
-          <el-descriptions-item label="支付方式">{{orderdata.category}}</el-descriptions-item>
-          <el-descriptions-item label="订单状态">{{orderdata.finish==='0' ? '未完成' : '已完成'}}</el-descriptions-item>
-        </el-descriptions>
+      <div v-if="orderdata" class="details">
+        <!-- <el-descriptions title="" class="card-content" :column="1">
+          <el-descriptions-item label="订单编号" class="item" style="font-weight:700;font-size:1.4em;">{{orderdata.publicid}}</el-descriptions-item>
+          <el-descriptions-item label="生成时间" class="item" style="font-weight:700;font-size:1.4em;">{{ new Date(orderdata.createdAt).toLocaleString()}}</el-descriptions-item>
+          <el-descriptions-item label="支付时间" class="item" style="font-weight:700;font-size:1.4em;">{{orderdata.paytime==='0'?'无':orderdata.paytime}}</el-descriptions-item>
+          <el-descriptions-item label="支付方式" class="item" style="font-weight:700;font-size:1.4em;">{{orderdata.category}}</el-descriptions-item>
+          <el-descriptions-item label="订单状态" class="item" style="font-weight:700;font-size:1.4em;">{{orderdata.finish==='0' ? '未完成' : '已完成'}}</el-descriptions-item>
+        </el-descriptions> -->
+
+          <div class="item" style="">订单编号: {{orderdata.publicid}}</div>
+          <div class="item" style="">生成时间: {{ new Date(orderdata.createdAt).toLocaleString()}}</div>
+          <div class="item" style="">支付时间: {{orderdata.paytime==='0'?'无':orderdata.paytime}}</div>
+          <div class="item" style="">支付方式: {{orderdata.category}}</div>
+          <div class="item" style="">订单状态: {{orderdata.finish==='0' ? '未完成' : '已完成'}}</div>
+
       </div>
       
     </div>
@@ -28,14 +35,22 @@
         <div class="card-title">账单</div>
       </el-row>
       <div v-if="orderdata">
-        <el-row v-for="item in orderdata.orderlist.data" :key="item.id">
-          <el-descriptions title="" class="card-content" :column="1">
+        <el-row v-for="item in orderdata.orderlist.data" :key="item.id" class="details">
+          <!-- <el-descriptions title="" class="card-content" :column="1">
             <el-descriptions-item :label="item.id">{{item.name}} ✖ {{item.amount}}</el-descriptions-item>
             <el-descriptions-item v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? '热饮' : item.temp === 'Cold'?'冷饮':'异常'}}</el-descriptions-item>
             <el-descriptions-item v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'异常'}}</el-descriptions-item>
-          </el-descriptions>
+          </el-descriptions> -->
+
+            <div class="item" :label="item.id">{{item.id}} {{item.name}} ✖ {{item.amount}}</div>
+            <div class="item" v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? '热饮' : item.temp === 'Cold'?'冷饮':'异常'}}</div>
+            <div class="item" v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'异常'}}</div>
         </el-row>
-        <el-row>总金额：￥ {{orderdata.totalprice}}</el-row>
+        <el-row>
+          <div class="item">
+            总金额：￥ {{orderdata.totalprice}}
+          </div>
+        </el-row>
       </div>
     </div>
   </div>
@@ -70,7 +85,16 @@ export default{
 </script>
 
 <style scoped>
-
+.item{
+  font-size: 1.1em;
+  font-weight: 600;
+  float:left;
+  margin-bottom:20px;
+}
+.details{
+  margin-left: 10%;
+  margin-top: 6%;
+}
 .menu-name{
   text-align: left;
   width: 100%;
