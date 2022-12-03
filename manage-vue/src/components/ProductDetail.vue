@@ -5,7 +5,7 @@
             <el-button @click="addgoods" class="button2">
                 <el-icon><Plus />
                 </el-icon>
-                    添加商品
+                    Add Product
             </el-button>
         </span>
         <hr style="background:#2F3CF4;height:2px;clear: both;"/>
@@ -15,7 +15,7 @@
                 <div class="good-name" style="white-space:nowrap;text-overflow: ellipsis;overflow: hidden;width: 160px;margin-left: 10px;">
                     {{good.name}}
                 </div>
-                <span class="good-msg">￥{{good.price}} 月售<em>{{good.sold}}</em></span>
+                <span class="good-msg">￥{{good.price}} Monthly Sales<em>{{good.sold}}</em></span>
                 <el-button @click="goodsdetail(good.name)" class="edit_btn">
                     <el-icon><EditPen /></el-icon>
                 </el-button>

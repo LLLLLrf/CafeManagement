@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="menu-name">订单详情</div>
+    <div class="menu-name">Order Details</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
 
     <el-scrollbar height="90vh" style="width: 60%;float: left;height: 90vh;min-width: 670px;">
@@ -11,24 +11,24 @@
         max-height="90vh" 
         v-loading="loading"
         >
-        <el-table-column label="订单编号" prop="publicid" width="140" align="center">
+        <el-table-column label="No." prop="publicid" width="140" align="center">
         </el-table-column>
-        <el-table-column prop="createdAt" label="时间" #default="scope" width="180" align="center">
+        <el-table-column prop="createdAt" label="Time" #default="scope" width="180" align="center">
           {{ new Date(scope.row.createdAt).toLocaleString() }}
         </el-table-column>
-        <el-table-column prop="category" label="支付方式" width="180" align="center">
+        <el-table-column prop="category" label="Payment Method" width="180" align="center">
         </el-table-column>
-        <el-table-column prop="finish" label="订单状态" #default="scope" align="center">
+        <el-table-column prop="finish" label="Status" #default="scope" align="center">
           <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
-              ? '未完成' : '已完成'
+              ? 'Unfilled' : 'Completed'
           }}</el-tag>
         </el-table-column>
-        <el-table-column label="订单详情" #default="scope" align="center">
+        <el-table-column label="Order Details" #default="scope" align="center">
           <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
             <el-icon>
               <Fold />
             </el-icon>
-            查看详情
+            More Details
           </el-button>
         </el-table-column>
       </el-table>
@@ -40,7 +40,7 @@
         <Filter />
       </el-icon>
       <div class="search-title">
-        条件搜索
+        Search By Condition
       </div>
 
       <el-select 
@@ -72,7 +72,7 @@
       </el-input> -->
 
       <div>
-        <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">日期</div>
+        <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">Date</div>
         <div>
         </div>
       </div>

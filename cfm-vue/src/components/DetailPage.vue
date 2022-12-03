@@ -43,7 +43,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="sugar:">
-                <el-select v-model="sig.sugar" placeholder="please select suger">
+                <el-select v-model="sig.sugar" placeholder="please select sugar">
                     <el-option label="less" value="less" />
                     <el-option label="normal" value="normal" />
                 </el-select>

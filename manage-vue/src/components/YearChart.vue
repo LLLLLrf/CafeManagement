@@ -39,7 +39,7 @@ import * as echarts from 'echarts'
                 },
                 title: {
                     left: 'center',
-                    text: '本年收入'
+                    text: 'Annual Income'
                 },
                 toolbox: {
                     feature: {

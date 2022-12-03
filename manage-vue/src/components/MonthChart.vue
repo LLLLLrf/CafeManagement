@@ -55,7 +55,7 @@ import OrdersService from '@/services/OrdersService'
             // }
             const option = {
                     title: {
-                        text: '本月收入'
+                        text: 'Monthly Income'
                     },
                     tooltip: {
                         trigger: 'axis'

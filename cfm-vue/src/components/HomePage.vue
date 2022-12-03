@@ -15,16 +15,16 @@
               <template #title>
                 <el-icon><CoffeeCup /></el-icon>
                 <icon></icon>
-                <span class="title">咖啡系列</span>
+                <span class="title">Coffee</span>
               </template>
             </el-menu-item>
             <el-menu-item index="2" @click="setName('tea')" class="menu-item">
               <el-icon><IceTea /></el-icon>
-              <span class="title">茶饮系列</span>
+              <span class="title">Tea</span>
             </el-menu-item>
             <el-menu-item index="3" @click="setName('soda')" class="menu-item">
               <el-icon><IceDrink /></el-icon> 
-              <span class="title">汽水系列</span>
+              <span class="title">Soda</span>
             </el-menu-item>
             <!-- <el-menu-item index="4" @click="api('api')">api</el-menu-item> -->
           </el-menu>
@@ -34,7 +34,7 @@
     <div class="cart" @click="goCart()">
       <!-- <el-icon style="cart-icon" :size="22" color="#fff"><ShoppingCart /></el-icon> -->
       <div class="cart-num">{{ amount }}</div>
-      <div class="cart-name">购物车</div>
+      <div class="cart-name">Cart</div>
     </div>
     <router-view @details="getdetails" class="content"></router-view>
     <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="60%" :show-close="false">

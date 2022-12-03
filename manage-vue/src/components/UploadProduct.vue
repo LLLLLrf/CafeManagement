@@ -113,7 +113,7 @@ export default {
         this.selectedFiles = arr;
       },
       uploadFiles() {
-        this.isUpload = true;
+        this.isUpload = true; 
         this.message = "";
         this.selectedFiles.forEach((item, index) => {
           this.upload(index, item);

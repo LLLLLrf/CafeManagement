@@ -1,13 +1,13 @@
 <template>
   <div style="">
-    <div class="menu-name" @click="GoBack">订单详情</div>
+    <div class="menu-name" @click="GoBack">Order Details</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;"/>
     <div class="card">
       <el-row>
         <el-icon class="card-icon" :size="26">
           <List />
         </el-icon>
-        <div class="card-title">订单详情</div>
+        <div class="card-title">Order Details</div>
       </el-row>
       <div v-if="orderdata" class="details">
         <!-- <el-descriptions title="" class="card-content" :column="1">
@@ -18,11 +18,11 @@
           <el-descriptions-item label="订单状态" class="item" style="font-weight:700;font-size:1.4em;">{{orderdata.finish==='0' ? '未完成' : '已完成'}}</el-descriptions-item>
         </el-descriptions> -->
 
-          <div class="item" style="">订单编号: {{orderdata.publicid}}</div>
-          <div class="item" style="">生成时间: {{ new Date(orderdata.createdAt).toLocaleString()}}</div>
-          <div class="item" style="">支付时间: {{orderdata.paytime==='0'?'无':orderdata.paytime}}</div>
-          <div class="item" style="">支付方式: {{orderdata.category}}</div>
-          <div class="item" style="">订单状态: {{orderdata.finish==='0' ? '未完成' : '已完成'}}</div>
+          <div class="item" style="">No.: {{orderdata.publicid}}</div>
+          <div class="item" style="">Ceneration Time: {{ new Date(orderdata.createdAt).toLocaleString()}}</div>
+          <div class="item" style="">Payment Time: {{orderdata.paytime==='0'?'无':orderdata.paytime}}</div>
+          <div class="item" style="">Payment Method: {{orderdata.category}}</div>
+          <div class="item" style="">Status: {{orderdata.finish==='0' ? 'Unfilled' : 'Completed'}}</div>
 
       </div>
       
@@ -32,7 +32,7 @@
         <el-icon class="card-icon" :size="26">
           <Tickets />
         </el-icon>
-        <div class="card-title">账单</div>
+        <div class="card-title">Bill</div>
       </el-row>
       <div v-if="orderdata">
         <el-row v-for="item in orderdata.orderlist.data" :key="item.id" class="details">
@@ -43,12 +43,12 @@
           </el-descriptions> -->
 
             <div class="item" :label="item.id">{{item.id}}: {{item.name}} ✖ {{item.amount}}</div>
-            <div class="item" v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? '热饮' : item.temp === 'Cold'?'冷饮':'异常'}}</div>
-            <div class="item" v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'异常'}}</div>
+            <div class="item" v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? 'Hot' : item.temp === 'Cold'?'Cold':'Error'}}</div>
+            <div class="item" v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'Error'}}</div>
         </el-row>
         <el-row>
           <div class="item details">
-            总金额：￥ {{orderdata.totalprice}}
+            Total {{orderdata.totalprice}}
           </div>
         </el-row>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="">
-      <div class="menu-name">收入统计</div>
+      <div class="menu-name">Revenue Statistics</div>
       <hr style="background:#2F3CF4;height:2px;" />
     </div>
     
