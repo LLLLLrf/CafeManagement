@@ -20,7 +20,7 @@
         </el-table-column>
         <el-table-column prop="finish" label="Status" #default="scope" align="center">
           <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">
-            {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish ? 'TODO' : 'Completed'}}</el-tag>
+            {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish==='0' ? 'TODO' : 'Completed'}}</el-tag>
         </el-table-column>
         <el-table-column label="Order Details" #default="scope" align="center">
           <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
