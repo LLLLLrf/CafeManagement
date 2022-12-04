@@ -1,7 +1,7 @@
 const db = require('./src/models/index')
 const express = require('express')
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 12530;
 const cors = require('cors')
 var corsOptions = {
   origin: "*"
