@@ -15,16 +15,16 @@
               <template #title>
                 <el-icon><Tickets color="#2F3CF4"/></el-icon>
                 <icon></icon>
-                <span class="title">Order Details</span>
+                <span class="title">Orders</span>
               </template>
             </el-menu-item>
             <el-menu-item index="2" @click="setPath('ProductDetail')" class="menu-item">
               <el-icon><ShoppingBag color="#2F3CF4"/></el-icon>
-              <span class="title">Product Details</span>
+              <span class="title">Products</span>
             </el-menu-item>
             <el-menu-item index="3" @click="setPath('TotalProfit')" class="menu-item">
               <el-icon><Coin color="#2F3CF4"/></el-icon> 
-              <span class="title">Revenue Statistics</span>
+              <span class="title">Statistics</span>
             </el-menu-item>
             <el-menu-item index="4" @click="setPath('api')" class="menu-item">
               <span class="title">api</span>

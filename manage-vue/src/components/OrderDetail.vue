@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="menu-name">Order Details</div>
+    <div class="menu-name">Orders</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
 
     <el-scrollbar height="90vh" style="width: 60%;float: left;height: 90vh;min-width: 670px;">
@@ -38,7 +38,7 @@
       <el-icon :size='20' color="#2F3CF4" style="float:left;margin-top: 16px;margin-left: 26px;">
         <Filter />
       </el-icon>
-      <div class="search-title">
+      <div class="search-title" style="letter-spacing: -1px;">
         Search By Condition
       </div>
 
