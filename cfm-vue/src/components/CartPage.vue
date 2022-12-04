@@ -71,10 +71,10 @@
         </button>
 
     </div>
-    <div v-if="payUrl">
-        <!-- <el-row><iframe :src="payUrl" class="iframe"/></el-row> -->
+    <!-- <div v-if="payUrl">
+        <el-row><iframe :src="payUrl" class="iframe"/></el-row>
         <el-row><el-button @click="close()" style="margin:auto;">Close</el-button></el-row>
-    </div>
+    </div> -->
     
     </div>
 </template>
@@ -82,8 +82,10 @@
 <script>
 import OrdersService from '@/services/OrdersService';
 import { ElMessage } from 'element-plus';
+
 export default{
 props:['orderList'],
+inject:['reload'],
 data() {
     return {
         totalprice:0,
@@ -126,8 +128,18 @@ methods: {
                 });
                 setTimeout(() => {
                     window.open(this.payUrl)
+                    // const BrowserWindow = remote.BrowserWindow;
+
+                    // var win = new BrowserWindow({ width: 800, height: 600, show: false });
+                    // win.on('closed', function () {
+                    //     win = null;
+                    // });
+
+                    // win.loadURL(this.payUrl);
+                    // win.show();
                 }, 500);
-                // this.$emit('status', { status: 'success' ,data:{}})
+                this.$emit('status', { status: 'success' ,data:{}})
+                // this.reload()
             })
             .catch(err => {
                 console.log(err)
@@ -143,9 +155,9 @@ methods: {
         this.$emit('status', { status: 'change', data: orderlist })
     },
     close(){
-        setTimeout(() => {
-            location.reload()
-        }, 1000);
+        // setTimeout(() => {
+        //     location.reload()
+        // }, 1000);
         // OrdersService.checkpay({ outTradeNo :this.publicid})
         // .then(res=>{
         //     ElMessage({
@@ -159,9 +171,15 @@ methods: {
     }
 },
 mounted(){
-    this.orderList.forEach((item)=>{
-        this.totalprice+=item.price*item.amount
-    })
+    if(this.orderList.length){
+        this.orderList.forEach((item)=>{
+            this.totalprice+=item.price*item.amount
+        })
+    }
+    else{
+        this.totalprice=0
+    }
+    
 }
 }
 </script>

@@ -270,10 +270,7 @@ function checkpay(publicid){
       }
     })
     .catch(err => {
-      res.json({
-        msg: '查询失败',
-        err
-      });
+      clearInterval(intervalObj[publicid])
     });
   })
 }

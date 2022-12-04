@@ -36,7 +36,7 @@
       <div class="cart-num">{{ amount }}</div>
       <div class="cart-name">Cart</div>
     </div>
-    <router-view @details="getdetails" class="content"></router-view>
+    <router-view v-if="isRouterAlive" @details="getdetails" class="content"></router-view>
     <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="60%" :show-close="false">
       <CartPage @status="finishorder" :orderList="orderList" style="margin-top:-10px"></CartPage>
     </el-drawer>
@@ -53,8 +53,14 @@ export default {
         return{
           amount:0,
           orderList:[],
-          drawer:false
+          drawer: false,
+          isRouterAlive: true
         }
+    },
+    provide() {
+      return {
+        reload: this.reload
+      }
     },
     methods: {
       api(){
@@ -78,6 +84,7 @@ export default {
       finishorder(status){
         console.log(status)
         if(status.status==='success'){
+          this.amount=0
           this.orderList=[]
           this.drawer=false
         }
