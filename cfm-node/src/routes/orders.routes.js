@@ -30,5 +30,7 @@ module.exports = app => {
 
     router.post("/finishbyPublicid",orders.finishbyPublicid)
 
+    router.post("/getMonthSales",orders.getMonthSales)
+
     app.use('/api/orders', router);
   };

@@ -108,7 +108,7 @@ def database(table):
                 'name':str(table[0][row][6]),
                 'temp':random.choice(['Hot','Cold']),
                 'sugar':random.choice(['Less','Normal']),
-                'amount':str(table[0][row][7])
+                'amount':int(table[0][row][7])
             }]
         }
         d_orderlist = pymysql.converters.escape_string(json.dumps(orderlist))

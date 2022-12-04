@@ -41,5 +41,9 @@ class OrdersService {
     // data:{publicid:'202212020319'}
     return http.post(`/orders/finishbyPublicid`,data)
   }
+  getMonthSales(data){
+    // data:{}
+    return http.post(`/orders/getMonthSales`,data);
+  }
 }
 export default new OrdersService();
