@@ -26,9 +26,9 @@
               <el-icon><Coin color="#2F3CF4"/></el-icon> 
               <span class="title">Statistics</span>
             </el-menu-item>
-            <el-menu-item index="4" @click="setPath('api')" class="menu-item">
+            <!-- <el-menu-item index="4" @click="setPath('api')" class="menu-item">
               <span class="title">api</span>
-            </el-menu-item>
+            </el-menu-item> -->
           </el-menu>
         </el-col>
       </el-row>

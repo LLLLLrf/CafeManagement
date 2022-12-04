@@ -28,7 +28,12 @@
                 <el-popconfirm confirm-button-text="Yes" cancel-button-text="No" :icon="InfoFilled"
                     title="Are you sure to delete this?" @confirm="delitem(item.id)">
                     <template #reference>
-                        <el-button>X</el-button>
+                        <!-- <el-button>X</el-button> -->
+
+                        <button class="noselect delbtn"><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>
+                        </button>
+
                     </template>
                 </el-popconfirm>
             </el-descriptions-item>
@@ -256,4 +261,67 @@ font-weight: bolder;
     height: 400px;
     margin: auto;
 }
+
+
+.delbtn {
+ margin-left: 20px;
+ width: 88px;
+ height: 28px;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ background: red;
+ border: none;
+ border-radius: 5px;
+ box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+ background: #e62222;
+}
+
+/* .delbtn, .delbtn span {
+ transition: 200ms;
+} */
+
+.delbtn .text {
+ transform: translateX(8px);
+ color: white;
+ font-weight: bold;
+}
+
+.delbtn .icon {
+ position: absolute;
+ border-left: 1px solid #c41b1b;
+ transform: translateX(48px);
+ height: 20px;
+ width: 20px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.delbtn svg {
+ width: 15px;
+ fill: #eee;
+}
+
+.delbtn:hover {
+ background: #ff3636;
+}
+
+/* .delbtn:hover .text {
+ color: transparent;
+}
+
+.delbtn:hover .icon {
+ width: 140px;
+ border-left: none;
+ transform: translateX(0);
+}
+
+.delbtn:focus {
+ outline: none;
+}
+
+.delbtn:active .icon svg {
+ transform: scale(0.8);
+} */
 </style>
