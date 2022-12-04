@@ -34,7 +34,7 @@
       </el-row>
     </div>
 
-    <router-view class="content"></router-view>
+    <router-view v-if="isRouterAlive" class="content"></router-view>
   </div>
 </template>
 
@@ -43,25 +43,37 @@
 import { ShoppingBag } from '@element-plus/icons-vue'
 
 export default {
-    // props:['num'],
-    data() {
-        return {
-            num: 0
-        };
-    },
-    methods: {
-        changepage(comppath) {
-            this.setPath(comppath);
-        },
-        setPath(comppath) {
-            this.$router.push("/" + comppath);
-            console.log(this.$router);
-        },
-    },
-    mounted() {
-        this.setPath("OrderDetail");
-    },
-    components: { ShoppingBag }
+  // props:['num'],
+  data() {
+      return {
+          num: 0,
+          isRouterAlive: true
+      };
+  },
+  provide() {
+    return {
+      reload: this.reload
+    }
+  },
+  methods: {
+      changepage(comppath) {
+          this.setPath(comppath);
+      },
+      setPath(comppath) {
+          this.$router.push("/" + comppath);
+          console.log(this.$router);
+      },
+      reload() {
+        this.isRouterAlive = false;
+        this.$nextTick(function () {
+          this.isRouterAlive = true
+        })
+      },
+  },
+  mounted() {
+      this.setPath("OrderDetail");
+  },
+  components: { ShoppingBag }
 }
 </script>
 

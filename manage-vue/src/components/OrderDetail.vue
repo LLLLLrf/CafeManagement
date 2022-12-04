@@ -91,6 +91,7 @@ import GoodsService from '../services/GoodsService'
 import OrdersService from '../services/OrdersService'
 import { ref } from 'vue'
 export default {
+  inject: ['reload'],
   data() {
     return {
       dat:ref(new Date()),
@@ -138,6 +139,7 @@ export default {
     changeStatus(id){
       var data = {publicid:id}
       OrdersService.finishbyPublicid(data)
+      this.reload()
       // alert(id)
     },
     showDate(dat){

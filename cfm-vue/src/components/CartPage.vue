@@ -99,7 +99,15 @@ methods: {
             this.$emit('status', { status: 'empty', data: {} })
             return
         }
-        this.publicid = new Date().toLocaleString().split(/[ ,/,:]/).join('')
+        var date = new Date()
+        var DD = String(date.getDate()).padStart(2, '0');
+        var MM = String(date.getMonth() + 1).padStart(2, '0');
+        var yyyy = date.getFullYear();
+        var hh = String(date.getHours()).padStart(2, '0');
+        var mm = String(date.getMinutes()).padStart(2, '0');
+        var ss = String(date.getSeconds()).padStart(2, '0');
+        this.publicid = yyyy + MM + DD + hh + mm + ss;
+        console.log(this.publicid)
         var orders = {
             publicid:this.publicid,
             paytime: 0,
