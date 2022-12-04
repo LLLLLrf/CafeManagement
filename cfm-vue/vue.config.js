@@ -1,16 +1,17 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
+})
+
+module.exports = {
   devServer: {
     port: 12580, // 端口
   },
-})
-module.exports = {
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
         appId: "123456",
-        productName: "CafeManagement", //项目名，也是生成的安装文件名，即aDemo.exe
+        productName: "CafeManagement-Client", //项目名，也是生成的安装文件名，即aDemo.exe
         copyright: "FaterYU © 2022", //版权信息
         directories: {
           output: "./dist_electron" //输出文件路径
