@@ -3,7 +3,7 @@
         <div style="">
             <div style="margin-top:12vh;float: left;margin-left: 12vw;">
                 <div>
-                    <ProgressiveImage class="image"
+                    <el-image class="image"
                     :src="change.image" />
                 </div>
             </div>

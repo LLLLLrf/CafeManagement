@@ -11,7 +11,7 @@
               <div style=";min-width: 100px;">
                 <!-- <img :src="good.image" height="260" width="260" style="border-radius: 8px"/> -->
 
-                <ProgressiveImage
+                <el-image
                   style="width: 260px; height: 260px;border-radius: 8px"
                   :src="good.image"
                   :preview-src-list="[good.image]"

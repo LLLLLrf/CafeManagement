@@ -11,7 +11,7 @@
         <hr style="background:#2F3CF4;height:2px;clear: both;"/>
         <div v-loading="loading">
             <div v-for = "good in goods" :key="good.name" class="card">
-                <ProgressiveImage class="img" :src="good.image" style="border-radius:20px;width: 180px;height: 180px;"></ProgressiveImage>
+                <el-image class="img" :src="good.image" style="border-radius:20px;width: 180px;height: 180px;"></el-image>
                 <div class="good-name" style="white-space:nowrap;text-overflow: ellipsis;overflow: hidden;width: 160px;margin-left: 10px;">
                     {{good.name}}
                 </div>
