@@ -89,11 +89,7 @@ export default {
         }
       }
       
-    },
-    mounted() {
-        // this.setName('coffee')
-    },
-
+    }
 }
 </script>
 
