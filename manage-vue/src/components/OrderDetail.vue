@@ -147,7 +147,22 @@ export default {
       // alert(id)
     },
     showDate(dat){
-      alert(dat)
+      console.log(dat)
+      dat=JSON.stringify(dat)
+
+      // var date = /\d{4}\s\d{2}:\d{2}:\d{2}/.exec(dat)
+      var date = new Date()
+        var DD = String(date.getDate()).padStart(2, '0');
+        var MM = String(date.getMonth() + 1).padStart(2, '0');
+        var yyyy = date.getFullYear();
+        var hh = String(date.getHours()).padStart(2, '0');
+        var mm = String(date.getMinutes()).padStart(2, '0');
+        var ss = String(date.getSeconds()).padStart(2, '0');
+        result = yyyy + MM + DD + hh + mm + ss;
+
+
+
+      alert(date)
     }
   },
 
