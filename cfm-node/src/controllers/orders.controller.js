@@ -4,6 +4,7 @@ const Orders = db.orders;
 const Op = db.Sequelize.Op;
 const alipay = require("../middleware/alipay")
 const axios = require("axios")
+var intervalObj=new Array();
 // Create and Save a new Orders
 exports.create = (req, res) => {
   // console.log(req)
@@ -29,6 +30,8 @@ exports.create = (req, res) => {
         alipay.payapi(data.dataValues)
         .then(url=>{
           res.send(url)
+          intervalObj[data.dataValues.publicid]=setInterval(checkpay, 1000, data.dataValues.publicid);
+          // checkpay(data.dataValues.publicid)
         })
       })
       .catch(err => {
@@ -209,11 +212,22 @@ function updatepay(publicid){
   Orders.update({paytime:new Date().toLocaleString()}, {
     where: { publicid: publicid }
   })
+  .then(data=>{
+    if(data[0]==1){
+      clearInterval(intervalObj[publicid])
+    }
+  })
+  .catch();
+}
+function updateunpay(publicid,status){
+  // console.log(publicid,status)
+  Orders.update({paytime:status}, {
+    where: { publicid: publicid }
+  })
   .catch();
 }
 
-exports.checkpay=(req,res)=>{
-  const publicid=req.body.publicid
+function checkpay(publicid){
   alipay.checkpay({outTradeNo:publicid})
   .then(data=>{
       axios({
@@ -221,27 +235,30 @@ exports.checkpay=(req,res)=>{
       url: data
     })
     .then(data => {
-      console.log(data)
       let r = data.data.alipay_trade_query_response;
       if(r.code === '10000') { // 接口调用成功
         switch(r.trade_status) {
           case 'WAIT_BUYER_PAY':
-            res.send('交易创建，等待买家付款');
+            // res.send('交易创建，等待买家付款');
+            updateunpay(publicid,'WAIT_BUYER_PAY')
             break;
           case 'TRADE_CLOSED':
-            res.send('未付款交易超时关闭，或支付完成后全额退款');
+            // res.send('未付款交易超时关闭，或支付完成后全额退款');
+            updateunpay(publicid,'TRADE_CLOSED')
             break;
           case 'TRADE_SUCCESS':
-            // updatepay(publicid)
-            res.send('交易支付成功');
+            // res.send('交易支付成功');
+            updatepay(publicid)
+            // close setInterval
             break;
           case 'TRADE_FINISHED':
-            res.send('交易结束，不可退款');
+            // res.send('交易结束，不可退款');
+            updateunpay(publicid,'TRADE_FINISHED')
             break;
         }
       } else if(r.code === '40004') {
-            // updatepay(publicid)
-        res.send('交易不存在');
+        updateunpay(publicid,'FAKE')
+        // res.send('交易不存在');
       }
     })
     .catch(err => {
@@ -252,6 +269,47 @@ exports.checkpay=(req,res)=>{
     });
   })
 }
+
+// exports.checkpay=(req,res)=>{
+//   const publicid=req.body.publicid
+//   alipay.checkpay({outTradeNo:publicid})
+//   .then(data=>{
+//       axios({
+//       method: 'GET',
+//       url: data
+//     })
+//     .then(data => {
+//       console.log(data)
+//       let r = data.data.alipay_trade_query_response;
+//       if(r.code === '10000') { // 接口调用成功
+//         switch(r.trade_status) {
+//           case 'WAIT_BUYER_PAY':
+//             res.send('交易创建，等待买家付款');
+//             break;
+//           case 'TRADE_CLOSED':
+//             res.send('未付款交易超时关闭，或支付完成后全额退款');
+//             break;
+//           case 'TRADE_SUCCESS':
+//             // updatepay(publicid)
+//             res.send('交易支付成功');
+//             break;
+//           case 'TRADE_FINISHED':
+//             res.send('交易结束，不可退款');
+//             break;
+//         }
+//       } else if(r.code === '40004') {
+//             // updatepay(publicid)
+//         res.send('交易不存在');
+//       }
+//     })
+//     .catch(err => {
+//       res.json({
+//         msg: '查询失败',
+//         err
+//       });
+//     });
+//   })
+// }
 
 exports.finishbyPublicid=(req,res)=>{
   const publicid = req.body.publicid;

@@ -26,7 +26,7 @@ module.exports = app => {
 
     router.post("/getunpay",orders.getUnpayOrder);
 
-    router.post("/checkpay",orders.checkpay);
+    // router.post("/checkpay",orders.checkpay);
 
     router.post("/finishbyPublicid",orders.finishbyPublicid)
 

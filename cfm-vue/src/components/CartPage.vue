@@ -72,7 +72,7 @@
 
     </div>
     <div v-if="payUrl">
-        <el-row><iframe :src="payUrl" class="iframe"/></el-row>
+        <!-- <el-row><iframe :src="payUrl" class="iframe"/></el-row> -->
         <el-row><el-button @click="close()" style="margin:auto;">Close</el-button></el-row>
     </div>
     
@@ -116,9 +116,9 @@ methods: {
                     message: "order success!",
                     type: "success",
                 });
-                // setTimeout(() => {
-                //     window.location.href = this.payUrl
-                // }, 500);
+                setTimeout(() => {
+                    window.open(this.payUrl)
+                }, 500);
                 // this.$emit('status', { status: 'success' ,data:{}})
             })
             .catch(err => {
@@ -130,29 +130,24 @@ methods: {
             //     }, 200);
     },
     delitem(id) {
-        var data=[]
-        this.orderList.forEach(item=>{
-            if(item.id<id){
-                data.push(item)
-            }
-            if(item.id>id){
-                item.id--
-                data.push(item)
-            }
-        })
-        this.$emit('status', { status: 'change', data: data })
+        var orderlist=this.orderList
+        console.log(orderlist.splice(id, 1))
+        this.$emit('status', { status: 'change', data: orderlist })
     },
     close(){
-        OrdersService.checkpay({ outTradeNo :this.publicid})
-        .then(res=>{
-            ElMessage({
-                message:res.data
-            })
-            setTimeout(() => {
-                    location.reload()
-                }, 1000);
+        setTimeout(() => {
+            location.reload()
+        }, 1000);
+        // OrdersService.checkpay({ outTradeNo :this.publicid})
+        // .then(res=>{
+        //     ElMessage({
+        //         message:res.data
+        //     })
+        //     setTimeout(() => {
+        //             location.reload()
+        //         }, 1000);
             
-        })
+        // })
     }
 },
 mounted(){

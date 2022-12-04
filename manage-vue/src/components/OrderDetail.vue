@@ -16,12 +16,11 @@
         <el-table-column prop="createdAt" label="Time" #default="scope" width="180" align="center">
           {{ new Date(scope.row.createdAt).toLocaleString() }}
         </el-table-column>
-        <el-table-column prop="category" label="Payment Method" width="180" align="center">
+        <el-table-column prop="paytime" label="Payment Status" width="180" align="center">
         </el-table-column>
         <el-table-column prop="finish" label="Status" #default="scope" align="center">
-          <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">{{ scope.row.finish === '0'
-              ? 'Unfilled' : 'Completed'
-          }}</el-tag>
+          <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">
+            {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish ? 'TODO' : 'Completed'}}</el-tag>
         </el-table-column>
         <el-table-column label="Order Details" #default="scope" align="center">
           <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
