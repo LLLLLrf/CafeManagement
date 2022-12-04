@@ -20,7 +20,7 @@
         </el-table-column>
         <el-table-column prop="finish" label="Status" #default="scope" align="center">
           <!-- <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag"> -->
-          <el-tag @click="changeStatus(scope.row.publicid)" :color='scope.row.color' :type="/^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'info' : scope.row.finish==='0' ? 'warning' : 'default'" :data-value='scope.row.type' class="tags" ref="tag">
+          <el-tag @click="changeStatus(scope.row.publicid,scope.row.paytime,scope.row.finish)" :color='scope.row.color' :type="/^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'info' : scope.row.finish==='0' ? 'warning' : 'default'" :data-value='scope.row.type' class="tags" ref="tag">
             {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish==='0' ? 'Unfilled' : 'Completed'}}
           </el-tag>
         </el-table-column>
@@ -136,10 +136,14 @@ export default {
           ElMessage.error(err.toString())
         })
     },
-    changeStatus(id){
-      var data = {publicid:id}
-      OrdersService.finishbyPublicid(data)
-      this.reload()
+    changeStatus(id,time,finish){
+      var status=/^[a-zA-Z_]+$/.test(time) || time === 0 ? 'info' : finish==='0' ? 'warning' : 'default'
+      if(status==='warning'){
+        // alert(status)
+        var data = {publicid:id}
+        OrdersService.finishbyPublicid(data)
+        this.reload()
+      }
       // alert(id)
     },
     showDate(dat){
@@ -157,9 +161,8 @@ export default {
         // this.orders = response.data
         this.tableData = response.data
       })
-      setTimeout(() => {
-                this.loading=false;
-            }, 200);
+      this.loading=false;
+
   },
 
 }
