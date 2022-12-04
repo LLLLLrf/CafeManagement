@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="font-weight:bold;">
 
     <el-form :model="data" label-position="top" label-width="120px" style="margin-top:20px;margin-left: 10px;">
     <el-form-item label="product name">
@@ -7,9 +7,9 @@
     </el-form-item>
     <el-form-item label="product type">
       <el-select v-model="data.class" placeholder="choose the type of drink" style="width: 220px;margin-left: 40px;">
-        <el-option label="Zone one" value="coffee" />
-        <el-option label="Zone two" value="tea" />
-        <el-option label="Zone three" value="soda" />
+        <el-option label="Coffee" value="coffee" />
+        <el-option label="Tea" value="tea" />
+        <el-option label="Soda" value="soda" />
       </el-select>
     </el-form-item>
  
@@ -20,7 +20,7 @@
       </el-radio-group>
     </el-form-item>
     <el-form-item label="Description" >
-      <el-input v-model="data.describe" type="textarea" style="width:70vw;margin-left: 40px;"/>
+      <el-input v-model="data.describe" type="textarea" style="width:60vw;margin-left: 40px;"/>
     </el-form-item>
     <el-form-item style="margin-left:40px">
       <el-button type="primary" @click="onSubmit">Create</el-button>
@@ -158,6 +158,7 @@ export default {
   }
   .upload{
     width:40vw;
+    height: 14vh;
     /* margin: auto; */
   }
 </style>

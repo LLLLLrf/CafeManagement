@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="menu-name">Order Details</div>
+    <div class="menu-name">Orders</div>
     <hr style="background:#2F3CF4;height:2px;margin-left: 0px;" />
 
     <el-scrollbar height="90vh" style="width: 60%;float: left;height: 90vh;min-width: 670px;">
@@ -19,8 +19,10 @@
         <el-table-column prop="paytime" label="Payment Status" width="180" align="center">
         </el-table-column>
         <el-table-column prop="finish" label="Status" #default="scope" align="center">
-          <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag">
-            {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish==='0' ? 'TODO' : 'Completed'}}</el-tag>
+          <!-- <el-tag :color='scope.row.color' :type="scope.row.finish==='0'?'warning':'default'" :data-value='scope.row.type' class="tags" ref="tag"> -->
+          <el-tag @click="changeStatus(scope.row.publicid)" :color='scope.row.color' :type="/^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'info' : scope.row.finish==='0' ? 'warning' : 'default'" :data-value='scope.row.type' class="tags" ref="tag">
+            {{ /^[a-zA-Z_]+$/.test(scope.row.paytime) || scope.row.paytime === 0 ? 'Wait Pay' : scope.row.finish==='0' ? 'Unfilled' : 'Completed'}}
+          </el-tag>
         </el-table-column>
         <el-table-column label="Order Details" #default="scope" align="center">
           <el-button size="small" @click="ToDetail(scope.row.id)" style="color:#2F3CF4" link>
@@ -35,10 +37,10 @@
 
 
     <div class="search">
-      <el-icon :size='20' color="#2F3CF4" style="float:left;margin-top: 16px;margin-left: 26px;">
+      <el-icon :size='20' color="#2F3CF4" style="float:left;margin-top: 16px;margin-left: 20px;margin-right: 4px;">
         <Filter />
       </el-icon>
-      <div class="search-title">
+      <div class="search-title" style="letter-spacing: -1px;">
         Search By Condition
       </div>
 
@@ -70,9 +72,13 @@
         </template>
       </el-input> -->
 
-      <div>
-        <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">Date</div>
-        <div>
+          <div>
+            <div style="float: left;clear: both;margin-left: 20px;margin-top: 10px;">FROM {{this.leftday}}</div>
+            <div style="float: left;clear: both;margin-left: 20px;">TO {{this.rightday}}</div>
+            <!-- <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">Date</div> -->
+            <el-calendar v-model="dat" class="calendar" @click="showDate(dat)" style="clear:both"/>
+            <!-- <el-button @click="showDate"></el-button> -->
+          <div>
         </div>
       </div>
     </div>
@@ -83,10 +89,13 @@
 import { ElMessage } from 'element-plus';
 import GoodsService from '../services/GoodsService'
 import OrdersService from '../services/OrdersService'
-
+import { ref } from 'vue'
 export default {
   data() {
     return {
+      dat:ref(new Date()),
+      leftday:undefined,
+      rightday:undefined,
       loading:true,
       value:undefined,
       key: undefined,
@@ -108,6 +117,15 @@ export default {
     },
     findbykey() {
       var key = { key: this.key };
+      if(key.key.length===0){
+        OrdersService.getAll()
+        .then(res => {
+          this.tableData = res.data
+        })
+        setTimeout(() => {
+                  this.loading=false;
+              }, 200);
+      }
       OrdersService.findbykey(key)
         .then(response => {
           // this.findlist = response.data;
@@ -117,6 +135,14 @@ export default {
           ElMessage.error(err.toString())
         })
     },
+    changeStatus(id){
+      var data = {publicid:id}
+      OrdersService.finishbyPublicid(data)
+      // alert(id)
+    },
+    showDate(dat){
+      alert(dat)
+    }
   },
 
   mounted() {
@@ -131,7 +157,7 @@ export default {
       })
       setTimeout(() => {
                 this.loading=false;
-            }, 400);
+            }, 200);
   },
 
 }
@@ -193,4 +219,9 @@ export default {
   border:0.6px #2F3CF4 solid;
 }
 
+.calendar{
+  border-radius: 10px;
+  background: #F7F7F7;
+
+}
 </style>

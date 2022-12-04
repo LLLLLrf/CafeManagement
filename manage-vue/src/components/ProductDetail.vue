@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        <div class="menu-name">商品详情</div>
+        <div class="menu-name">Products</div>
         <span>
             <el-button @click="addgoods" class="button2">
                 <el-icon><Plus />
@@ -77,7 +77,7 @@ export default{
 .button2{
     margin-left:6%;
     vertical-align: middle;
-    width:80px;
+    width:120px;
     height:34px;
     color:white;
     background-color:#2F3CF4;
