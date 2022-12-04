@@ -91,7 +91,7 @@ export default {
       
     },
     mounted() {
-        this.setName('coffee')
+        // this.setName('coffee')
     },
 
 }

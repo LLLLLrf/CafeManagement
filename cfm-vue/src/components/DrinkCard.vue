@@ -70,6 +70,10 @@
             }
         },
         mounted() {
+            if (!this.$route.query.page){
+                this.$route.query.page = 'coffee'
+                this.page = this.$route.query.page
+            }
             console.log(this.page.toUpperCase())
             GoodsService.getbyclass(this.page.toUpperCase())
                 .then(response => {
@@ -78,6 +82,7 @@
                 })
         },
         updated() {
+            console.log(this.$route.query.page)
             if(this.page!==this.$route.query.page){
                 this.page=this.$route.query.page
                 GoodsService.getbyclass(this.page)

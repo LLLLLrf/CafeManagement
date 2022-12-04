@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
   {
     path: "/drink",
+    alias: "/",
     name: "drink",
     component:() => import("./components/DrinkCard.vue")
   },
