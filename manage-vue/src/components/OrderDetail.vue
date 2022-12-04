@@ -73,14 +73,24 @@
       </el-input> -->
 
           <div>
-            <div style="float: left;clear: both;margin-left: 20px;margin-top: 10px;">FROM {{this.leftday}}</div>
-            <div style="float: left;clear: both;margin-left: 20px;">TO {{this.rightday}}</div>
+            <div style="min-height:100px">
+              <button @click="setFrom" class="timebtn learn-more" style="float: left;margin-left: 20px;margin-top: 10px; margin-bottom: 10px;">
+                <span class="button_top">
+                  FROM
+                </span>
+              </button>
+              <div style="float: left;margin-left: 20px;margin-top: 10px;">{{this.leftday}}</div>
+              <button @click="setTo" class="timebtn learn-more" style="float: left;clear: both;margin-left: 20px;">
+                <span class="button_top">
+                  TO
+                </span>
+              </button>
+              <div style="float: left;margin-left: 20px;">{{this.rightday}}</div>
+            </div>
             <!-- <div style="float:left; margin:20px 0 0 16px;font-size: 1.2em;">Date</div> -->
             <el-calendar v-model="dat" class="calendar" @click="showDate(dat)" style="clear:both"/>
             <!-- <el-button @click="showDate"></el-button> -->
-          <div>
-        </div>
-      </div>
+          </div>
     </div>
   </div>
 </template>
@@ -97,6 +107,7 @@ export default {
       dat:ref(new Date()),
       leftday:undefined,
       rightday:undefined,
+      fromorto:1,
       loading:true,
       value:undefined,
       key: undefined,
@@ -148,21 +159,39 @@ export default {
     },
     showDate(dat){
       console.log(dat)
-      dat=JSON.stringify(dat)
+      // dat=JSON.stringify(dat)
 
       // var date = /\d{4}\s\d{2}:\d{2}:\d{2}/.exec(dat)
-      var date = new Date()
-        var DD = String(date.getDate()).padStart(2, '0');
-        var MM = String(date.getMonth() + 1).padStart(2, '0');
-        var yyyy = date.getFullYear();
-        var hh = String(date.getHours()).padStart(2, '0');
-        var mm = String(date.getMinutes()).padStart(2, '0');
-        var ss = String(date.getSeconds()).padStart(2, '0');
-        result = yyyy + MM + DD + hh + mm + ss;
-
-
-
-      alert(date)
+      var date = new Date(dat)
+      var DD = String(date.getDate()).padStart(2, '0');
+      var MM = String(date.getMonth() + 1).padStart(2, '0');
+      var yyyy = date.getFullYear();
+      // var hh = String(date.getHours()).padStart(2, '0');
+      // var mm = String(date.getMinutes()).padStart(2, '0');
+      // var ss = String(date.getSeconds()).padStart(2, '0');
+      var lday = yyyy+'-'+MM+'-'+DD;
+      var rday = yyyy+'-'+MM+'-'+DD;
+      if(this.fromorto===1){
+        this.leftday=lday;
+      }else if(this.fromorto===0){
+          this.rightday=rday
+      }
+      if(this.leftday!==undefined && this.rightday!==undefined){
+      var left = lday+' 00:00:00'
+      var right= rday+' 00:00:00'
+      var data = {lday:left,rday:right}
+      OrdersService.getorderbylrday(data).then(res =>{
+        this.tableData=res
+      }).catch(err=>{
+        console.log(err)
+      })
+      }
+    },
+    setFrom(){
+      this.fromorto=1
+    },
+    setTo(){
+      this.fromorto=0
     }
   },
 
@@ -243,5 +272,32 @@ export default {
   border-radius: 10px;
   background: #F7F7F7;
 
+}
+
+
+.timebtn {
+ position: relative;
+ padding: 4px 6px;
+ float: left;
+ border-radius: 3px;
+ font-size: 14px;
+ color: rgb(0, 0, 0);
+ text-decoration: none;
+ background-color: #ffffff;
+ border: 1px solid #000;
+ border-bottom: 3px solid #000;
+ text-shadow: 0px -1px #000;
+ -webkit-transition: all 0.1s;
+ transition: all 0.1s;
+ height: 28px;
+ line-height: 0px;
+ min-width: 88px;
+}
+
+ .timebtn:active {
+ -webkit-transform: translate(0px,3px);
+ -ms-transform: translate(0px,3px);
+ transform: translate(0px,3px);
+ border-bottom: 1px solid #000000;
 }
 </style>
