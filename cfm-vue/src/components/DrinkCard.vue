@@ -6,7 +6,7 @@
 
         <div v-for="(good) in goods" :key="good.name" class="drinkcard" @click="changeStatus(good.name)">
             <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
-            <el-image class="img" :src="good.image" :fit="fit" @click.stop="changeStatus(good.name)"/>
+            <ProgressiveImage class="img" :src="good.image" :fit="fit" @click.stop="changeStatus(good.name)"/>
                 <div class="img-title" style="margin-left: 10px;width: 180px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">￥{{good.price}}  {{good.name}}</div>
         </div>
 
