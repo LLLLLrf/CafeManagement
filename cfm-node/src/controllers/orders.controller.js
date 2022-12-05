@@ -5,6 +5,7 @@ const Op = db.Sequelize.Op;
 const alipay = require("../middleware/alipay")
 const axios = require("axios")
 var intervalObj=new Array();
+var timesRun=new Array()
 // Create and Save a new Orders
 exports.create = (req, res) => {
   // console.log(req)
@@ -30,7 +31,8 @@ exports.create = (req, res) => {
         alipay.payapi(data.dataValues)
         .then(url=>{
           res.send(url)
-          intervalObj[data.dataValues.publicid]=setInterval(checkpay, 1000, data.dataValues.publicid);
+          timesRun[data.dataValues.publicid]=0
+          intervalObj[data.dataValues.publicid]=setInterval(checkpay, 2000, data.dataValues.publicid);
           // checkpay(data.dataValues.publicid)
         })
       })
@@ -45,7 +47,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     const name = req.body.name;
     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-    Orders.findAll({ where: condition , order: [['updatedAt', 'DESC']]})
+    Orders.findAll({ where: condition , order: [['createdAt', 'DESC']]})
       .then(data => {
         res.send(data)
       })
@@ -217,7 +219,15 @@ exports.getUnpayOrder=(req,res)=>{
 }
 
 function updatepay(publicid){
-  Orders.update({paytime:new Date().toLocaleString()}, {
+  var date = new Date()
+  var DD = String(date.getDate()).padStart(2, '0');
+  var MM = String(date.getMonth() + 1).padStart(2, '0');
+  var yyyy = date.getFullYear();
+  var hh = String(date.getHours()).padStart(2, '0');
+  var mm = String(date.getMinutes()).padStart(2, '0');
+  var ss = String(date.getSeconds()).padStart(2, '0');
+  var showtime=yyyy+'-'+MM+'-'+DD+' '+hh+':'+mm+':'+ss
+  Orders.update({paytime:showtime}, {
     where: { publicid: publicid }
   })
   .then(data=>{
@@ -236,6 +246,10 @@ function updateunpay(publicid,status){
 }
 
 function checkpay(publicid){
+  timesRun[publicid] += 1;
+  if(timesRun[publicid] === 60){
+    clearInterval(intervalObj[publicid])
+  }
   alipay.checkpay({outTradeNo:publicid})
   .then(data=>{
       axios({

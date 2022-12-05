@@ -14,7 +14,7 @@
         <el-table-column label="No." prop="publicid" width="140" align="center">
         </el-table-column>
         <el-table-column prop="createdAt" label="Time" #default="scope" width="180" align="center">
-          {{ new Date(scope.row.createdAt).toLocaleString() }}
+          {{ toShowableTime(scope.row.createdAt) }}
         </el-table-column>
         <el-table-column prop="paytime" label="Payment Status" width="180" align="center">
         </el-table-column>
@@ -177,11 +177,11 @@ export default {
           this.rightday=rday
       }
       if(this.leftday!==undefined && this.rightday!==undefined){
-      var left = lday+' 00:00:00'
-      var right= rday+' 00:00:00'
+      var left = this.leftday+' 00:00:00'
+      var right= this.rightday+' 00:00:00'
       var data = {lday:left,rday:right}
       OrdersService.getorderbylrday(data).then(res =>{
-        this.tableData=res
+        this.tableData=res.data
       }).catch(err=>{
         console.log(err)
       })
@@ -192,6 +192,17 @@ export default {
     },
     setTo(){
       this.fromorto=0
+    },
+    toShowableTime(time){
+      var date = new Date(time)
+      var DD = String(date.getDate()).padStart(2, '0');
+      var MM = String(date.getMonth() + 1).padStart(2, '0');
+      var yyyy = date.getFullYear();
+      var hh = String(date.getHours()).padStart(2, '0');
+      var mm = String(date.getMinutes()).padStart(2, '0');
+      var ss = String(date.getSeconds()).padStart(2, '0');
+      var showtime=yyyy+'-'+MM+'-'+DD+' '+hh+':'+mm+':'+ss
+      return showtime
     }
   },
 

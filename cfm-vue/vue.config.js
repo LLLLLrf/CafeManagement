@@ -14,7 +14,7 @@ module.exports = {
         productName: "CafeManagement-Client", //项目名，也是生成的安装文件名，即aDemo.exe
         copyright: "FaterYU © 2022", //版权信息
         directories: {
-          output: "./dist_electron" //输出文件路径
+          output: "./pack" //输出文件路径
         },
         win: {
           //win相关配置
