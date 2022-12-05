@@ -4,12 +4,12 @@
             <!-- 这里宽度设100vh才不会有左右滑动 -->
             <hr style="background:#2F3CF4;height:2px;margin-left: 8px;min-width: 86vw;" />
 
-        <div v-loading="loading" v-for="(good) in goods" :key="good.name" class="drinkcard" @click="changeStatus(good.name)">
+        <div v-for="(good) in goods" :key="good.name" class="drinkcard" @click="changeStatus(good.name)">
             <!-- <el-image class="img" :src="img" :fit="fit" :preview-src-list="coffeeimgs" :initial-index="0"/> -->
             <el-image class="img" :src="good.image" :fit="fit" @click.stop="changeStatus(good.name)"/>
                 <div class="img-title" style="margin-left: 10px;width: 180px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">￥{{good.price}}  {{good.name}}</div>
         </div>
-
+        <div  v-loading="loading" style="margin-top:40px"></div>
         <el-drawer
             v-model="visible" :show-close="false"
             direction="rtl"
@@ -32,7 +32,6 @@
     import DetailPage from './DetailPage.vue';
     import { ElMessage } from 'element-plus';
     import GoodsService from '../services/GoodsService'
-import { fa } from 'element-plus/es/locale';
     export default{
         components:{DetailPage},
         data(){
@@ -80,9 +79,9 @@ import { fa } from 'element-plus/es/locale';
             GoodsService.getbyclass(this.page.toUpperCase())
                 .then(response => {
                     this.goods = response.data
-                    this.loading=false;
                     console.log(this.goods)
                 })
+            this.loading=false;
         },
         updated() {
             console.log(this.$route.query.page)
