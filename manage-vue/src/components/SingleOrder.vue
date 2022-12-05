@@ -36,19 +36,19 @@
       </el-row>
       <div v-if="orderdata">
         <el-row v-for="item in orderdata.orderlist.data" :key="item.id" class="details">
-          <!-- <el-descriptions title="" class="card-content" :column="1">
+          <el-descriptions title="" class="item" :column="1">
             <el-descriptions-item :label="item.id">{{item.name}} ✖ {{item.amount}}</el-descriptions-item>
-            <el-descriptions-item v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? '热饮' : item.temp === 'Cold'?'冷饮':'异常'}}</el-descriptions-item>
-            <el-descriptions-item v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'异常'}}</el-descriptions-item>
-          </el-descriptions> -->
+            <el-descriptions-item v-if="(item.temp==='Hot' || item.temp==='Cold')" label="Temperature : ">{{ item.temp === 'Hot' ? 'Hot' : item.temp === 'Cold'?'Cold':'Error'}}</el-descriptions-item>
+            <el-descriptions-item v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="Sugar : ">{{ item.sugar === 'Less' ? 'Less' : item.sugar === 'Normal' ? 'Normal' :'Error'}}</el-descriptions-item>
+          </el-descriptions>
 
-            <div class="item" :label="item.id">{{item.id}}: {{item.name}} ✖ {{item.amount}}</div>
-            <div class="item" v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? 'Hot' : item.temp === 'Cold'?'Cold':'Error'}}</div>
-            <div class="item" v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? '少糖' : item.sugar === 'Normal' ? '正常糖' :'Error'}}</div>
+            <!-- <el-row class="item" :label="item.id">{{item.id}}: {{item.name}} ✖ {{item.amount}}</el-row>
+            <el-row class="item" v-if="(item.temp==='Hot' || item.temp==='Cold')" label="  -">{{ item.temp === 'Hot' ? 'Hot' : item.temp === 'Cold'?'Cold':'Error'}}</el-row>
+            <el-row class="item" v-if="(item.sugar === 'Less' || item.sugar ==='Normal')" label="  -">{{ item.sugar === 'Less' ? 'Less' : item.sugar === 'Normal' ? 'Normal' :'Error'}}</el-row> -->
         </el-row>
         <el-row>
           <div class="item details">
-            Total {{orderdata.totalprice}}
+            Total ￥{{orderdata.totalprice}}
           </div>
         </el-row>
       </div>
