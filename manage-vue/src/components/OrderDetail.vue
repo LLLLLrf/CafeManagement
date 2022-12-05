@@ -177,11 +177,11 @@ export default {
           this.rightday=rday
       }
       if(this.leftday!==undefined && this.rightday!==undefined){
-      var left = lday+' 00:00:00'
-      var right= rday+' 00:00:00'
+      var left = this.leftday+' 00:00:00'
+      var right= this.rightday+' 00:00:00'
       var data = {lday:left,rday:right}
       OrdersService.getorderbylrday(data).then(res =>{
-        this.tableData=res
+        this.tableData=res.data
       }).catch(err=>{
         console.log(err)
       })
