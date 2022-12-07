@@ -9,7 +9,7 @@
             <el-image class="img" :src="good.image" :fit="fit" @click.stop="changeStatus(good.name)"/>
                 <div class="img-title" style="margin-left: 10px;width: 180px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">￥{{good.price}}  {{good.name}}</div>
         </div>
-
+        <div  v-loading="loading" style="margin-top:40px"></div>
         <el-drawer
             v-model="visible" :show-close="false"
             direction="rtl"
@@ -36,6 +36,7 @@
         components:{DetailPage},
         data(){
             return{
+                loading:true,
                 page: this.$route.query.page,
                 visible:false,
                 price:0,
@@ -80,6 +81,7 @@
                     this.goods = response.data
                     console.log(this.goods)
                 })
+            this.loading=false;
         },
         updated() {
             console.log(this.$route.query.page)
