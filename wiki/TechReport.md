@@ -248,20 +248,15 @@
 
 5. 对重要的数据传输的RSA与AES联合加密
 
-   使用AES对信息进行对称加密，用RSA对AES的密钥进行非对称加密，传输的数据包括AES加密后的信息与RSA加密后的AES解码的密钥，以此保证重要数据的安全。其中RSA使用node.js中的node-rsa库实现。
+   使用AES对信息进行对称加密，用RSA对AES的密钥进行非对称加密，传输的数据包括AES加密后的信息与RSA加密后的AES解码的密钥，以此保证重要数据的安全。其中AES使用node.js中的crypto库实现，RSA使用node.js中的node-rsa库实现。
 
    ```javascript
    // encrypt
-   const AES_encrypted=AESEncrypt(data, aes_key)
-   const RSA_encrypted = crypto.publicEncrypt(aes_key, Buffer.from(text)).toString("base64");
+   const AES_encrypted=aesEncrypt(data, aes_key)
+   const RSA_encrypted = rsa_encrypt(aes_key)
    // decrypt
-   const RSA_decrypted = crypto.privateDecrypt({
-       key: privateDer,
-       padding: crypto.constants.RSA_PKCS1_OAEP_PADDING
-   },
-       Buffer.from(aes_key, "base64")
-   ).toString("utf8");
-   const AES_decrypted=AESEncrypt(AES_encrypted, RSA_decrypted)
+   const RSA_decrypted = rsa_decrypt(RSA_encrypted)
+   const AES_decrypted=aesDecrypt(AES_encrypted, RSA_decrypted)
    ```
 
    
