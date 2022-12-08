@@ -9,40 +9,40 @@ var timesRun=new Array()
 // Create and Save a new Orders
 exports.create = (req, res) => {
   // console.log(req)
-    // Validate request
-    if (!req.body.orderlist) {
-      res.status(400).send({
-        message: "Content can not be empty!"
-      });
-      return;
-    }
-    // Create a Orders
-    const orders = {
-      publicid:req.body.publicid,
-      paytime: '0',
-      finish: req.body.finish,
-      orderlist: req.body.orderlist,
-      category: req.body.category,
-      totalprice:req.body.totalprice
-    };
-    // Save Orders in the database
-    Orders.create(orders)
-      .then(data => {
-        alipay.payapi(data.dataValues)
-        .then(url=>{
-          res.send(url)
-          timesRun[data.dataValues.publicid]=0
-          intervalObj[data.dataValues.publicid]=setInterval(checkpay, 2000, data.dataValues.publicid);
-          // checkpay(data.dataValues.publicid)
-        })
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Orders."
-        });
-      });
+  // Validate request
+  if (!req.body.orderlist) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+  // Create a Orders
+  const orders = {
+    publicid:req.body.publicid,
+    paytime: '0',
+    finish: req.body.finish,
+    orderlist: req.body.orderlist,
+    category: req.body.category,
+    totalprice:req.body.totalprice
   };
+  // Save Orders in the database
+  Orders.create(orders)
+  .then(data => {
+    alipay.payapi(data.dataValues)
+    .then(url=>{
+      res.send(url)
+      timesRun[data.dataValues.publicid]=0
+      intervalObj[data.dataValues.publicid]=setInterval(checkpay, 2000, data.dataValues.publicid);
+      // checkpay(data.dataValues.publicid)
+    })
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Orders."
+    });
+  });
+};
 // Retrieve all Orders from the database.
 exports.findAll = (req, res) => {
     const name = req.body.name;
