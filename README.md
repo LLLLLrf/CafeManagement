@@ -2,7 +2,9 @@
 
 SCNU&amp;UoA Cafe Management
 
-## 快速开始
+## 从docker构建
+
+## 从源代码构建
 
 - **安装Node.js**
 
