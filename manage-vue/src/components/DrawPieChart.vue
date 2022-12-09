@@ -45,7 +45,7 @@ import * as echarts from 'echarts'
                 },
                 series: [
                     {
-                    name: '本日收入',
+                    name: 'Daily Income',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
