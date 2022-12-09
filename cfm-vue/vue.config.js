@@ -35,6 +35,12 @@ module.exports = {
           // language: "2052", //安装语言
           perMachine: true, //应用所有用户
           allowToChangeInstallationDirectory: true //用户可以选择路径
+        },
+        linux: {
+          target: "deb" 
+        },
+        mac: {
+          target: "dmg"
         }
       }
     }
