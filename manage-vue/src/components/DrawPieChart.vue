@@ -31,7 +31,7 @@ import * as echarts from 'echarts'
             
             const option = {
                 title: {
-                    text: '本日收入',
+                    text: 'Daily Income',
                     left: 'center'
                 },
                 tooltip: {
@@ -41,18 +41,18 @@ import * as echarts from 'echarts'
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['coffee', 'fruit', 'milk']
+                    data: ['coffee', 'tea', 'soda']
                 },
                 series: [
                     {
-                    name: '本日收入',
+                    name: 'Daily Income',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
                     data: [
                         { value: 335, name: 'coffee' },
-                        { value: 310, name: 'fruit' },
-                        { value: 234, name: 'milk' },
+                        { value: 310, name: 'tea' },
+                        { value: 234, name: 'soda' },
                     ],
                     emphasis: {
                         itemStyle: {

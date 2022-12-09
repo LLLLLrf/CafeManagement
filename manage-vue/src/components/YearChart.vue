@@ -72,7 +72,7 @@ import * as echarts from 'echarts'
                 ],
                 series: [
                     {
-                    name: '本年收入',
+                    name: 'Income',
                     type: 'line',
                     symbol: 'none',
                     sampling: 'lttb',

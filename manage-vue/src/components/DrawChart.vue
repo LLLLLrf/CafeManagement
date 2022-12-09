@@ -34,7 +34,7 @@ import OrdersService from '@/services/OrdersService';
             //组件传值过来使用。
             const option = {
                 title: {
-                    text: '七日收入',
+                    text: 'Weekly Income',
                     left: 'center'
                 },
                 tooltip: {
@@ -75,7 +75,7 @@ import OrdersService from '@/services/OrdersService';
                         data: [120, 132, 101, 134, 110, 270, 260]
                     },
                     {
-                        name: 'fruit',
+                        name: 'tea',
                         type: 'bar',
                         stack: 'Ad',
                         emphasis: {
@@ -84,7 +84,7 @@ import OrdersService from '@/services/OrdersService';
                         data: [220, 182, 191, 234, 290, 330, 310]
                     },
                     {
-                        name: 'milk',
+                        name: 'soda',
                         type: 'bar',
                         stack: 'Ad',
                         emphasis: {
