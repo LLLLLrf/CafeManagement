@@ -15,7 +15,7 @@
                 <div class="good-name" style="white-space:nowrap;text-overflow: ellipsis;overflow: hidden;width: 160px;margin-left: 10px;">
                     {{good.name}}
                 </div>
-                <span class="good-msg">￥{{good.price}} Monthly Sales<em>{{good.sold}}</em></span>
+                <span class="good-msg">￥{{good.price}} Monthly Sales<em>{{good.sale}}</em></span>
                 <el-button @click="goodsdetail(good.name)" class="edit_btn">
                     <el-icon><EditPen /></el-icon>
                 </el-button>
