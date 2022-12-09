@@ -30,7 +30,7 @@ import * as echarts from 'echarts'
             const option = {
                 title: {
                     left: 'center',
-                    text: '本日饮品排行'
+                    text: 'Top Sale'
                 },
             dataset: {
                 source: [
