@@ -13,6 +13,8 @@
 
 Follow the installation program
 
+**You can use Application without build Back-end by yourself, because author build on cloud server and provide serve**
+
 ## Make  Back-end from Docker
 
 ### Compose Install
@@ -362,6 +364,10 @@ cfm-node
 - Front-end framework **[Vue 3](https://cn.vuejs.org/guide/quick-start.html)**
 - Database **[MySQL](https://docs.oracle.com/en-us/iaas/mysql-database/doc/getting-started.html)**
 
+## More Infomation
+
+- [Technical report]()
+
 ## Contributors
 
 - [FaterYU (FaterYU) (github.com)](https://github.com/FaterYU)
@@ -372,4 +378,3 @@ cfm-node
 - [1zero224 (github.com)](https://github.com/1zero224)
 - [sumikko43 (github.com)](https://github.com/sumikko43)
 - [KKKaa82 (github.com)](https://github.com/KKKaa82)
-
