@@ -35,15 +35,15 @@ import * as echarts from 'echarts'
             dataset: {
                 source: [
                 [ 'amount', 'product'],
-                [58212, 'Matcha Latte'],
-                [78254, 'Milk Tea'],
-                [41032, 'Cheese Cocoa'],
-                [12755, 'Cheese Brownie'],
-                [20145, 'Matcha Cocoa'],
-                [79146, 'Tea'],
-                [91852, 'Orange Juice'],
-                [101852, 'Lemon Juice'],
-                [20112, 'Walnut Brownie']
+                [5821, 'Matcha Latte'],
+                [7825, 'Milk Tea'],
+                [4102, 'Cheese Cocoa'],
+                [1275, 'Cheese Brownie'],
+                [2015, 'Matcha Cocoa'],
+                [7916, 'Tea'],
+                [9182, 'Orange Juice'],
+                [1015, 'Lemon Juice'],
+                [2012, 'Walnut Brownie']
                 ]
             },
             grid: { containLabel: true },
