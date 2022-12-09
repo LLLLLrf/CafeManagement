@@ -3,7 +3,7 @@ version: '3'
 services:
   mysqldb:
     build: ./sh
-    image: mysql:8.0
+    # image: mysql:8.0
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -11,8 +11,8 @@ services:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-    volumes:
-      - db:/var/lib/mysql
+    # volumes:
+    #   - db:/var/lib/mysql
   app:
     depends_on:
       - mysqldb
