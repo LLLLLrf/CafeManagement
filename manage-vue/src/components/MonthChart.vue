@@ -12,7 +12,7 @@ import OrdersService from '@/services/OrdersService'
         data() {
             return {
                 //在data中去设置图标的数据
-                days:['coffee','fruit','milk'],
+                days:['coffee','tea','soda'],
                 datas: [88,64,98]
             }
         },
@@ -61,7 +61,7 @@ import OrdersService from '@/services/OrdersService'
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['coffee','fruit','milk','total']
+                        data: ['coffee','tea','soda','total']
                     },
                     grid: {
                         left: '3%',
@@ -94,13 +94,13 @@ import OrdersService from '@/services/OrdersService'
                         data: [32, 32, 11, 34, 40, 35, 40, 90, 80, 30, 40,30]
                         },
                         {
-                        name: 'fruit',
+                        name: 'tea',
                         type: 'line',
                         // stack: 'Total',
                         data: [10, 22, 8, 24, 20, 33, 20, 60, 50, 40, 60,40]
                         },
                         {
-                        name: 'milk',
+                        name: 'soda',
                         type: 'line',
                         // stack: 'Total',
                         data: [14, 25, 12, 30, 50, 55, 40, 102, 90, 60, 50,30]
