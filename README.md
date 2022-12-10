@@ -365,7 +365,7 @@ cfm-node
 
 ## More Infomation
 
-- [Technical report](https://github.com/FaterYU/CafeManagement/blob/main/wiki/TechReport.md)
+- [Technical report](https://github.com/FaterYU/CafeManagement/blob/main/wiki/TechReport-en.md)
 
 ## Contributors
 
