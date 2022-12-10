@@ -110,7 +110,7 @@ sudo service mysql restart
 - user --> cfm
 - password --> cfm123456
 - database --> cfm
-- table --> orders,goods
+- table --> orders, goods
 
 #### Configuring Base Infomation
 
@@ -149,7 +149,6 @@ npm install -s
 
 ### Requirement
 
-- **Node.js**
 - **[Node.js v16.14.2](http://nodejs.cn/)**
   - **[npm v8.5.5]**
 - **[MySQL v8.0.28](https://www.mysql.com/)**
@@ -366,7 +365,7 @@ cfm-node
 
 ## More Infomation
 
-- [Technical report]()
+- [Technical report](https://github.com/FaterYU/CafeManagement/blob/main/wiki/TechReport.md)
 
 ## Contributors
 
@@ -378,3 +377,4 @@ cfm-node
 - [1zero224 (github.com)](https://github.com/1zero224)
 - [sumikko43 (github.com)](https://github.com/sumikko43)
 - [KKKaa82 (github.com)](https://github.com/KKKaa82)
+

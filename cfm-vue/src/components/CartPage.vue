@@ -43,7 +43,7 @@
             {{totalprice}}
         </el-descriptions-item>
     </el-descriptions>
-
+    <el-button @click="test">test</el-button>
     
     <!-- <div v-if="!payUrl"> -->
     <el-radio-group v-model="paymodel" style="width:max-content;margin:auto">
@@ -100,6 +100,9 @@ data() {
     }
 },
 methods: {
+    test(){
+        console.log(this.totalprice)
+    },
     onsubmit(){
         if(!this.orderList.length){
             ElMessage.error("Empty Cart")
@@ -156,7 +159,8 @@ methods: {
     },
     delitem(id) {
         var orderlist=this.orderList
-        console.log(orderlist.splice(id, 1))
+        orderlist.splice(id, 1)
+        console.log(orderlist)
         this.$emit('status', { status: 'change', data: orderlist })
     },
     close(){
@@ -178,6 +182,7 @@ methods: {
 mounted(){
     if(this.orderList.length){
         this.orderList.forEach((item)=>{
+            console.log(item.price)
             this.totalprice+=item.price*item.amount
         })
     }

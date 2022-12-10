@@ -8,7 +8,7 @@
             <h5 class="head-title">ABD cafe</h5>
           </div>
           <el-menu
-            :default-active="activeIndex"
+            default-active="1"
             class="el-menu-vertical-demo"
           >
             <el-menu-item index="1" @click="setName('coffee')" class="menu-item"  style="margin-top:10px">
@@ -37,7 +37,7 @@
       <div class="cart-name">Cart</div>
     </div>
     <router-view v-if="isRouterAlive" @details="getdetails" class="content"></router-view>
-    <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="60%" :show-close="false">
+    <el-drawer v-model="drawer" direction="btt" :before-close="handleClose" size="60%" :show-close="false" :destroy-on-close="true">
       <CartPage @status="finishorder" :orderList="orderList" style="margin-top:-10px"></CartPage>
     </el-drawer>
   </div>
@@ -89,14 +89,23 @@ export default {
           this.drawer=false
         }
         if(status.status==='change'){
-          this.orderList=this.status.data
+          this.orderList=status.data
+          var amount = 0
+          this.orderList.forEach(item => {
+            amount += item.amount
+          })
+          this.amount = amount
+          this.drawer = false
         }
         if(status.status==='empty'){
           this.drawer = false
         }
       }
       
-    }
+    },
+    mounted() {
+      this.setName('coffee')
+    },
 }
 </script>
 

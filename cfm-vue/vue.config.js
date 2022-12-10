@@ -18,7 +18,7 @@ module.exports = {
         },
         win: {
           //win相关配置
-          icon: "./public/logo.ico", //图标，当前图标在根目录下，注意这里有两个坑
+          icon: "./public/logo-b.ico", //图标，当前图标在根目录下，注意这里有两个坑
           target: [
             {
               target: "nsis", //利用nsis制作安装程序,打包文件的后缀为exe
